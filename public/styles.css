@@ -99,11 +99,11 @@ fieldset { border: 0; padding: 0; margin: 34px 0 0; }
 .subhead > p { max-width: 380px; color: var(--ink-soft); font-size: 13px; }
 
 .forest-card { padding: 32px; border: 1px solid var(--line); background: var(--white); }
-.forest-axis { height: 58px; margin-left: 180px; margin-right: 122px; position: relative; color: var(--ink-soft); font: 10px monospace; }
+.forest-axis { height: 42px; margin-left: 180px; margin-right: 122px; position: relative; color: var(--ink-soft); font: 10px monospace; }
 .forest-axis span { position: absolute; }
 .forest-axis .axis-limit, .forest-axis .axis-null { bottom: 4px; transform: translateX(-50%); }
 .forest-axis .axis-limit-right { transform: translateX(50%); }
-.threshold-axis-label { width: 104px; color: #a94b37; text-align: center; font: 700 9px/1.25 monospace; transform: translateX(-50%); }
+.threshold-axis-label { top: 0; width: 38px; color: #a94b37; text-align: center; font: 700 10px/1.2 monospace; transform: translateX(-50%); }
 .forest-row { min-height: 66px; display: grid; grid-template-columns: 165px minmax(180px, 1fr) 108px; gap: 15px; align-items: center; border-top: 1px solid rgba(23,42,50,.09); }
 .forest-label, .forest-value { display: flex; flex-direction: column; gap: 4px; }
 .forest-label strong { font-size: 12px; line-height: 1.25; }
@@ -112,18 +112,31 @@ fieldset { border: 0; padding: 0; margin: 34px 0 0; }
 .forest-value strong { font-size: 13px; }
 .forest-track { height: 28px; position: relative; }
 .null-line { width: 1px; height: 28px; position: absolute; left: 50%; top: 0; background: rgba(23,42,50,.35); }
-.meaningful-line { width: 0; height: 28px; position: absolute; top: 0; border-left: 1px dashed var(--coral); opacity: .85; }
+.meaningful-line { width: 14px; height: 28px; margin-left: -7px; position: absolute; top: 0; z-index: 5; cursor: help; outline: 0; }
+.meaningful-line::before { content: ""; height: 100%; position: absolute; top: 0; left: 50%; border-left: 1px dashed var(--coral); opacity: .85; transform: translateX(-50%); transition: border-width .12s ease, opacity .12s ease; }
+.meaningful-line:hover::before, .meaningful-line:focus-visible::before { border-left-width: 3px; opacity: 1; }
+.meaningful-line:focus-visible { outline: 2px solid rgba(225,104,75,.28); outline-offset: 2px; }
+.threshold-tooltip { width: 270px; padding: 12px 14px; display: none; position: absolute; bottom: calc(100% + 9px); z-index: 30; color: var(--white); background: var(--ink); box-shadow: 0 10px 28px rgba(23,42,50,.2); font: 11px/1.45 Arial, sans-serif; pointer-events: none; }
+.threshold-tooltip::after { content: ""; width: 9px; height: 9px; position: absolute; bottom: -4px; background: var(--ink); transform: rotate(45deg); }
+.threshold-tooltip strong, .threshold-tooltip span { display: block; position: static; }
+.threshold-tooltip strong { margin-bottom: 5px; color: var(--coral-light); font-size: 11px; }
+.tooltip-open-right .threshold-tooltip { left: 50%; }
+.tooltip-open-right .threshold-tooltip::after { left: 8px; }
+.tooltip-open-left .threshold-tooltip { right: 50%; }
+.tooltip-open-left .threshold-tooltip::after { right: 8px; }
+.meaningful-line:hover .threshold-tooltip, .meaningful-line:focus-visible .threshold-tooltip { display: block; }
 .ci-line { height: 3px; position: absolute; top: 13px; z-index: 2; background: var(--ink); }
 .point { width: 13px; height: 13px; position: absolute; top: 8px; z-index: 3; transform: translateX(-50%) rotate(45deg); border: 2px solid var(--white); box-shadow: 0 0 0 1px currentColor; }
 .point-good { background: var(--teal); color: var(--teal); }
 .point-neutral { background: var(--coral); color: var(--coral); }
-.threshold-note { margin: 18px 0 0; padding-top: 15px; border-top: 1px solid var(--line); color: var(--ink-soft); font: 10px/1.55 monospace; }
+.threshold-note { margin: 18px 0 0; padding-top: 15px; border-top: 1px solid var(--line); color: var(--ink-soft); font: 11px/1.6 Arial, sans-serif; }
+.threshold-note p { margin: 0 0 8px; }
+.threshold-note p:last-of-type { margin-bottom: 0; }
 .threshold-note strong { color: var(--ink); }
-.threshold-sources { display: block; margin-top: 6px; }
+.threshold-sources { display: block; margin-top: 9px; font: 10px/1.5 monospace; }
 .threshold-sources a { color: var(--teal); text-decoration: underline; text-underline-offset: 2px; }
 .threshold-none { border-left: 3px solid var(--paper-deep); padding-left: 12px; }
 .hero-figure .threshold-note { margin-top: 12px; }
-.threshold-compact { max-height: 68px; overflow-y: auto; }
 .ruler-meaningful { height: 42px; top: 0; }
 
 .biology-section, .safety-section { color: var(--white); background: var(--navy); }

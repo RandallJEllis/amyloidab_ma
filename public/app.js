@@ -7,28 +7,31 @@ const clinicalThresholds = {
     unit: "points",
     direction: -1,
     lines: [
-      { value: -2, label: "2 pt · MCI lower / Avgerinos" },
-      { value: -3, label: "3 pt · MCI upper" },
-      { value: -4, label: "4 pt · dementia" },
+      { value: -2, label: "2pt", title: "Lower MCI benchmark", explanation: "On ADAS-Cog, a 2-point treatment–placebo difference is the lower end of Cochrane’s MCI benchmark and the threshold Avgerinos et al. applied from Lansdall et al. Negative values indicate less worsening with treatment." },
+      { value: -3, label: "3pt", title: "Upper MCI benchmark", explanation: "On ADAS-Cog, a 3-point treatment–placebo difference is the upper end of Cochrane’s benchmark for mild cognitive impairment. Negative values indicate less worsening with treatment." },
+      { value: -4, label: "4pt", title: "Dementia benchmark", explanation: "On ADAS-Cog, a 4-point treatment–placebo difference is Cochrane’s cited benchmark for the dementia stage. Negative values indicate less worsening with treatment." },
     ],
     sources: "Avgerinos et al. (2024), applying Lansdall et al. (2023): 2 points; Cochrane (2026): 2–3 points in MCI and 4 points in dementia.",
+    plotting: "ADAS-Cog is lower-is-better, so benefits and thresholds appear on the negative side of the axis.",
   },
   "CDR-SB scale at 18 months": {
     measure: "MD",
     unit: "points",
     direction: -1,
     lines: [
-      { value: -1, label: "1 pt · MCI / Avgerinos" },
-      { value: -2, label: "2 pt · dementia" },
+      { value: -1, label: "1pt", title: "MCI benchmark", explanation: "On CDR-SB, a 1-point treatment–placebo difference is Cochrane’s cited MCI benchmark and the threshold Avgerinos et al. applied from Lansdall et al. Negative values indicate less worsening with treatment." },
+      { value: -2, label: "2pt", title: "Dementia benchmark", explanation: "On CDR-SB, a 2-point treatment–placebo difference is Cochrane’s cited benchmark for the dementia stage. Negative values indicate less worsening with treatment." },
     ],
     sources: "Avgerinos et al. (2024), applying Lansdall et al. (2023): 1 point; Cochrane (2026): 1 point in MCI and 2 points in dementia.",
+    plotting: "CDR-SB is lower-is-better, so benefits and thresholds appear on the negative side of the axis.",
   },
   "MMSE scale at 18 months": {
     measure: "MD",
     unit: "points",
     direction: 1,
-    lines: [{ value: 2, label: "2 pt · Avgerinos" }],
+    lines: [{ value: 2, label: "2pt", title: "MMSE benchmark", explanation: "On MMSE, a 2-point treatment–placebo difference is the 12-month benchmark Avgerinos et al. applied from Lansdall et al. Positive values indicate better performance with treatment." }],
     sources: "Avgerinos et al. (2024), applying Lansdall et al. (2023): 2 points within 12 months.",
+    plotting: "MMSE is higher-is-better, so benefits and the threshold appear on the positive side of the axis.",
   },
 };
 let evidence;
@@ -55,19 +58,19 @@ function plotRange(rows, outcome, floor=.35) {
 }
 
 function thresholdLines(outcome, range, className="meaningful-line") {
-  return (thresholdFor(outcome)?.lines || []).map(line => `<span class="${className}" style="left:${position(line.value,range)}%" aria-hidden="true"></span>`).join("");
+  return (thresholdFor(outcome)?.lines || []).map(line => `<span class="${className} ${line.value<0?"tooltip-open-right":"tooltip-open-left"}" style="left:${position(line.value,range)}%" tabindex="0" aria-label="${esc(`${line.label}, ${line.title}. ${line.explanation}`)}"><span class="threshold-tooltip" aria-hidden="true"><strong>${esc(line.label)} · ${esc(line.title)}</strong><span>${esc(line.explanation)}</span></span></span>`).join("");
 }
 
 function forestAxis(outcome, range) {
-  const labels = (thresholdFor(outcome)?.lines || []).map((line,index) => `<span class="threshold-axis-label" style="left:${position(line.value,range)}%;top:${index%2===0?0:18}px">${esc(line.label)}</span>`).join("");
+  const labels = (thresholdFor(outcome)?.lines || []).map(line => `<span class="threshold-axis-label" style="left:${position(line.value,range)}%">${esc(line.label)}</span>`).join("");
   return `<div class="forest-axis"><span class="axis-limit" style="left:0">${fmt(-range,2)}</span><span class="axis-null" style="left:50%">0</span><span class="axis-limit axis-limit-right" style="right:0">${fmt(range,2)}</span>${labels}</div>`;
 }
 
-function thresholdNote(outcome, compact=false) {
+function thresholdNote(outcome) {
   const threshold = thresholdFor(outcome);
-  if (!threshold) return `<p class="threshold-note threshold-none"><strong>Clinical-meaningfulness threshold:</strong> Neither the Cochrane review nor Avgerinos et al. specified an established point threshold for this scale.</p>`;
+  if (!threshold) return `<div class="threshold-note threshold-none"><p><strong>Clinical-meaningfulness threshold:</strong> Neither the Cochrane review nor Avgerinos et al. specified an established point threshold for this scale, so no red reference line is shown.</p></div>`;
   const references = `<span class="threshold-sources"><a href="https://doi.org/10.1038/s41598-024-75204-8" target="_blank" rel="noopener">Avgerinos 2024</a> · <a href="https://doi.org/10.14283/jpad.2022.102" target="_blank" rel="noopener">Lansdall 2023</a> · <a href="https://doi.org/10.1002/14651858.CD016297" target="_blank" rel="noopener">Cochrane 2026</a></span>`;
-  return `<p class="threshold-note ${compact?"threshold-compact":""}"><strong>Dashed lines are contextual thresholds, not null lines.</strong> ${esc(threshold.sources)} ${compact?"":"These thresholds were developed over shorter horizons and may not define a universal between-group minimum at 18 months."} ${references}</p>`;
+  return `<div class="threshold-note"><p><strong>What the red dashed lines mean.</strong> They mark published point-scale benchmarks proposed as the smallest changes likely to be clinically meaningful—not tests of statistical significance and not values calculated from this meta-analysis. The Cochrane review describes its ADAS-Cog and CDR-SB values as anchor-based MCIDs, meaning score changes were related to an external clinical anchor used to judge meaningful change. Avgerinos et al. did not create a single cross-scale cutoff; it applied instrument-specific thresholds reported by Lansdall et al. An estimate or confidence interval can therefore exclude zero while still falling short of a cited benchmark. ${esc(threshold.sources)}</p><p><strong>How the values are placed on this plot.</strong> The estimate and threshold are both shown as raw mean differences in the original instrument’s points; no SMD back-conversion or cross-scale standardization is used. ${esc(threshold.plotting)} ADAS-Cog, CDR-SB, and MMSE points are therefore interpretable only within their own instruments, not as equivalent amounts of benefit across scales.</p><p><strong>Important limitation.</strong> The cited thresholds were largely derived for individual change over approximately 6–12 months, whereas these plots summarize between-group differences at 18 months. They are useful contextual reference values, not universal decision rules or proof that a smaller effect is unimportant to every patient.</p>${references}</div>`;
 }
 
 function thresholdAssessment(row) {
@@ -125,7 +128,7 @@ function renderFixedSections() {
   const heroSmd = evidence.outcomeSensitivities.filter(row=>row.outcome==="ADAS-Cog scale at 18 months" && row.measure==="SMD" && ["Cochrane class pool","Response primary: clearing approved-generation trials","Currently active agents: lecanemab + donanemab"].includes(row.scenario));
   const hero = displayRows(heroSmd, evidence.rawMeanDifferences, "ADAS-Cog scale at 18 months", "scenario");
   const heroRange = plotRange(hero, "ADAS-Cog scale at 18 months");
-  document.querySelector("#hero-forest").innerHTML=`${forestAxis("ADAS-Cog scale at 18 months",heroRange)}${hero.map(row=>forestRow(row,heroRange)).join("")}${thresholdNote("ADAS-Cog scale at 18 months",true)}`;
+  document.querySelector("#hero-forest").innerHTML=`${forestAxis("ADAS-Cog scale at 18 months",heroRange)}${hero.map(row=>forestRow(row,heroRange)).join("")}${thresholdNote("ADAS-Cog scale at 18 months")}`;
   const regression=evidence.metaRegressions.filter(row=>row.measure==="SMD" && /ADAS|CDR/.test(row.outcome));
   document.querySelector("#biology-grid").innerHTML=regression.map(row=>`<article class="slope-card"><p class="eyebrow">${esc(outcomeShort[row.outcome]||row.outcome)}</p><div class="slope-number">${fmt(row.slope_per_10cl,3)}</div><p>SMD per additional 10-Centiloid reduction</p><div class="slope-meta"><span>95% CI ${fmt(row.slope_ci_low,3)} to ${fmt(row.slope_ci_high,3)}</span><strong>P ${fmtP(row.slope_p)}</strong></div></article>`).join("")+`<article class="biology-note"><p class="eyebrow">Reading the result</p><h3>Suggestive, not definitive.</h3><p>Both slopes favor greater slowing with greater plaque removal. Their confidence intervals include no association under precision-weighted random-effects inference.</p></article>`;
   const safety=evidence.absoluteSafety.filter(row=>row.outcome==="Any ARIA E at 18 months" && ["Aducanumab","Donanemab","Lecanemab"].includes(row.agent)).sort((a,b)=>b.rd_per_1000-a.rd_per_1000);

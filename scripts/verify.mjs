@@ -29,11 +29,13 @@ if (!html.includes("Living Amyloid Evidence")) throw new Error("Site title is mi
 if (!html.includes("not individualized medical advice")) throw new Error("Medical disclaimer is missing");
 if (!app.includes("renderExplorer")) throw new Error("Interactive explorer code is missing");
 if (!app.includes("clinicalThresholds")) throw new Error("Clinical-threshold registry is missing");
-if (!app.includes('value: -4, label: "4 pt · dementia"')) throw new Error("ADAS-Cog dementia threshold is missing");
-if (!app.includes('value: -2, label: "2 pt · dementia"')) throw new Error("CDR-SB dementia threshold is missing");
-if (!app.includes('value: 2, label: "2 pt · Avgerinos"')) throw new Error("MMSE threshold is missing");
+if (!app.includes('value: -4, label: "4pt"')) throw new Error("ADAS-Cog dementia threshold is missing");
+if (!app.includes('value: -2, label: "2pt"')) throw new Error("CDR-SB dementia threshold is missing");
+if (!app.includes('value: 2, label: "2pt"')) throw new Error("MMSE threshold is missing");
 if (!app.includes("rawMeanDifferences") || !app.includes("rawAgentResults")) throw new Error("Raw-scale threshold plotting is missing");
-if (!app.includes("Dashed lines are contextual thresholds, not null lines")) throw new Error("Threshold interpretation guardrail is missing");
+if (!app.includes("What the red dashed lines mean")) throw new Error("Threshold interpretation guardrail is missing");
+if (!app.includes("no SMD back-conversion or cross-scale standardization is used")) throw new Error("Threshold scale explanation is missing");
+if (!app.includes('class="threshold-tooltip"') || !app.includes('tabindex="0"')) throw new Error("Accessible threshold tooltips are missing");
 if (data.evidenceVersion !== "0.1.0") throw new Error("Unexpected evidence version");
 if (data.outcomeSensitivities.length < 20) throw new Error("Outcome registry is unexpectedly small");
 if (data.trialAnnotations.length < 17) throw new Error("Trial ledger is unexpectedly small");

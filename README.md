@@ -10,11 +10,12 @@ benefits and harms. It does not require a database or application server.
 ## Repository structure
 
 ```text
-public/                  Website deployed by Cloudflare Pages
+public/                  Static assets deployed by Cloudflare Workers
   downloads/             Reports, workbooks, CSVs, and reproducibility packages
   evidence.json          Machine-readable evidence registry
   evidence-inline.js     Offline-compatible copy of the registry
 scripts/verify.mjs       No-dependency publication validation
+wrangler.jsonc           Cloudflare Worker static-assets configuration
 .github/workflows/       Automatic validation for pushes and pull requests
 UPDATE_GUIDE.md          Evidence-update workflow
 CLOUDFLARE_SETUP.md      One-time deployment instructions
@@ -40,4 +41,3 @@ Release date: **2026-08-15**
 This is a research-synthesis resource, not individualized medical advice.
 Subgroup and meta-regression results are aggregate-data analyses and should not
 be interpreted as causal individual-level treatment-effect modifiers.
-
