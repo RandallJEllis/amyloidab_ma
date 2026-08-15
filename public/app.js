@@ -1,6 +1,36 @@
 const scenarioOrder = ["Cochrane class pool", "Biomarker-confirmed", "Demonstrated clearance: >=10 CL", "Response primary: clearing approved-generation trials", "Currently active agents: lecanemab + donanemab"];
 const scenarioShort = {"Cochrane class pool":"All antibodies","Biomarker-confirmed":"Biomarker confirmed","Demonstrated clearance: >=10 CL":"Clears ≥10 CL","Response primary: clearing approved-generation trials":"Response criteria","Currently active agents: lecanemab + donanemab":"Lecanemab + donanemab"};
 const outcomeShort = {"ADAS-Cog scale at 18 months":"ADAS-Cog · 18 months","CDR-SB scale at 18 months":"CDR-SB · 18 months","MMSE scale at 18 months":"MMSE · 18 months","ADCS-ADL score at 18 months":"ADCS-ADL · 18 months","ADCS-ADL-MCI score at 18 months":"ADCS-ADL-MCI · 18 months","ADCS-iADL score at 18 months":"ADCS-iADL · 18 months","DAD total score at 18 months":"DAD · 18 months"};
+const clinicalThresholds = {
+  "ADAS-Cog scale at 18 months": {
+    measure: "MD",
+    unit: "points",
+    direction: -1,
+    lines: [
+      { value: -2, label: "2 pt · MCI lower / Avgerinos" },
+      { value: -3, label: "3 pt · MCI upper" },
+      { value: -4, label: "4 pt · dementia" },
+    ],
+    sources: "Avgerinos et al. (2024), applying Lansdall et al. (2023): 2 points; Cochrane (2026): 2–3 points in MCI and 4 points in dementia.",
+  },
+  "CDR-SB scale at 18 months": {
+    measure: "MD",
+    unit: "points",
+    direction: -1,
+    lines: [
+      { value: -1, label: "1 pt · MCI / Avgerinos" },
+      { value: -2, label: "2 pt · dementia" },
+    ],
+    sources: "Avgerinos et al. (2024), applying Lansdall et al. (2023): 1 point; Cochrane (2026): 1 point in MCI and 2 points in dementia.",
+  },
+  "MMSE scale at 18 months": {
+    measure: "MD",
+    unit: "points",
+    direction: 1,
+    lines: [{ value: 2, label: "2 pt · Avgerinos" }],
+    sources: "Avgerinos et al. (2024), applying Lansdall et al. (2023): 2 points within 12 months.",
+  },
+};
 let evidence;
 let selectedOutcome = "ADAS-Cog scale at 18 months";
 let selectedScenario = "Response primary: clearing approved-generation trials";
@@ -10,17 +40,60 @@ const fmtP = v => v < .001 ? "<.001" : v.toFixed(3).replace(/^0/, "");
 const favorableDirection = outcome => /ADAS|CDR/.test(outcome) ? -1 : 1;
 const esc = value => String(value ?? "").replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
 
+const thresholdFor = outcome => clinicalThresholds[outcome] || null;
+const position = (value, range) => ((value + range)/(range*2))*100;
+
+function displayRows(rows, rawRows, outcome, key) {
+  if (!thresholdFor(outcome)) return rows;
+  const available = new Map(rawRows.filter(row => row.outcome === outcome && row.measure === "MD").map(row => [row[key], row]));
+  return rows.map(row => available.get(row[key])).filter(Boolean);
+}
+
+function plotRange(rows, outcome, floor=.35) {
+  const thresholds = thresholdFor(outcome)?.lines || [];
+  return Math.max(floor, ...rows.flatMap(row => [Math.abs(row.ci_low), Math.abs(row.ci_high)]), ...thresholds.map(line => Math.abs(line.value))) * 1.1;
+}
+
+function thresholdLines(outcome, range, className="meaningful-line") {
+  return (thresholdFor(outcome)?.lines || []).map(line => `<span class="${className}" style="left:${position(line.value,range)}%" aria-hidden="true"></span>`).join("");
+}
+
+function forestAxis(outcome, range) {
+  const labels = (thresholdFor(outcome)?.lines || []).map((line,index) => `<span class="threshold-axis-label" style="left:${position(line.value,range)}%;top:${index%2===0?0:18}px">${esc(line.label)}</span>`).join("");
+  return `<div class="forest-axis"><span class="axis-limit" style="left:0">${fmt(-range,2)}</span><span class="axis-null" style="left:50%">0</span><span class="axis-limit axis-limit-right" style="right:0">${fmt(range,2)}</span>${labels}</div>`;
+}
+
+function thresholdNote(outcome, compact=false) {
+  const threshold = thresholdFor(outcome);
+  if (!threshold) return `<p class="threshold-note threshold-none"><strong>Clinical-meaningfulness threshold:</strong> Neither the Cochrane review nor Avgerinos et al. specified an established point threshold for this scale.</p>`;
+  const references = `<span class="threshold-sources"><a href="https://doi.org/10.1038/s41598-024-75204-8" target="_blank" rel="noopener">Avgerinos 2024</a> · <a href="https://doi.org/10.14283/jpad.2022.102" target="_blank" rel="noopener">Lansdall 2023</a> · <a href="https://doi.org/10.1002/14651858.CD016297" target="_blank" rel="noopener">Cochrane 2026</a></span>`;
+  return `<p class="threshold-note ${compact?"threshold-compact":""}"><strong>Dashed lines are contextual thresholds, not null lines.</strong> ${esc(threshold.sources)} ${compact?"":"These thresholds were developed over shorter horizons and may not define a universal between-group minimum at 18 months."} ${references}</p>`;
+}
+
+function thresholdAssessment(row) {
+  const threshold = thresholdFor(row.outcome);
+  if (!threshold) return "No established threshold was specified for this scale in the cited papers.";
+  const transformed = [row.ci_low * threshold.direction, row.ci_high * threshold.direction].sort((a,b)=>a-b);
+  const estimate = row.estimate * threshold.direction;
+  const lowest = Math.min(...threshold.lines.map(line => Math.abs(line.value)));
+  if (transformed[1] < lowest) return `The entire 95% CI remains below the lowest cited ${lowest}-point threshold.`;
+  if (estimate < lowest) return `The point estimate remains below the lowest cited ${lowest}-point threshold; the CI reaches or crosses it.`;
+  return `The point estimate reaches the lowest cited ${lowest}-point threshold; applicability still depends on disease stage and time horizon.`;
+}
+
 function forestRow(row, range) {
   const low = Math.max(0, ((row.ci_low + range)/(range*2))*100);
   const high = Math.min(100, ((row.ci_high + range)/(range*2))*100);
   const point = ((row.estimate + range)/(range*2))*100;
   const label = row.scenario ? scenarioShort[row.scenario] || row.scenario : row.agent || row.target_class || "Estimate";
   const favorable = row.estimate * favorableDirection(row.outcome) > 0;
-  return `<div class="forest-row"><div class="forest-label"><strong>${esc(label)}</strong><span>${row.k} ${row.k===1?"trial":"trials"}</span></div><div class="forest-track" aria-label="${esc(label)}, estimate ${fmt(row.estimate)}"><span class="null-line"></span><span class="ci-line" style="left:${low}%;width:${Math.max(0,high-low)}%"></span><span class="point ${favorable?"point-good":"point-neutral"}" style="left:${point}%"></span></div><div class="forest-value"><strong>${fmt(row.estimate)}</strong><span>${fmt(row.ci_low)} to ${fmt(row.ci_high)}</span></div></div>`;
+  const unit = thresholdFor(row.outcome) ? "points" : "standardized units";
+  return `<div class="forest-row"><div class="forest-label"><strong>${esc(label)}</strong><span>${row.k} ${row.k===1?"trial":"trials"}</span></div><div class="forest-track" aria-label="${esc(label)}, estimate ${fmt(row.estimate)} ${unit}, 95% confidence interval ${fmt(row.ci_low)} to ${fmt(row.ci_high)}">${thresholdLines(row.outcome,range)}<span class="null-line"></span><span class="ci-line" style="left:${low}%;width:${Math.max(0,high-low)}%"></span><span class="point ${favorable?"point-good":"point-neutral"}" style="left:${point}%"></span></div><div class="forest-value"><strong>${fmt(row.estimate)}</strong><span>${fmt(row.ci_low)} to ${fmt(row.ci_high)}</span></div></div>`;
 }
 
 function rowsForOutcome() {
-  return evidence.outcomeSensitivities.filter(row => row.outcome === selectedOutcome && row.measure === "SMD").sort((a,b)=>scenarioOrder.indexOf(a.scenario)-scenarioOrder.indexOf(b.scenario));
+  const smd = evidence.outcomeSensitivities.filter(row => row.outcome === selectedOutcome && row.measure === "SMD").sort((a,b)=>scenarioOrder.indexOf(a.scenario)-scenarioOrder.indexOf(b.scenario));
+  return displayRows(smd, evidence.rawMeanDifferences, selectedOutcome, "scenario");
 }
 
 function renderExplorer() {
@@ -28,28 +101,33 @@ function renderExplorer() {
   if (!rows.some(row => row.scenario === selectedScenario)) selectedScenario = rows.find(row => row.scenario.includes("Response primary"))?.scenario || rows[0]?.scenario;
   const selected = rows.find(row => row.scenario === selectedScenario) || rows[0];
   const classRow = rows.find(row => row.scenario === "Cochrane class pool");
-  const raw = evidence.rawMeanDifferences.find(row => row.outcome === selectedOutcome && row.scenario === selected.scenario);
-  const range = Math.max(.35, ...rows.flatMap(row => [Math.abs(row.ci_low),Math.abs(row.ci_high)]))*1.08;
+  const standardized = evidence.outcomeSensitivities.find(row => row.outcome === selectedOutcome && row.measure === "SMD" && row.scenario === selected.scenario);
+  const range = plotRange(rows, selectedOutcome);
   const delta = classRow ? (selected.estimate-classRow.estimate)*favorableDirection(selectedOutcome) : 0;
   document.querySelector("#scenario-controls").innerHTML = rows.map(row => `<label class="radio-card ${row.scenario===selected.scenario?"radio-selected":""}"><input type="radio" name="scenario" value="${esc(row.scenario)}" ${row.scenario===selected.scenario?"checked":""}><span><strong>${esc(scenarioShort[row.scenario]||row.scenario)}</strong><small>${row.k} ${row.k===1?"trial":"trials"}</small></span></label>`).join("");
   document.querySelectorAll('input[name="scenario"]').forEach(input => input.addEventListener("change", event => { selectedScenario=event.target.value; renderExplorer(); }));
-  document.querySelector("#selected-result").innerHTML = `<div class="result-topline"><div><p class="eyebrow">Selected specification</p><h3>${esc(scenarioShort[selected.scenario]||selected.scenario)}</h3></div><span class="analysis-id">Analysis ${esc(selected.analysis_id)}</span></div><div class="big-estimate"><span>${fmt(selected.estimate)}</span><div><strong>SMD</strong><small>95% CI ${fmt(selected.ci_low)} to ${fmt(selected.ci_high)}</small></div></div><div class="estimate-ruler"><span class="ruler-null"></span><span class="ruler-ci" style="left:${((selected.ci_low+range)/(2*range))*100}%;width:${((selected.ci_high-selected.ci_low)/(2*range))*100}%"></span><span class="ruler-point" style="left:${((selected.estimate+range)/(2*range))*100}%"></span></div><div class="metric-grid"><div><span>Trials</span><strong>${selected.k}</strong></div><div><span>Heterogeneity</span><strong>I² ${selected.i2==null?"—":Math.round(selected.i2)+"%"}</strong></div><div><span>P value</span><strong>${fmtP(selected.p_value)}</strong></div><div><span>Versus class pool</span><strong>${delta>.005?Math.round(delta/Math.abs(classRow.estimate)*100)+"% larger":delta<-.005?"smaller":"similar"}</strong></div></div><div class="interpretation"><strong>What changed?</strong><p>${selected.scenario==="Cochrane class pool"?"This is the locked class-wide reference and includes antibodies regardless of plaque clearance.":`${esc(scenarioShort[selected.scenario])} changes the evidence from ${classRow?.k||"the"} to ${selected.k} trials. ${delta>0?"The estimated benefit becomes larger.":"The estimated benefit does not become larger."}`}</p>${raw?`<p class="raw-note">On the original scale: <strong>${fmt(raw.estimate,2)} points</strong> (95% CI ${fmt(raw.ci_low,2)} to ${fmt(raw.ci_high,2)}).</p>`:""}</div>`;
-  document.querySelector("#specification-forest").innerHTML = `<div class="forest-axis"><span style="left:0">${fmt(-range,2)}</span><span style="left:50%">0</span><span style="right:0">${fmt(range,2)}</span></div>${rows.map(row=>forestRow(row,range)).join("")}`;
+  const measure = thresholdFor(selectedOutcome) ? "MD · points" : "SMD";
+  const secondary = thresholdFor(selectedOutcome) && standardized ? `<p class="raw-note">Standardized estimate: <strong>${fmt(standardized.estimate)} SMD</strong> (95% CI ${fmt(standardized.ci_low)} to ${fmt(standardized.ci_high)}).</p>` : "";
+  document.querySelector("#selected-result").innerHTML = `<div class="result-topline"><div><p class="eyebrow">Selected specification</p><h3>${esc(scenarioShort[selected.scenario]||selected.scenario)}</h3></div><span class="analysis-id">Analysis ${esc(selected.analysis_id)}</span></div><div class="big-estimate"><span>${fmt(selected.estimate)}</span><div><strong>${measure}</strong><small>95% CI ${fmt(selected.ci_low)} to ${fmt(selected.ci_high)}</small></div></div><div class="estimate-ruler">${thresholdLines(selectedOutcome,range,"meaningful-line ruler-meaningful")}<span class="ruler-null"></span><span class="ruler-ci" style="left:${position(selected.ci_low,range)}%;width:${position(selected.ci_high,range)-position(selected.ci_low,range)}%"></span><span class="ruler-point" style="left:${position(selected.estimate,range)}%"></span></div><div class="metric-grid"><div><span>Trials</span><strong>${selected.k}</strong></div><div><span>Heterogeneity</span><strong>I² ${selected.i2==null?"—":Math.round(selected.i2)+"%"}</strong></div><div><span>P value</span><strong>${fmtP(selected.p_value)}</strong></div><div><span>Versus class pool</span><strong>${delta>.005?Math.round(delta/Math.abs(classRow.estimate)*100)+"% larger":delta<-.005?"smaller":"similar"}</strong></div></div><div class="interpretation"><strong>What changed?</strong><p>${selected.scenario==="Cochrane class pool"?"This is the locked class-wide reference and includes antibodies regardless of plaque clearance.":`${esc(scenarioShort[selected.scenario])} changes the evidence from ${classRow?.k||"the"} to ${selected.k} trials. ${delta>0?"The estimated benefit becomes larger.":"The estimated benefit does not become larger."}`}</p><p><strong>Clinical context:</strong> ${esc(thresholdAssessment(selected))}</p>${secondary}</div>`;
+  document.querySelector("#specification-forest").innerHTML = `${forestAxis(selectedOutcome,range)}${rows.map(row=>forestRow(row,range)).join("")}${thresholdNote(selectedOutcome)}`;
   renderAgents();
 }
 
 function renderAgents() {
-  const rows = evidence.agentResults.filter(row=>row.outcome===selectedOutcome && row.measure==="SMD").sort((a,b)=>a.estimate-b.estimate);
+  const smd = evidence.agentResults.filter(row=>row.outcome===selectedOutcome && row.measure==="SMD").sort((a,b)=>a.estimate-b.estimate);
+  const rows = displayRows(smd, evidence.rawAgentResults, selectedOutcome, "agent").sort((a,b)=>a.estimate-b.estimate);
   if (!rows.length) { document.querySelector("#agent-forest").innerHTML="<p>No agent-level estimate is available for this endpoint.</p>"; return; }
-  const range = Math.max(.5,...rows.flatMap(row=>[Math.abs(row.ci_low),Math.abs(row.ci_high)]))*1.05;
-  document.querySelector("#agent-forest").innerHTML=rows.map(row=>forestRow(row,range)).join("");
+  const range = plotRange(rows, selectedOutcome, .5);
+  document.querySelector("#agent-forest").innerHTML=`${forestAxis(selectedOutcome,range)}${rows.map(row=>forestRow(row,range)).join("")}${thresholdNote(selectedOutcome)}`;
 }
 
 function renderFixedSections() {
-  const hero = evidence.outcomeSensitivities.filter(row=>row.outcome==="ADAS-Cog scale at 18 months" && ["Cochrane class pool","Response primary: clearing approved-generation trials","Currently active agents: lecanemab + donanemab"].includes(row.scenario));
-  document.querySelector("#hero-forest").innerHTML=hero.map(row=>forestRow(row,.28)).join("");
+  const heroSmd = evidence.outcomeSensitivities.filter(row=>row.outcome==="ADAS-Cog scale at 18 months" && row.measure==="SMD" && ["Cochrane class pool","Response primary: clearing approved-generation trials","Currently active agents: lecanemab + donanemab"].includes(row.scenario));
+  const hero = displayRows(heroSmd, evidence.rawMeanDifferences, "ADAS-Cog scale at 18 months", "scenario");
+  const heroRange = plotRange(hero, "ADAS-Cog scale at 18 months");
+  document.querySelector("#hero-forest").innerHTML=`${forestAxis("ADAS-Cog scale at 18 months",heroRange)}${hero.map(row=>forestRow(row,heroRange)).join("")}${thresholdNote("ADAS-Cog scale at 18 months",true)}`;
   const regression=evidence.metaRegressions.filter(row=>row.measure==="SMD" && /ADAS|CDR/.test(row.outcome));
-  document.querySelector("#biology-grid").innerHTML=regression.map(row=>`<article class="slope-card"><p class="eyebrow">${esc(outcomeShort[row.outcome]||row.outcome)}</p><div class="slope-number">${fmt(row.slope_per_10cl,3)}</div><p>SMD per additional 10-Centiloid reduction</p><div class="slope-meta"><span>95% CI ${fmt(row.ci_low,3)} to ${fmt(row.ci_high,3)}</span><strong>P ${fmtP(row.p_value)}</strong></div></article>`).join("")+`<article class="biology-note"><p class="eyebrow">Reading the result</p><h3>Suggestive, not definitive.</h3><p>Both slopes favor greater slowing with greater plaque removal. Their confidence intervals include no association under precision-weighted random-effects inference.</p></article>`;
+  document.querySelector("#biology-grid").innerHTML=regression.map(row=>`<article class="slope-card"><p class="eyebrow">${esc(outcomeShort[row.outcome]||row.outcome)}</p><div class="slope-number">${fmt(row.slope_per_10cl,3)}</div><p>SMD per additional 10-Centiloid reduction</p><div class="slope-meta"><span>95% CI ${fmt(row.slope_ci_low,3)} to ${fmt(row.slope_ci_high,3)}</span><strong>P ${fmtP(row.slope_p)}</strong></div></article>`).join("")+`<article class="biology-note"><p class="eyebrow">Reading the result</p><h3>Suggestive, not definitive.</h3><p>Both slopes favor greater slowing with greater plaque removal. Their confidence intervals include no association under precision-weighted random-effects inference.</p></article>`;
   const safety=evidence.absoluteSafety.filter(row=>row.outcome==="Any ARIA E at 18 months" && ["Aducanumab","Donanemab","Lecanemab"].includes(row.agent)).sort((a,b)=>b.rd_per_1000-a.rd_per_1000);
   document.querySelector("#safety-grid").innerHTML=safety.map((row,index)=>`<article class="safety-card"><div class="safety-rank">0${index+1}</div><p class="eyebrow">${esc(row.agent)} · ARIA-E</p><div class="risk-number">+${Math.round(row.rd_per_1000)}</div><p class="risk-unit">additional events per 1,000 treated</p><div class="risk-bar"><span style="width:${Math.min(100,row.rd_per_1000/3.6)}%"></span></div><div class="risk-meta"><span>95% CI +${Math.round(row.rd_ci_low_per_1000)} to +${Math.round(row.rd_ci_high_per_1000)}</span><strong>NNH ${row.number_needed?.toFixed(1)||"—"}</strong></div></article>`).join("");
   const trialRows=evidence.trialAnnotations.map(trial=>({...trial,clearance:evidence.amyloidMapping.find(item=>item.Study===trial.Study)?.amyloid_change_cl??null}));

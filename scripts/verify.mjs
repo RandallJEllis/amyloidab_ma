@@ -28,6 +28,12 @@ const data = JSON.parse(await readFile(join(root, "evidence.json"), "utf8"));
 if (!html.includes("Living Amyloid Evidence")) throw new Error("Site title is missing");
 if (!html.includes("not individualized medical advice")) throw new Error("Medical disclaimer is missing");
 if (!app.includes("renderExplorer")) throw new Error("Interactive explorer code is missing");
+if (!app.includes("clinicalThresholds")) throw new Error("Clinical-threshold registry is missing");
+if (!app.includes('value: -4, label: "4 pt · dementia"')) throw new Error("ADAS-Cog dementia threshold is missing");
+if (!app.includes('value: -2, label: "2 pt · dementia"')) throw new Error("CDR-SB dementia threshold is missing");
+if (!app.includes('value: 2, label: "2 pt · Avgerinos"')) throw new Error("MMSE threshold is missing");
+if (!app.includes("rawMeanDifferences") || !app.includes("rawAgentResults")) throw new Error("Raw-scale threshold plotting is missing");
+if (!app.includes("Dashed lines are contextual thresholds, not null lines")) throw new Error("Threshold interpretation guardrail is missing");
 if (data.evidenceVersion !== "0.1.0") throw new Error("Unexpected evidence version");
 if (data.outcomeSensitivities.length < 20) throw new Error("Outcome registry is unexpectedly small");
 if (data.trialAnnotations.length < 17) throw new Error("Trial ledger is unexpectedly small");
@@ -52,4 +58,3 @@ for (const file of files) {
 }
 
 console.log(`Validated evidence ${data.evidenceVersion}: ${data.trialAnnotations.length} trials, ${data.outcomeSensitivities.length} outcome specifications, ${files.length} public files.`);
-
