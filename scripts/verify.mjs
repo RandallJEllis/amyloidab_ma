@@ -13,7 +13,7 @@ const required = [
   "downloads/primary-reanalysis-report.pdf",
   "downloads/extended-reanalysis-report.pdf",
   "downloads/outcome-sensitivities.csv",
-  "downloads/extended-reanalysis-package.zip",
+  "downloads/reproducibility-package.zip",
 ];
 
 for (const relative of required) {
@@ -27,6 +27,7 @@ const data = JSON.parse(await readFile(join(root, "evidence.json"), "utf8"));
 
 if (!html.includes("Living Amyloid Evidence")) throw new Error("Site title is missing");
 if (!html.includes("not individualized medical advice")) throw new Error("Medical disclaimer is missing");
+if (!html.includes("downloads/reproducibility-package.zip")) throw new Error("Unified reproducibility-package link is missing");
 if (!app.includes("renderExplorer")) throw new Error("Interactive explorer code is missing");
 if (!app.includes("clinicalThresholds")) throw new Error("Clinical-threshold registry is missing");
 if (!app.includes('value: -4, label: "4pt"')) throw new Error("ADAS-Cog dementia threshold is missing");
