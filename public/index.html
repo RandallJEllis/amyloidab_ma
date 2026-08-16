@@ -62,7 +62,20 @@
 
   <section class="section conditions-section" id="conditions">
     <div class="section-heading"><div><p class="kicker">Analysis conditions</p><h2>Five ways to define<br>the evidence set.</h2></div><p>Each condition answers a different, defensible question. The table keeps the resulting estimates together; the cards make the rule and source reports explicit.</p></div>
+    <div class="condition-map" aria-label="Relationship among analysis conditions">
+      <div class="condition-map-root"><span>Reference set</span><strong>All antibodies</strong></div>
+      <div class="condition-map-branches">
+        <div class="condition-map-branch"><span>Entry criterion</span><strong>Biomarker confirmed</strong><small>plus ≥10 CL and approved generation</small><div class="condition-map-child"><strong>Response criteria</strong></div></div>
+        <div class="condition-map-branch"><span>Target engagement</span><strong>Clears ≥10 CL</strong><small>regardless of generation</small></div>
+        <div class="condition-map-branch"><span>Current-agent view</span><strong>Lecanemab + donanemab</strong><small>time-indexed sensitivity</small></div>
+      </div>
+    </div>
+    <div class="condition-toolbar">
+      <label><span>Statistics and membership endpoint</span><select id="condition-outcome-select"></select></label>
+      <div class="condition-actions"><button class="button button-secondary" id="download-condition-csv" type="button">Download displayed CSV</button><button class="button button-secondary" id="copy-condition-citation" type="button">Copy versioned citation</button></div>
+    </div>
     <div id="condition-statistics" aria-live="polite"></div>
+    <div class="condition-matrix-block"><div class="subhead"><div><p class="eyebrow">Trial inclusion matrix</p><h3>Every decision, trial by trial</h3></div><p>Cells show whether a study contributes to the selected endpoint under each condition. Hover or focus a cell for the reason.</p></div><div id="condition-matrix"></div></div>
     <div class="condition-cards" id="condition-cards"></div>
   </section>
 
