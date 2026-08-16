@@ -98,6 +98,21 @@ fieldset { border: 0; padding: 0; margin: 34px 0 0; }
 .subhead { align-items: end; margin-bottom: 25px; }
 .subhead > p { max-width: 380px; color: var(--ink-soft); font-size: 13px; }
 
+.conditions-section { background: #eef3ef; }
+.condition-table-wrap { box-shadow: 0 14px 32px rgba(23,42,50,.06); }
+.condition-table-wrap th[scope="row"] { color: var(--ink); background: var(--white); font: 700 12px Arial, sans-serif; text-transform: none; letter-spacing: 0; }
+.condition-table-wrap td { min-width: 155px; }
+.condition-table-wrap td small { display: block; margin-top: 5px; color: var(--ink-soft); font: 10px/1.45 monospace; white-space: nowrap; }
+.condition-table-note { max-width: 920px; margin: 16px 0 0; color: var(--ink-soft); font-size: 12px; line-height: 1.6; }
+.condition-cards { margin-top: 44px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.condition-card { min-height: 275px; padding: 28px; border: 1px solid var(--line); background: var(--white); }
+.condition-card h3 { margin: 0 0 13px; font: 500 29px/1.05 Georgia, serif; letter-spacing: -.03em; }
+.condition-card > p:not(.eyebrow) { max-width: 600px; margin-bottom: 24px; color: var(--ink-soft); font-size: 13px; line-height: 1.6; }
+.condition-references { padding-top: 16px; border-top: 1px solid var(--line); }
+.condition-references > strong { font: 700 10px monospace; text-transform: uppercase; letter-spacing: .08em; }
+.condition-references ul { margin: 10px 0 0; padding-left: 18px; color: var(--ink-soft); font-size: 11px; line-height: 1.6; }
+.condition-references a { color: var(--teal); text-decoration: underline; text-underline-offset: 2px; }
+
 .forest-card { padding: 32px; border: 1px solid var(--line); background: var(--white); }
 .forest-axis { height: 42px; margin-left: 180px; margin-right: 122px; position: relative; color: var(--ink-soft); font: 10px monospace; }
 .forest-axis span { position: absolute; }
@@ -207,6 +222,7 @@ footer p { margin-bottom: 0; }
   .explorer-shell { grid-template-columns: 280px 1fr; }
   .metric-grid { grid-template-columns: 1fr 1fr; }
   .biology-grid, .safety-grid { grid-template-columns: 1fr; }
+  .condition-cards { grid-template-columns: 1fr; }
   .slope-card, .biology-note, .safety-card { min-height: auto; }
   .methods-grid { grid-template-columns: 1fr; }
 }
@@ -229,6 +245,8 @@ footer p { margin-bottom: 0; }
   .subhead { align-items: flex-start; flex-direction: column; }
   .forest-card { padding: 20px 14px; overflow-x: auto; }
   .forest-card .forest-row, .forest-card .forest-axis { min-width: 610px; }
+  .condition-table-wrap { overflow-x: auto; }
+  .condition-table-wrap table { min-width: 900px; }
   .forest-axis { margin-left: 180px; }
   .downloads { grid-template-columns: 1fr; }
   .download-links { grid-template-columns: 1fr; }
