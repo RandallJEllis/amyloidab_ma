@@ -20,7 +20,7 @@
 <main>
   <header class="site-header">
     <a class="brand" href="#top"><span class="brand-mark">Aβ</span><span>Living Amyloid Evidence</span></a>
-    <nav aria-label="Primary navigation"><a href="#explorer">Explorer</a><a href="#biology">Biology</a><a href="#safety">Safety</a><a href="#trials">Trials</a><a href="#methods">Methods</a></nav>
+    <nav aria-label="Primary navigation"><a href="#explorer">Explorer</a><a href="#conditions">Conditions</a><a href="#biology">Biology</a><a href="#safety">Safety</a><a href="#trials">Trials</a><a href="#methods">Methods</a></nav>
     <span class="version-pill">Evidence v0.1.0</span>
   </header>
 
@@ -58,6 +58,12 @@
       <div class="subhead"><div><p class="eyebrow">Specification view</p><h3>All eligible choices, side by side</h3></div><p>Confidence intervals are shown against both the null and any published clinically meaningful-difference thresholds available for the selected scale.</p></div>
       <div class="forest-card" id="specification-forest"></div>
     </div>
+  </section>
+
+  <section class="section conditions-section" id="conditions">
+    <div class="section-heading"><div><p class="kicker">Analysis conditions</p><h2>Five ways to define<br>the evidence set.</h2></div><p>Each condition answers a different, defensible question. The table keeps the resulting estimates together; the cards make the rule and source reports explicit.</p></div>
+    <div id="condition-statistics" aria-live="polite"></div>
+    <div class="condition-cards" id="condition-cards"></div>
   </section>
 
   <section class="section biology-section" id="biology">

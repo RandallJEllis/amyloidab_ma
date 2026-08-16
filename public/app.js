@@ -34,6 +34,16 @@ const clinicalThresholds = {
     plotting: "MMSE is higher-is-better, so benefits and the threshold appear on the positive side of the axis.",
   },
 };
+const conditionProfiles = {
+  "Cochrane class pool": { description: "The Cochrane review’s prespecified class-wide comparison. It retains every eligible antibody trial for a given endpoint, regardless of amyloid biomarker entry, demonstrated plaque removal, regulatory generation, or current availability.", papers: ["aducanumab","bapineuzumab","crenezumab","gantenerumab","donanemab","lecanemab","solanezumab"] },
+  "Biomarker-confirmed": { description: "Restricts the class pool to trials that required evidence of amyloid pathology at entry. It does not require a matched plaque-PET effect estimate or a particular magnitude of plaque reduction.", papers: ["aducanumab","crenezumab","gantenerumab","donanemab","lecanemab","solanezumab2018","envision"] },
+  "Demonstrated clearance: >=10 CL": { description: "Restricts to trials with a matched, placebo-adjusted amyloid-PET reduction of at least 10 Centiloids (CL). Trials without a matched CL estimate are excluded rather than assigned an assumed value.", papers: ["aducanumab","gantenerumab","donanemab","lecanemab"] },
+  "Response primary: clearing approved-generation trials": { description: "The response-conforming primary analysis: biomarker-confirmed trials of approved-generation antibodies with at least 10 CL placebo-adjusted amyloid reduction. ENVISION is not included because no matched trial-level CL estimate was available.", papers: ["aducanumab","donanemab","lecanemab"] },
+  "Currently active agents: lecanemab + donanemab": { description: "A policy-relevant sensitivity analysis restricted to the two currently active agents in this evidence package, lecanemab and donanemab. It is not a randomized head-to-head comparison between them.", papers: ["donanemab","lecanemab"] },
+};
+const conditionPapers = {
+  aducanumab: { label: "Budd Haeberlein et al., 2022 — EMERGE and ENGAGE", url: "https://doi.org/10.14283/jpad.2022.30" }, bapineuzumab: { label: "Salloway et al., 2014; Vandenberghe et al., 2016 — bapineuzumab phase 3 trials", url: "https://doi.org/10.1056/NEJMoa1304839" }, crenezumab: { label: "Ostrowitzki et al., 2022 — CREAD and CREAD 2", url: "https://doi.org/10.1001/jamaneurol.2022.2909" }, gantenerumab: { label: "Ostrowitzki et al., 2017 — SCarlet RoAD", url: "https://doi.org/10.1186/s13195-017-0318-y" }, donanemab: { label: "Sims et al., 2023 — TRAILBLAZER-ALZ 2", url: "https://doi.org/10.1001/jama.2023.13239" }, lecanemab: { label: "Van Dyck et al., 2023 — CLARITY AD", url: "https://doi.org/10.1056/NEJMoa2212948" }, solanezumab: { label: "Siemers et al., 2016; Honig et al., 2018 — EXPEDITION trials", url: "https://doi.org/10.1016/j.jalz.2015.06.1893" }, solanezumab2018: { label: "Honig et al., 2018 — EXPEDITION 3", url: "https://doi.org/10.1056/NEJMoa1705971" }, envision: { label: "NCT05310071 — ENVISION aducanumab verification study", url: "https://clinicaltrials.gov/study/NCT05310071" },
+};
 let evidence;
 let selectedOutcome = "ADAS-Cog scale at 18 months";
 let selectedScenario = "Response primary: clearing approved-generation trials";
@@ -137,13 +147,21 @@ function renderFixedSections() {
   document.querySelector("#trial-table").innerHTML=trialRows.map(trial=>`<tr><td><strong>${esc(trial.Study)}</strong></td><td>${esc(trial.agent)}</td><td>${esc(trial.target_class)}</td><td><span class="tag ${trial.biomarker_status==="Required"?"tag-teal":""}">${esc(trial.biomarker_status)}</span></td><td><span class="tag ${trial.termination_status==="Completed"?"tag-clear":"tag-warn"}">${esc(trial.termination_reason)}</span></td><td>${trial.clearance==null?'<span class="muted">Not matched</span>':`<strong>${fmt(trial.clearance,1)} CL</strong>`}</td></tr>`).join("");
 }
 
+function conditionEstimate(outcome, scenario, measure) { return evidence.outcomeSensitivities.find(row => row.outcome === outcome && row.scenario === scenario && row.measure === measure); }
+function conditionStatistic(row, kind="effect") { if (!row) return `<span class="muted">Not reported</span>`; if (kind === "trials") return `${row.k}`; const prefix = row.measure === "RR" ? "RR " : "SMD "; return `<strong>${prefix}${fmt(row.estimate)}</strong><small>95% CI ${fmt(row.ci_low)} to ${fmt(row.ci_high)} · ${row.k} trials</small>`; }
+function renderAnalysisConditions() {
+  const tableRows = scenarioOrder.map(scenario => { const adasRow = conditionEstimate("ADAS-Cog scale at 18 months", scenario, "SMD"); const cdrRow = conditionEstimate("CDR-SB scale at 18 months", scenario, "SMD"); const ariaRow = conditionEstimate("Any ARIA E at 18 months", scenario, "RR"); return `<tr><th scope="row">${esc(scenarioShort[scenario])}</th><td>${conditionStatistic(adasRow, "trials")}</td><td>${conditionStatistic(adasRow)}</td><td>${conditionStatistic(cdrRow)}</td><td>${conditionStatistic(ariaRow)}</td></tr>`; }).join("");
+  document.querySelector("#condition-statistics").innerHTML = `<div class="table-wrap condition-table-wrap"><table><thead><tr><th>Condition</th><th>ADAS-Cog trials</th><th>ADAS-Cog · 18 mo</th><th>CDR-SB · 18 mo</th><th>ARIA-E · 18 mo</th></tr></thead><tbody>${tableRows}</tbody></table></div><p class="condition-table-note">Cognitive effects are standardized mean differences (SMDs); negative values favor treatment for ADAS-Cog and CDR-SB. ARIA-E is a risk ratio (RR); values above 1 indicate greater risk with treatment. Trial counts are outcome-specific, so they can differ across columns.</p>`;
+  document.querySelector("#condition-cards").innerHTML = scenarioOrder.map(scenario => { const profile = conditionProfiles[scenario]; const refs = profile.papers.map(key => conditionPapers[key]).filter(Boolean).map(paper => `<li><a href="${paper.url}" target="_blank" rel="noopener">${esc(paper.label)}</a></li>`).join(""); return `<article class="condition-card"><p class="eyebrow">Analysis condition</p><h3>${esc(scenarioShort[scenario])}</h3><p>${esc(profile.description)}</p><div class="condition-references"><strong>Key references and trial reports</strong><ul>${refs}</ul></div></article>`; }).join("");
+}
+
 function initialize(data) {
   evidence=data;
   const select=document.querySelector("#outcome-select");
   select.innerHTML=Object.keys(outcomeShort).filter(outcome=>evidence.outcomeSensitivities.some(row=>row.outcome===outcome&&row.measure==="SMD")).map(outcome=>`<option value="${esc(outcome)}">${esc(outcomeShort[outcome])}</option>`).join("");
   select.value=selectedOutcome;
   select.addEventListener("change",event=>{selectedOutcome=event.target.value;selectedScenario="Response primary: clearing approved-generation trials";renderExplorer();});
-  renderFixedSections(); renderExplorer();
+  renderFixedSections(); renderAnalysisConditions(); renderExplorer();
 }
 
 if (window.__EVIDENCE__) {
