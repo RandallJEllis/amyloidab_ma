@@ -1,7 +1,7 @@
 # Living Amyloid Evidence: unified reproducibility package
 
-Evidence version: **0.1.0**  
-Evidence date: **15 August 2026**
+Evidence version: **0.1.1**  
+Evidence date: **16 August 2026**
 
 This single archive reproduces the statistical results displayed by Living Amyloid Evidence from the complete Cochrane CD016297 data package. It contains the raw Cochrane input, both analysis stages, published result snapshots, the exact website evidence registry, documentation, checksums, and automated verification.
 
@@ -46,7 +46,7 @@ The number of contributing studies is outcome-specific: a trial belongs to a con
 | Condition | Rule | Globally eligible studies |
 |---|---|---|
 | All antibodies / Cochrane class pool | Every eligible trial in the corresponding Cochrane analysis | All 17 trials listed below |
-| Biomarker-confirmed | The primary script's explicit biomarker-confirmation flag | EMERGE; ENGAGE; ENVISION; CREAD 2; TRAILBLAZER-ALZ 2; SCarlet RoAD; CLARITY AD; EXPEDITION 3 |
+| Biomarker-confirmed | Amyloid pathology required at enrollment in the Cochrane study-characteristics source | CLARITY AD; CREAD; CREAD 2; EMERGE; ENGAGE; ENVISION; EXPEDITION 3; GRADUATE I; GRADUATE II; Marguerite RoAD; SCarlet RoAD; TRAILBLAZER-ALZ 2 |
 | Clears >=10 CL | Matched placebo-adjusted amyloid PET change <= -10 Centiloids; missing values are excluded, not imputed | EMERGE; ENGAGE; TRAILBLAZER-ALZ 2; SCarlet RoAD; Marguerite RoAD; CLARITY AD; GRADUATE I; GRADUATE II |
 | Response criteria | Biomarker-confirmed **and** approved-generation **and** clears >=10 CL | EMERGE; ENGAGE; CLARITY AD; TRAILBLAZER-ALZ 2 |
 | Lecanemab + donanemab | Currently active-agent sensitivity at the evidence date | CLARITY AD; TRAILBLAZER-ALZ 2 |

@@ -39,8 +39,8 @@ if (!app.includes("rawMeanDifferences") || !app.includes("rawAgentResults")) thr
 if (!app.includes("What the red dashed lines mean")) throw new Error("Threshold interpretation guardrail is missing");
 if (!app.includes("no SMD back-conversion or cross-scale standardization is used")) throw new Error("Threshold scale explanation is missing");
 if (!app.includes('class="threshold-tooltip"') || !app.includes('tabindex="0"')) throw new Error("Accessible threshold tooltips are missing");
-if (data.evidenceVersion !== "0.1.0") throw new Error("Unexpected evidence version");
-if (data.outcomeSensitivities.length < 20) throw new Error("Outcome registry is unexpectedly small");
+if (data.evidenceVersion !== "0.1.1") throw new Error("Unexpected evidence version");
+if (data.outcomeSensitivities.length !== 147) throw new Error("Outcome registry has an unexpected row count");
 if (data.trialAnnotations.length < 17) throw new Error("Trial ledger is unexpectedly small");
 
 async function walk(directory) {

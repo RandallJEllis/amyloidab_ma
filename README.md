@@ -12,6 +12,7 @@ benefits and harms. It does not require a database or application server.
 - Visit the deployed evidence explorer: [Living Amyloid Evidence](https://amyloidab-ma.pages.dev/)
 - Download the single [unified reproducibility package](public/downloads/reproducibility-package.zip).
 - Read its comprehensive guide in the archive or as [REPRODUCIBILITY_PACKAGE.md](REPRODUCIBILITY_PACKAGE.md).
+- Read the documented corrections and preventive audit checks in [CORRECTIONS.md](CORRECTIONS.md).
 - Browse the [evidence-update workflow](UPDATE_GUIDE.md) before changing the evidence registry or publishing a new release.
 
 The unified archive contains the complete supplied Cochrane CD016297 data
@@ -83,8 +84,8 @@ server.
 
 ## Scientific status
 
-Evidence release: **0.1.0**  
-Release date: **2026-08-15**
+Evidence release: **0.1.1**  
+Release date: **2026-08-16**
 
 This is a research-synthesis resource, not individualized medical advice.
 Subgroup and meta-regression results are aggregate-data analyses and should not
