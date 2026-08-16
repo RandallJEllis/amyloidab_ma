@@ -205,6 +205,14 @@ function registryRows(outcome) {
   return (evidence.conditionRegistry || []).filter(row => row.outcome === outcome);
 }
 
+function conditionTrialsAcrossAllEndpoints(scenario) {
+  const trials = new Map();
+  for (const row of evidence.conditionRegistry || []) {
+    if (includedIn(row, scenario) && !trials.has(row.study)) trials.set(row.study, row);
+  }
+  return [...trials.values()].sort((a, b) => a.study.localeCompare(b.study));
+}
+
 function includedIn(row, scenario) {
   const flag = scenarioFlag[scenario];
   return flag ? Boolean(row[flag]) : true;
@@ -279,9 +287,13 @@ function renderConditionMatrix() {
 function renderConditionCards() {
   document.querySelector("#condition-cards").innerHTML = scenarioOrder.map(scenario => {
     const profile = conditionProfiles[scenario];
-    const refs = profile.papers.map(key => conditionPapers[key]).filter(Boolean).map(paper => `<li><a href="${paper.url}" target="_blank" rel="noopener">${esc(paper.label)}</a></li>`).join("");
+    const conditionTrials = conditionTrialsAcrossAllEndpoints(scenario);
+    const refs = conditionTrials.map(trial => {
+      const paper = trialPaperForStudy(trial.study);
+      return `<li><strong>${esc(trial.study)}</strong> — <a href="${paper.url}" target="_blank" rel="noopener">${esc(paper.label)}</a></li>`;
+    }).join("");
     const studies = registryRows(selectedConditionOutcome).filter(row=>includedIn(row,scenario)).map(row=>row.study);
-    return `<article class="condition-card"><p class="eyebrow">Analysis condition</p><h3>${esc(scenarioShort[scenario])}</h3><p>${esc(profile.description)}</p><div class="condition-study-list"><strong>Studies contributing to selected endpoint</strong><p>${studies.length?studies.map(esc).join(" · "):"No studies contribute under this condition."}</p></div><div class="condition-references"><strong>Key references and trial reports</strong><ul>${refs}</ul></div></article>`;
+    return `<article class="condition-card"><p class="eyebrow">Analysis condition</p><h3>${esc(scenarioShort[scenario])}</h3><p>${esc(profile.description)}</p><div class="condition-study-list"><strong>Studies contributing to selected endpoint</strong><p>${studies.length?studies.map(esc).join(" · "):"No studies contribute under this condition."}</p></div><div class="condition-references"><strong>Key references for all trials included in this condition, across all endpoints (${conditionTrials.length} trials)</strong><ul>${refs}</ul></div></article>`;
   }).join("");
 }
 

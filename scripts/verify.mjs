@@ -29,6 +29,8 @@ if (!html.includes("Living Amyloid Evidence")) throw new Error("Site title is mi
 if (!html.includes("not individualized medical advice")) throw new Error("Medical disclaimer is missing");
 if (!html.includes("downloads/reproducibility-package.zip")) throw new Error("Unified reproducibility-package link is missing");
 if (!app.includes("renderExplorer")) throw new Error("Interactive explorer code is missing");
+if (!app.includes("conditionTrialsAcrossAllEndpoints")) throw new Error("Condition-wide trial reference registry is missing");
+if (!app.includes("Key references for all trials included in this condition, across all endpoints")) throw new Error("Condition-wide reference scope is not explained");
 if (!app.includes("clinicalThresholds")) throw new Error("Clinical-threshold registry is missing");
 if (!app.includes('value: -4, label: "4pt"')) throw new Error("ADAS-Cog dementia threshold is missing");
 if (!app.includes('value: -2, label: "2pt"')) throw new Error("CDR-SB dementia threshold is missing");
