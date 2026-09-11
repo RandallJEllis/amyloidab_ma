@@ -38,6 +38,12 @@ const cleanedRows = parseCsv(
   await readFile(resolve(projectRoot, "generated/primary/cleaned_analysis_rows.csv"), "utf8"),
 );
 const numberOrNull = value => value && value !== "NA" ? Number(value) : null;
+const numericColumns = columns => row => Object.fromEntries(
+  Object.entries(row).map(([key, value]) => [
+    key,
+    columns.includes(key) ? numberOrNull(value) : value,
+  ]),
+);
 const bool = value => value === "TRUE";
 const annotationByStudy = new Map(extended.trial_annotations.map(row => [row.Study, row]));
 const conditionRegistry = cleanedRows.map(row => ({
@@ -82,8 +88,11 @@ const evidence = {
   midCompatibility: extended.mid_compatibility,
   trialAnnotations: extended.trial_annotations,
   conditionRegistry,
-  pairingAudit: parseCsv(await readFile(resolve(projectRoot, "generated/audit/pet_clinical_pairings.csv"), "utf8")),
-  calculationInputs: parseCsv(await readFile(resolve(projectRoot, "generated/audit/calculation_inputs.csv"), "utf8")),
+  pairingAudit: parseCsv(await readFile(resolve(projectRoot, "generated/audit/pet_clinical_pairings.csv"), "utf8")).map(numericColumns(["pet_week", "amyloid_change_cl"])),
+  calculationInputs: parseCsv(await readFile(resolve(projectRoot, "generated/audit/calculation_inputs.csv"), "utf8")).map(numericColumns([
+    "experimental_n", "control_n", "experimental_mean", "control_mean", "experimental_sd", "control_sd",
+    "effect", "ci_low", "ci_high", "variance", "raw_md", "raw_variance", "amyloid_change_cl",
+  ])),
   filterSensitivities: parseCsv(await readFile(resolve(projectRoot, "generated/audit/independent_filter_sensitivities.csv"), "utf8")).map(row => Object.fromEntries(Object.entries(row).map(([key,value]) => [key, ["k","estimate","ci_low","ci_high","p_value","tau2","cutoff_cl"].includes(key) ? numberOrNull(value) : value]))),
 };
 
