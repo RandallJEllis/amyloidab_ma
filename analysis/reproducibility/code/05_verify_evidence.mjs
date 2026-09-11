@@ -19,19 +19,31 @@ function compare(expectedValue, actualValue, path = "$") {
   if (typeof expectedValue === "number" && typeof actualValue === "number") {
     if (!Number.isFinite(expectedValue) || !Number.isFinite(actualValue)) return expectedValue === actualValue;
     const scale = Math.max(1, Math.abs(expectedValue), Math.abs(actualValue));
-    return Math.abs(expectedValue - actualValue) <= numericTolerance * scale;
+    return Math.abs(expectedValue - actualValue) <= numericTolerance * scale || {
+      path,
+      expected: expectedValue,
+      actual: actualValue,
+      reason: "numeric difference"
+    };
   }
   if (expectedValue === null || actualValue === null || typeof expectedValue !== "object" || typeof actualValue !== "object") {
-    return expectedValue === actualValue;
+    return expectedValue === actualValue || { path, expected: expectedValue, actual: actualValue, reason: "value difference" };
   }
-  if (Array.isArray(expectedValue) !== Array.isArray(actualValue)) return false;
+  if (Array.isArray(expectedValue) !== Array.isArray(actualValue)) return { path, reason: "array/object mismatch" };
   const expectedKeys = Object.keys(expectedValue);
   const actualKeys = Object.keys(actualValue);
-  if (expectedKeys.length !== actualKeys.length || expectedKeys.some(key => !Object.hasOwn(actualValue, key))) return false;
-  return expectedKeys.every(key => compare(expectedValue[key], actualValue[key], `${path}.${key}`));
+  if (expectedKeys.length !== actualKeys.length || expectedKeys.some(key => !Object.hasOwn(actualValue, key))) {
+    return { path, expectedKeys, actualKeys, reason: "key mismatch" };
+  }
+  for (const key of expectedKeys) {
+    const result = compare(expectedValue[key], actualValue[key], `${path}.${key}`);
+    if (result !== true) return result;
+  }
+  return true;
 }
-if (!compare(expected, actual)) {
-  throw new Error("Generated website evidence registry differs from site/evidence.json beyond the numeric tolerance");
+const comparison = compare(expected, actual);
+if (comparison !== true) {
+  throw new Error(`Generated website evidence registry differs from site/evidence.json beyond the numeric tolerance at ${comparison.path}: ${JSON.stringify(comparison)}`);
 }
 if (actual.conditionRegistry.length !== 149) throw new Error("Unexpected condition registry size");
 if (actual.trialAnnotations.length !== 17) throw new Error("Unexpected trial annotation count");
