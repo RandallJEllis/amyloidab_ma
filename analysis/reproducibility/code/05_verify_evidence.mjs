@@ -11,7 +11,10 @@ const actual = JSON.parse(await readFile(resolve(root, "generated/site/evidence.
 // estimates agree. Compare the registry structurally and allow only a small
 // relative tolerance for finite numeric values; strings, keys and array order
 // remain exact. This keeps the registry check meaningful on macOS and Linux.
-const numericTolerance = 1e-10;
+// Keep this aligned with the published CSV verification tolerance. The
+// registry is assembled from R-generated JSON, and BLAS/JSON formatting can
+// produce harmless sub-1e-8 differences between macOS and Linux runners.
+const numericTolerance = 1e-8;
 function compare(expectedValue, actualValue, path = "$") {
   if (typeof expectedValue === "number" && typeof actualValue === "number") {
     if (!Number.isFinite(expectedValue) || !Number.isFinite(actualValue)) return expectedValue === actualValue;
