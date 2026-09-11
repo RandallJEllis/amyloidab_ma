@@ -278,7 +278,10 @@ footer p { margin-bottom: 0; }
   .hero { min-height: auto; }
   h1 { font-size: 55px; }
   .hero-figure { padding: 20px 15px; overflow-x: auto; }
-  .hero-figure .forest-row { min-width: 560px; }
+  .forest-row, .hero-figure .forest-row { min-width: 0; grid-template-columns: minmax(0, 1fr) 108px; padding: 12px 0; }
+  .forest-label { grid-column: 1; grid-row: 1; }
+  .forest-value { grid-column: 2; grid-row: 1; }
+  .forest-track { grid-column: 1 / -1; grid-row: 2; margin: 0 20px; }
   .headline-strip { grid-template-columns: 1fr; }
   .stat-card { min-height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
   .explorer-shell { grid-template-columns: 1fr; }
@@ -288,12 +291,12 @@ footer p { margin-bottom: 0; }
   .big-estimate > span { font-size: 82px; }
   .subhead { align-items: flex-start; flex-direction: column; }
   .forest-card { padding: 20px 14px; overflow-x: auto; }
-  .forest-card .forest-row, .forest-card .forest-axis { min-width: 610px; }
+  .forest-card .forest-row, .forest-card .forest-axis { min-width: 0; }
   .condition-table-wrap { overflow-x: auto; }
   .condition-table-wrap table { min-width: 1450px; }
   .condition-toolbar { align-items: stretch; flex-direction: column; }
   .condition-actions { justify-content: flex-start; }
-  .forest-axis { margin-left: 180px; }
+  .forest-axis { margin-left: 20px; margin-right: 20px; }
   .downloads { grid-template-columns: 1fr; }
   .download-links { grid-template-columns: 1fr; }
   .download-links a:nth-child(odd) { margin-right: 0; }

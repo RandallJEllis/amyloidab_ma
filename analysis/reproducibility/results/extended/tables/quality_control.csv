@@ -1,0 +1,9 @@
+check,value
+Distinct Cochrane studies,17
+Distinct antibodies,7
+Trials coded futility-terminated,6
+Trials coded any early termination,9
+Cochrane-reported futility terminations,6
+Cochrane-reported total terminations,9
+Rows missing agent classification,0
+Rows missing termination classification,0

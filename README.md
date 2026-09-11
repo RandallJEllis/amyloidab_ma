@@ -1,5 +1,22 @@
 # Living Amyloid Evidence
 
+## September scientific audit release
+
+The authoritative analysis source now lives in `analysis/reproducibility/`.
+Read its [scientific audit](analysis/reproducibility/AUDIT.md) for corrections,
+unresolved extraction questions and interpretation limits. Reproduce it with
+`cd analysis/reproducibility && Rscript environment/restore.R && sh run_all.sh`.
+Build the public site and single ZIP from those outputs with
+`node scripts/release.mjs`. Accepting new numerical snapshots explicitly requires
+`node scripts/release.mjs --accept-snapshots` after review of the difference ledger.
+
+The current generated [Methods and Results](public/downloads/methods-results.md)
+supersedes the earlier manually populated manuscript. The PDF reports and
+workbooks remain historical v0.1.1 artifacts. The prior release is preserved at
+commit b95530a. The website exposes input effects, weights, exclusions and PET
+pairing uncertainty, independent inclusion controls and versioned explorer URLs.
+CI restores the pinned R environment and rebuilds all current tables and registry.
+
 This repository contains the public, static release of an interactive living
 meta-analysis of anti-amyloid antibody trials in Alzheimer's disease.
 
@@ -84,8 +101,10 @@ server.
 
 ## Scientific status
 
-Evidence release: **0.1.1**  
-Release date: **2026-08-16**
+Evidence release: **0.2.0**
+
+Release date: **2026-09-11**
+Literature search through: **2025-08-07**
 
 This is a research-synthesis resource, not individualized medical advice.
 Subgroup and meta-regression results are aggregate-data analyses and should not

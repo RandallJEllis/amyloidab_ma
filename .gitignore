@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+analysis/reproducibility/generated/
+analysis/reproducibility/environment/library/
+analysis/reproducibility/environment/renv-cache/
+analysis/reproducibility/renv/library/
+analysis/reproducibility/renv/staging/
+!public/downloads/
+!public/downloads/**

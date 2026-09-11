@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this evidence package, please cite the associated manuscript and the Cochrane review."
+title: "Living Amyloid Evidence: unified reproducibility package"
+type: dataset
+version: 0.2.0
+date-released: 2026-09-11
+authors:
+  - family-names: Ellis
+    given-names: Randall J.
+repository-code: "https://github.com/RandallJEllis/amyloidab_ma"

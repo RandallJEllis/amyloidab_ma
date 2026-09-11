@@ -1,0 +1,115 @@
+﻿Study,Year,Data source,ID: CRS,Char: Reason for exclusion
+Abi-Saab 2018,2018,PUB,29686526,<p>Wrong study design - Phase OLE of included study (Marguerite RoAD)</p>
+Amariglio 2024,2024,PUB,29686528,<p>Wrong patient population - Cognitively unimpaired</p>
+Andjelkovic 2018,2018,PUB,29686530,<p>Wrong study design - Phase OLE of included study (SCarlet RoAD)</p>
+Andreasen 2015,2015,PUB,29686532,<p>Follow-up &lt;12 months</p>
+Andrews 2025,2025,PUB,29686534,<p>Wrong study design - Simulation data of included study (CLARITY AD)</p>
+Arai 2016,2016,PUB,29686536,<p>Follow-up &lt;12 months</p>
+Ardayfio 2023,2023,PUB,29686538,<p>&nbsp;Wrong study design - Post-hoc analysis of included study (TRAILBLAZER ALZ 2) and phase II study</p>
+Bateman 2023,2023,PUB,29686540,<p>Wrong patient population - Asymptomatic participants of ongoing study (DIAN-TU-001)</p>
+Bateman 2025,2025,PUB,29686542,<p>Wrong study design - Phase OLE of ongoing study (DIAN-TU-001)</p>
+Bateman 2025a,2025,PUB,29686544,<p>Wrong publication type - Correction of &nbsp;out-of-scope data</p>
+Bittner 2025,2025,PUB,29686546,"<p>Wrong outcomes - analysis of biomarkers outcomes of included studies (GRADUATE I, GRADUATE II)</p>"
+Blennow 2012,2012,PUB,29686548,<p>Wrong publication type - Post-hoc analysis of phase II study</p>
+Blennow 2016,2016,PUB,29686550,<p>Wrong outcomes - analysis of biomarkers of included study (Scarlet RoAD)</p>
+Boada 2025,2025,PUB,29686552,<p>Wrong study design - Phase OLE of included study (Scarlet RoAD)</p>
+Burton 2025,2025,PUB,29686554,"<p>Wrong publication type - Exploratory data analysis of included studies (EMERGE, ENGAGE)</p>"
+Cantillon 2024,2024,PUB,29686556,<p>Follow-up &lt;12 months</p>
+Carlson 2015,2015,PUB,29686558,<p>Wrong study design - OLE version of included study (EXPEDITION)</p>
+Castrillo-Viguera 2021,2021,PUB,29686560,"<p>Wrong publication type - Phase OLE of included studies (EMERGE, ENGAGE)</p>"
+Chiao 2019,2019,PUB,29686562,<p>Wrong outcomes - analysis of biomarkers of phase I study</p>
+ChiCTR2500102030 2025,2025,UNPUB,29686564,<p>Wrong patient population - participants with moderate-severe AD</p>
+Cline 2025,2025,PUB,29686566,<p>Wrong outcomes - analysis of biomarkers of phase I study</p>
+Cohen 2023,2023,PUB,29686568,<p>Wrong outcomes - analysis of quality of life data of included study (CLARITY AD)</p>
+Cummings 2023,2023,PUB,29686570,<p>Wrong outcomes - analysis of caregiver distress data from included study (EMERGE)</p>
+Cummings 2025,2025,PUB,29686572,<p>Wrong publication type - Post-hoc analysis of included study (EMERGE)</p>
+de la Torre 2014,2014,PUB,29686574,"<p>Wrong publication type - commentary on included studies (Bapineuzumab-301, Bapineuzumab-302)</p>"
+DIAN-TU (Remternetug) 2022,2022,UNPUB,29686576,<p>Wrong population - cognitevely unimpaired</p>
+DIAN-TU-001 (E2814),2022,UNPUB,29686578,<p>Wrong intervention - intervention (E2814) is not an Amyloid-beta-targeting monoclonal antibody; lecanemab administered in combination with placebo</p>
+Doody 2014,2014,UNPUB,29686580,<p>Wrong publication type - Erratutum of out-of-scope data of included study (EXPEDITION - EXPEDITION 2)</p>
+EUCTR2009-015079-29-FR 2009,2009,UNPUB,29686582,<p>Wrong study design - OLE</p>
+EUCTR2009-015080-13-IT 2010,2010,UNPUB,29686584,<p>Wrong comparator - all participants received intervention (study 3001 Carriers)</p>
+EUCTR2019-001476-11-NL 2020,2020,UNPUB,29686586,<p>Wrong intervention - intervention (AL002) is not an Amyloid-beta-targeting monoclonal antibody</p>
+EUCTR2021-001184-25-ES 2021,2021,UNPUB,29686588,<p>Wrong patient population - Cognitively unimpaired</p>
+EXPEDITION EXT 2010,2010,UNPUB,29686590,<p>Wrong study design - OLE of included study (EXPEDITION - EXPEDITION 2)</p>
+EXPEDITION PRO 2016,2016,UNPUB,29686592,<p>Follow-up &lt;12 months</p>
+Farlow 2012,2012,PUB,29686594,<p>Follow-up &lt;12 months</p>
+Fleisher 2024,2024,PUB,29686596,<p>Wrong intervention - intervention (Zagotenemab) is not an Amyloid-beta-targeting monoclonal antibody</p>
+Grill 2024,2024,PUB,29686598,<p>Wrong study design - descriptive analysis of participant diversity in four studies (including CLARITY AD)</p>
+Guthrie 2020,2020,PUB,29686600,<p>Follow-up &lt;12 months</p>
+ISRCTN54460428 2022,2022,UNPUB,29686602,<p>Wrong patient population - cognitively unimpaired</p>
+JapicCTI-121849 2012,2012,UNPUB,29686604,<p>Follow-up &lt;12 months</p>
+JapicCTI-163169 2016,2016,UNPUB,29686606,<p>Follow-up &lt;12 months</p>
+Jimenez-Maggiora 2024,2024,PUB,29686608,<p>Wrong study design - methodological description of data-sharing strategies and platforms of excluded studies</p>
+JPRN-jRCT2080223114 2016,2016,UNPUB,29686610,<p>Follow-up &lt;12 months</p>
+Klein 2018,2018,PUB,29686612,<p>Wrong outcomes - analysis of biomarkers of included study (Marguerite RoAD)</p>
+Klein 2020,2020,PUB,29686614,"<p>Wrong study design - phase OLE of included studies (SCarlet RoAD, Marguerite RoAD)</p>"
+Klein 2021,2021,PUB,29686616,"<p>Wrong study design - phase OLE of included studies (SCarlet RoAD, Marguerite RoAD)</p>"
+Kulic 2023,2023,PUB,29686618,<p>Wrong outcomes - interim analysis with non-extractable data on amyloid PET results</p>
+Lai 2013,2013,PUB,29686620,<p>Follow-up &lt;12 months</p>
+Laskowitz 2010,2010,PUB,29686622,<p>Wrong publication type - letter to the editor of phase II trial</p>
+Lawrence 2018,2018,PUB,29686624,<p>Wrong publication type - commentary on included study (EXPEDITION 3)</p>
+Liu 2015a,2015,PUB,29686626,"<p>Wrong outcomes - analysis of PET imaging results of included studies (Bapineuzumab-301, Bapineuzumab-302)</p>"
+Liu 2018,2018,PUB,29686628,"<p>Wrong outcomes - analysis of imaging biomarker pattern of included studies (Bapineuzumab-301, Bapineuzumab-302)</p>"
+Llibre-Guerra 2023,2023,PUB,29686630,<p>Wrong study design - Phase OLE of on-going study (DIAN-TU-001)</p>
+Logovinsky 2013,2013,PUB,29686632,<p>Follow-up &lt;12 months</p>
+Lowe 2021,2021,PUB,29686634,<p>Follow-up &lt;12 months</p>
+Lu 2019,2019,PUB,29686636,<p>Follow-up &lt;12 months</p>
+McCullough 2025,2025,PUB,29686638,<p>Wrong outcomes - analysis of biomarkers of ongoing study (DIAN-TU-001)</p>
+Monteiro 2021,2021,PUB,29686640,<p>Wrong intervention - intervention (Semorinemab) is not an Amyloid-beta-targeting monoclonal antibody</p>
+NCT00606476 2008,2008,UNPUB,29686642,<p>Wrong study design - OLE</p>
+NCT00663026 2008,2008,UNPUB,29686644,<p>Follow-up &lt;12 months</p>
+NCT00937352 2009,2009,UNPUB,29686646,"<p>Wrong comparator - all participants received intervention (included studies Bapineuzumab 301, Bapineuzumab 302)</p>"
+NCT01230853 2010,2010,UNPUB,29686648,<p>Follow-up &lt;12 months</p>
+NCT01397539 2011,2011,UNPUB,29686650,<p>Follow-up &lt;12 months</p>
+NCT01656525 2012,2012,PUB,29686652,<p>Follow-up &lt;12 months</p>
+NCT01658722 2012,2012,UNPUB,29686654,<p>Wrong patient population - participants with AD</p>
+NCT01837641 2013,2013,UNPUB,29686656,<p>Follow-up &lt;12 months</p>
+NCT01998841 2013,2013,UNPUB,29686658,<p>Wrong patient population - cognitively unimpaired</p>
+NCT02008357 2013,2013,UNPUB,29686660,<p>Wrong patient population - Cognitively unimpaired</p>
+NCT02094729 2014,2014,UNPUB,29686662,<p>Follow-up &lt;12 months</p>
+NCT02353598 2015,2015,UNPUB,29686664,<p>Follow-up &lt;12 months</p>
+NCT02434718 2015,2015,UNPUB,29686666,<p>Follow-up &lt;12 months</p>
+NCT02880956 2016,2016,UNPUB,29686668,<p>Wrong intervention - intervention (ABBV-8E12) is not an Amyloid-beta-targeting monoclonal antibody</p>
+NCT03289143 2017,2017,UNPUB,29686670,<p>Wrong intervention - intervention (MTAU9937A) is not an Amyloid-beta-targeting monoclonal antibody</p>
+NCT03352557 2017,2017,UNPUB,29686672,<p>Wrong intervention - intervention (BIIB092) is not an Amyloid-beta-targeting monoclonal antibody</p>
+NCT04241068 2020,2020,UNPUB,29686674,<p>Wrong study design - OLE</p>
+NCT04374253 2020,2020,UNPUB,29686676,<p>Wrong study design - OLE</p>
+NCT04468659 2020,2020,UNPUB,29686678,<p>Wrong patient populations - cognitively unimpaired</p>
+NCT04931459 2021,2021,UNPUB,29686680,<p>Follow-up &lt;12 months</p>
+NCT05026866 2021,2021,UNPUB,29686682,<p>Wrong population - cognitively unimpaired</p>
+NCT05108922 2021,2021,UNPUB,29686684,<p>Follow-up &lt;12 months</p>
+NCT05256134 2022,2022,UNPUB,29686686,<p>Wrong patient populations - cognitively unimpaired</p>
+NCT06384573 2024,2024,UNPUB,29686688,<p>Wrong study design - OLE</p>
+NCT06424236 2024,2024,UNPUB,29686690,<p>Wrong study design - OLE</p>
+NCT06647498 2024,2024,UNPUB,29686692,<p>Wrong patient populations - cognitively unimpaired</p>
+NL-OMON48538 2017,2017,UNPUB,29686694,<p>Wrong intervention - intervention (ABBV-8E12) is not an Amyloid-beta-targeting monoclonal antibody</p>
+Papp 2024,2024,PUB,29686696,<p>Wrong patient populations - cognitively unimpaired</p>
+Pontecorvo 2022,2022,PUB,29686698,<p>Wrong outcomes - analysis of biomarkers of phase II trial</p>
+Raskind 2009,2009,PUB,29686700,<p>Wrong outomes - pharmacokinetics analysis of phase II trial</p>
+Ratti 2018,2018,PUB,29686702,<p>Wrong intervention - intervention (BIIB092) is not an Amyloid-beta-targeting monoclonal antibody</p>
+Rentz 2024,2024,PUB,29686704,<p>Wrong patient population - participants without a diagnosis of Mild Cognitive Impairment (MCI) or dementia</p>
+Rubel 2024,2024,PUB,29686706,"<p>Wrong publication type - Letter on included studies (EMERGE, ENGAGE) discussing issues out-of-scope</p>"
+Salloway 2021,2021,PUB,29686708,<p>Wrong patient population - asymptomatic participants of ongoing study (DIAN-TU-001)</p>
+Salloway 2023,2023,PUB,29686710,<p>Follow-up &lt;12 months</p>
+Salloway 2023a,2023,PUB,29686712,<p>Follow-up &lt;12 months</p>
+Satlin 2016,2016,PUB,29686714,<p>Wrong publication type - design of a Bayesian phase II trial</p>
+Shcherbinin 2022,2022,PUB,29686716,<p>Wrong outcomes - analysis of amiloyd reduction after phase II trial</p>
+Siemers 2023,2023,PUB,29686718,<p>Wrong publication type - phase I trial design and clinical development plan</p>
+Siemers 2025,2025,PUB,29686720,<p>Follow-up &lt;12 months</p>
+Sperling 2023,2023,PUB,29686722,<p>Wrong patient population - cognitively unimpaired participants</p>
+Stage 2021,2021,PUB,29686724,<p>Wrong study design - description of patient characteristics in phase II study</p>
+Swanson 2022,2022,PUB,29686726,<p>Wrong publication type - correction of out-of-scope data in phase II study</p>
+Tariot 2018,2018,PUB,29686728,<p>Wrong patient population - cognitevely unimpaired (asymptomatic PSEN1 E280A mutation carriers)</p>
+Teipel 2025,2025,PUB,29686730,"<p>Wrong publication type - post-hoc Bayesian analysis of included studies (CLARITY AD, &nbsp;TRAILBLAZER-ALZ 2)</p>"
+Van Dick 2023,2023,PUB,29686732,<p>Wrong intervention - intervention (CT1812) is not an Amyloid-beta-targeting monoclonal antibody</p>
+Van Dyck 2024,2024,PUB,29686734,<p>Wrong study design - OLE of included study (CLARITY AD)</p>
+Wagemann 2024,2024,PUB,29686736,<p>Wrong outcomes - analysis of biomarkers in ongoing trial (DIAN-TU-001)</p>
+Wagemann 2025,2025,PUB,29686738,<p>Wrong publication type - letter discussing issues out-of-scope about ongoing trial (DIAN-TU-001)</p>
+Wang 2024,2024,PUB,29686740,"<p>Wrong publication type - commentary on included studies (GRADUATE I, GRADUATE II)</p>"
+Xiao 2024,2024,PUB,29686742,"<p>Wrong publication type - commentary on included studies (EMERGE, ENGAGE)</p>"
+Yaari 2023,2023,PUB,29686744,<p>Wrong patient population - cognitively unimpaired</p>
+Yang 2018,2018,PUB,29686746,<p>Wrong outcomes - analysis of biomarkers in phase II studies</p>
+Yang 2019,2019,PUB,29686748,<p>Wrong outcomes - analysis of biomarkers in phase II studies</p>
+Yoshida 2020,2020,PUB,29686750,<p>Wrong outcomes - pharmacokinetics analysis in phase II studies</p>
+Zhou 2023,2023,PUB,29686752,<p>Wrong publication type - commentary of included study (CLARITY AD)</p>
