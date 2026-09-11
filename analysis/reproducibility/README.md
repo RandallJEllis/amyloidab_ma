@@ -6,6 +6,22 @@ Read [AUDIT.md](AUDIT.md) before interpreting this release. The ≥10-CL rule is
 
 The literature search is current through **7 August 2025**. The analysis release date is separate. Historical v0.1.1 PDF reports/workbooks are archived presentation artifacts and may contain superseded results. Use `manuscript/methods-results.md`, the current CSV snapshots, and `site/evidence.json` for this release.
 
+### Marguerite RoAD PET clarification
+
+Marguerite RoAD remains part of the clinical evidence base; the correction concerns only its trial-level amyloid PET classification. The randomized study evaluated low-dose gantenerumab (105/225 mg every 4 weeks) versus placebo. After the randomized phase was stopped for futility, participants could enter an open-label extension with substantially higher doses, up to 1,200 mg every 4 weeks. The previously used **−59.65 Centiloid** value came from that later high-dose extension (reported at approximately 208 weeks), not from a compatible placebo-adjusted PET contrast during the randomized clinical phase. See Neve et al., [*Long-Term Safety of Gantenerumab in Participants with Alzheimer’s Disease*](https://doi.org/10.3233/JAD-240221).
+
+Because the extension measurement combines a different dose, treatment phase, time point, and comparison context, it cannot be used to classify the randomized Marguerite RoAD clinical outcome as having achieved the investigator-defined **≥10-CL reduction** threshold. The value is therefore **quarantined as unknown**, rather than replaced with an inferred estimate or interpreted as evidence that the treatment failed to remove amyloid. The pairing ledger records the reason in `results/audit/tables/pet_clinical_pairings.csv`, and the mapping is visible in `results/primary/tables/amyloid_clearance_mapping.csv`.
+
+This means Marguerite RoAD:
+
+- remains eligible for **All antibodies**;
+- remains eligible for **Biomarker-confirmed**, because amyloid pathology was required at enrollment;
+- remains available for randomized clinical and safety outcomes in conditions that do not require a PET value;
+- is not counted as a demonstrated-clearance trial, and therefore is not eligible for the **Clears ≥10 CL** or the biomarker-confirmed/approved/≥10-CL intersection; and
+- is not assigned a value in continuous-clearance analyses.
+
+The clinical rows are not deleted or re-estimated. Endpoint-specific analyzed sample sizes remain those supplied by Cochrane; for example, the 24-month ADAS-Cog row has 16 analyzed participants in the gantenerumab arm and 30 in placebo, whereas the study-level randomized population was 387. Removing the incompatible PET mapping affects only clearance-dependent results: seven 24-month clearance-selected specifications become empty and other 24-month estimates change from two contributing studies to one. The 18-month headline estimates are unchanged. The complete numerical ledger is `manifest/release-differences.csv`.
+
 For a pinned environment, run `Rscript environment/restore.R`, then `sh run_all.sh`. The `renv.lock` includes R 4.4.2 and transitive package versions. `environment/install_dependencies.R` is a convenience fallback, not a pinned restoration. A fresh computer needs network access and, where binary packages are unavailable, R build tools.
 
 Additional pipeline outputs:
