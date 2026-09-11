@@ -1,0 +1,12 @@
+dataset,outcome,scenario,old_k,new_k,old_estimate,new_estimate,reason
+"outcomeSensitivities","ADAS-Cog scale at 24 months","Demonstrated clearance: >=10 CL","1","","-0.584878","","Marguerite RoAD incompatible PET mapping quarantined"
+"outcomeSensitivities","MMSE scale at 24 months","Demonstrated clearance: >=10 CL","1","","0.184919","","Marguerite RoAD incompatible PET mapping quarantined"
+"outcomeSensitivities","ADAS-Cog 24 months mean difference","Demonstrated clearance: >=10 CL","1","","-3.71","","Marguerite RoAD incompatible PET mapping quarantined"
+"outcomeSensitivities","CDR-SB scale at 24 months","Demonstrated clearance: >=10 CL","1","","-0.125093","","Marguerite RoAD incompatible PET mapping quarantined"
+"outcomeSensitivities","CDR-SB 24 months mean difference","Demonstrated clearance: >=10 CL","1","","-0.25","","Marguerite RoAD incompatible PET mapping quarantined"
+"outcomeSensitivities","ADCS-ADL score at 24 months","Demonstrated clearance: >=10 CL","1","","0.46747","","Marguerite RoAD incompatible PET mapping quarantined"
+"outcomeSensitivities","ADCS-ADL 24 months mean difference","Demonstrated clearance: >=10 CL","1","","3.84","","Marguerite RoAD incompatible PET mapping quarantined"
+"outcomeSensitivities","Any ARIA E at 24 months","Demonstrated clearance: >=10 CL","2","1","9.777363730769789","17.903846153846153","Marguerite RoAD incompatible PET mapping quarantined"
+"outcomeSensitivities","Any ARIA H at 24 months","Demonstrated clearance: >=10 CL","2","1","1.277548679197549","1.227692307692308","Marguerite RoAD incompatible PET mapping quarantined"
+"outcomeSensitivities","SAE at 24 months","Demonstrated clearance: >=10 CL","2","1","0.9127084088364051","0.8556643356643356","Marguerite RoAD incompatible PET mapping quarantined"
+"outcomeSensitivities","Mortality at 24 months","Demonstrated clearance: >=10 CL","2","1","0.5891857123694396","0.341025641025641","Marguerite RoAD incompatible PET mapping quarantined"

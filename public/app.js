@@ -1,5 +1,5 @@
 const scenarioOrder = ["Cochrane class pool", "Biomarker-confirmed", "Demonstrated clearance: >=10 CL", "Response primary: clearing approved-generation trials", "Currently active agents: lecanemab + donanemab"];
-const scenarioShort = {"Cochrane class pool":"All antibodies","Biomarker-confirmed":"Biomarker confirmed","Demonstrated clearance: >=10 CL":"Clears ≥10 CL","Response primary: clearing approved-generation trials":"Response criteria","Currently active agents: lecanemab + donanemab":"Lecanemab + donanemab"};
+const scenarioShort = {"Cochrane class pool":"All antibodies","Biomarker-confirmed":"Biomarker confirmed","Demonstrated clearance: >=10 CL":"Clears ≥10 CL","Response primary: clearing approved-generation trials":"Biomarker-confirmed, approved agents, ≥10 CL reduction","Currently active agents: lecanemab + donanemab":"Lecanemab + donanemab"};
 const outcomeShort = {"ADAS-Cog scale at 18 months":"ADAS-Cog · 18 months","CDR-SB scale at 18 months":"CDR-SB · 18 months","MMSE scale at 18 months":"MMSE · 18 months","ADCS-ADL score at 18 months":"ADCS-ADL · 18 months","ADCS-ADL-MCI score at 18 months":"ADCS-ADL-MCI · 18 months","ADCS-iADL score at 18 months":"ADCS-iADL · 18 months","DAD total score at 18 months":"DAD · 18 months"};
 const clinicalThresholds = {
   "ADAS-Cog scale at 18 months": {
@@ -7,9 +7,9 @@ const clinicalThresholds = {
     unit: "points",
     direction: -1,
     lines: [
-      { value: -2, label: "2pt", title: "Lower MCI benchmark", explanation: "On ADAS-Cog, a 2-point treatment–placebo difference is the lower end of Cochrane’s MCI benchmark and the threshold Avgerinos et al. applied from Lansdall et al. Negative values indicate less worsening with treatment." },
-      { value: -3, label: "3pt", title: "Upper MCI benchmark", explanation: "On ADAS-Cog, a 3-point treatment–placebo difference is the upper end of Cochrane’s benchmark for mild cognitive impairment. Negative values indicate less worsening with treatment." },
-      { value: -4, label: "4pt", title: "Dementia benchmark", explanation: "On ADAS-Cog, a 4-point treatment–placebo difference is Cochrane’s cited benchmark for the dementia stage. Negative values indicate less worsening with treatment." },
+      { value: -2, label: "2pt", title: "Lower MCI benchmark", explanation: "On ADAS-Cog, a 2-point individual-change benchmark is the lower end of Cochrane’s MCI benchmark and the threshold Avgerinos et al. applied from Lansdall et al. This individual-change reference is not a validated minimum between-group benefit at 18 months. Negative values indicate less worsening with treatment." },
+      { value: -3, label: "3pt", title: "Upper MCI benchmark", explanation: "On ADAS-Cog, a 3-point individual-change benchmark is the upper end of Cochrane’s benchmark for mild cognitive impairment. This individual-change reference is not a validated minimum between-group benefit at 18 months. Negative values indicate less worsening with treatment." },
+      { value: -4, label: "4pt", title: "Dementia benchmark", explanation: "On ADAS-Cog, a 4-point individual-change benchmark is Cochrane’s cited benchmark for the dementia stage. This individual-change reference is not a validated minimum between-group benefit at 18 months. Negative values indicate less worsening with treatment." },
     ],
     sources: "Avgerinos et al. (2024), applying Lansdall et al. (2023): 2 points; Cochrane (2026): 2–3 points in MCI and 4 points in dementia.",
     plotting: "ADAS-Cog is lower-is-better, so benefits and thresholds appear on the negative side of the axis.",
@@ -19,8 +19,8 @@ const clinicalThresholds = {
     unit: "points",
     direction: -1,
     lines: [
-      { value: -1, label: "1pt", title: "MCI benchmark", explanation: "On CDR-SB, a 1-point treatment–placebo difference is Cochrane’s cited MCI benchmark and the threshold Avgerinos et al. applied from Lansdall et al. Negative values indicate less worsening with treatment." },
-      { value: -2, label: "2pt", title: "Dementia benchmark", explanation: "On CDR-SB, a 2-point treatment–placebo difference is Cochrane’s cited benchmark for the dementia stage. Negative values indicate less worsening with treatment." },
+      { value: -1, label: "1pt", title: "MCI benchmark", explanation: "On CDR-SB, a 1-point individual-change benchmark is Cochrane’s cited MCI benchmark and the threshold Avgerinos et al. applied from Lansdall et al. This individual-change reference is not a validated minimum between-group benefit at 18 months. Negative values indicate less worsening with treatment." },
+      { value: -2, label: "2pt", title: "Dementia benchmark", explanation: "On CDR-SB, a 2-point individual-change benchmark is Cochrane’s cited benchmark for the dementia stage. This individual-change reference is not a validated minimum between-group benefit at 18 months. Negative values indicate less worsening with treatment." },
     ],
     sources: "Avgerinos et al. (2024), applying Lansdall et al. (2023): 1 point; Cochrane (2026): 1 point in MCI and 2 points in dementia.",
     plotting: "CDR-SB is lower-is-better, so benefits and thresholds appear on the negative side of the axis.",
@@ -29,7 +29,7 @@ const clinicalThresholds = {
     measure: "MD",
     unit: "points",
     direction: 1,
-    lines: [{ value: 2, label: "2pt", title: "MMSE benchmark", explanation: "On MMSE, a 2-point treatment–placebo difference is the 12-month benchmark Avgerinos et al. applied from Lansdall et al. Positive values indicate better performance with treatment." }],
+    lines: [{ value: 2, label: "2pt", title: "MMSE benchmark", explanation: "On MMSE, a 2-point individual-change benchmark is the 12-month benchmark Avgerinos et al. applied from Lansdall et al. This individual-change reference is not a validated minimum between-group benefit at 18 months. Positive values indicate better performance with treatment." }],
     sources: "Avgerinos et al. (2024), applying Lansdall et al. (2023): 2 points within 12 months.",
     plotting: "MMSE is higher-is-better, so benefits and the threshold appear on the positive side of the axis.",
   },
@@ -44,11 +44,11 @@ const conditionProfiles = {
     papers: ["aducanumab","crenezumab","gantenerumab","donanemab","lecanemab","solanezumab2018","envision"],
   },
   "Demonstrated clearance: >=10 CL": {
-    description: "Restricts to trials with a matched, placebo-adjusted amyloid-PET reduction of at least 10 Centiloids (CL). Trials without a matched CL estimate are excluded rather than assigned an assumed value.",
+    description: "Restricts to trials with a matched, placebo-adjusted amyloid-PET reduction of at least 10 Centiloids (CL). Unknown or quarantined PET values are excluded from this condition; they do not establish absent target engagement. Matching dose, phase and population remains an explicit audit limitation.",
     papers: ["aducanumab","gantenerumab","donanemab","lecanemab"],
   },
   "Response primary: clearing approved-generation trials": {
-    description: "The response-conforming primary analysis: biomarker-confirmed trials of approved-generation antibodies with at least 10 CL placebo-adjusted amyloid reduction. ENVISION is not included because no matched trial-level CL estimate was available.",
+    description: "The investigator-defined sensitivity analysis: biomarker-confirmed trials of approved-generation antibodies with at least 10 CL placebo-adjusted amyloid reduction. The 10 CL cutoff was introduced by this reanalysis and was not specified by Snyder et al. ENVISION is not included because no matched trial-level CL estimate was available.",
     papers: ["aducanumab","donanemab","lecanemab"],
   },
   "Currently active agents: lecanemab + donanemab": {
@@ -316,7 +316,7 @@ function downloadConditionCsv() {
 }
 
 function conditionCitation() {
-  return `Living Amyloid Evidence. Analysis-condition comparison: ${selectedConditionOutcome}. Evidence version ${evidence.evidenceVersion}, current through ${evidence.generated}. Random-effects estimates derived from the Cochrane CD016297 evidence package; analytic specification and trial membership available at the living meta-analysis website.`;
+  return `Living Amyloid Evidence. Analysis-condition comparison: ${selectedConditionOutcome}. Evidence version ${evidence.evidenceVersion}, released ${evidence.generated}; literature search through ${evidence.searchThrough}. Random-effects estimates derived from the Cochrane CD016297 evidence package; analytic specification and trial membership available at the living meta-analysis website.`;
 }
 
 async function copyConditionCitation(event) {

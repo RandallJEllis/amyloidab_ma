@@ -1,0 +1,14 @@
+check,value,expected,pass
+Duplicate study-outcome contrasts,0,0,TRUE
+Missing study annotations,0,0,TRUE
+Distinct included studies,17,17,TRUE
+Biomarker-required studies,12,12,TRUE
+Source/coded biomarker disagreements,0,0,TRUE
+Annotation/coded biomarker disagreements,0,0,TRUE
+Analysis ID 4.10 preserved,1,1,TRUE
+Malformed analysis identifiers,0,0,TRUE
+Invalid confidence-interval ordering,0,0,TRUE
+Nonpositive or nonfinite sampling variances,0,0,TRUE
+Maximum Cochrane point-estimate reproduction error,4.573665763274448e-5,5e-5,TRUE
+Maximum Cochrane-compatible CI endpoint error,1.4477248023503364e-4,0.001,TRUE
+Maximum Cochrane-compatible p-value error,6.319165663182247e-6,1e-4,TRUE

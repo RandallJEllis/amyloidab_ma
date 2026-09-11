@@ -1,0 +1,9 @@
+Published analysis environment
+==============================
+R version: 4.4.2 (2024-10-31)
+Platform: aarch64-apple-darwin20
+Operating system: macOS 26.5.1
+Evidence date: 2026-08-16
+
+The analysis uses no random simulation and therefore requires no random seed.
+Run `Rscript -e 'sessionInfo()'` to record the environment of a reproduction.

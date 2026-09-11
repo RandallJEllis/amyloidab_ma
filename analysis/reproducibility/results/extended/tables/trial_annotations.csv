@@ -1,0 +1,18 @@
+Study,agent,target_class,target_detail,termination_status,termination_reason,biomarker_status,status_source
+EMERGE 2022,Aducanumab,Aggregated/fibrillar Aβ,Aggregated soluble oligomers and insoluble fibrils,Early terminated,Futility,Required,Cochrane CD016297 refs 97/111 and study description
+ENGAGE 2022,Aducanumab,Aggregated/fibrillar Aβ,Aggregated soluble oligomers and insoluble fibrils,Early terminated,Futility,Required,Cochrane CD016297 refs 97/111 and study description
+ENVISION,Aducanumab,Aggregated/fibrillar Aβ,Aggregated soluble oligomers and insoluble fibrils,Early terminated,Reason not reported,Required,Cochrane CD016297 ref 99 and study description
+3000 Non Carriers 2016,Bapineuzumab,Aggregated/fibrillar Aβ,N-terminal epitope; monomer and aggregated Aβ,Early terminated,Symptomatic ARIA-E,Not required,Cochrane CD016297 ref 107 and study description
+3001 Carriers 2016,Bapineuzumab,Aggregated/fibrillar Aβ,N-terminal epitope; monomer and aggregated Aβ,Early terminated,Symptomatic ARIA-E,Not required,Cochrane CD016297 ref 108 and study description
+Bapineuzumab-301 2014,Bapineuzumab,Aggregated/fibrillar Aβ,N-terminal epitope; monomer and aggregated Aβ,Completed,Completed,Not required,Cochrane CD016297 refs 103/134-136
+Bapineuzumab-302 2014,Bapineuzumab,Aggregated/fibrillar Aβ,N-terminal epitope; monomer and aggregated Aβ,Completed,Completed,Not required,Cochrane CD016297 refs 109/137
+CREAD 2 2022,Crenezumab,Soluble aggregate-preferring,Monomeric and oligomeric Aβ; higher affinity for oligomers,Early terminated,Futility,Required,Cochrane CD016297 ref 112
+CREAD 2022,Crenezumab,Soluble aggregate-preferring,Monomeric and oligomeric Aβ; higher affinity for oligomers,Early terminated,Futility,Required,Cochrane CD016297 ref 101
+TRAILBLAZER-ALZ 2 2023,Donanemab,Pyroglutamate plaque Aβ,N-terminal pyroglutamate-modified Aβ in deposited plaque,Completed,Completed,Required,Cochrane CD016297 ref 105
+SCarlet RoAD 2017,Gantenerumab,Aggregated/fibrillar Aβ,Conformational epitope on aggregated fibrils and plaques,Early terminated,Futility,Required,Cochrane CD016297 ref 102
+Marguerite RoAD 2024,Gantenerumab,Aggregated/fibrillar Aβ,Conformational epitope on aggregated fibrils and plaques,Early terminated,Futility,Required,Cochrane CD016297 ref 100 and study description
+GRADUATE I 2023,Gantenerumab,Aggregated/fibrillar Aβ,Conformational epitope on aggregated fibrils and plaques,Completed,Completed,Required,Cochrane CD016297 refs 96/110 and study description
+GRADUATE II 2023,Gantenerumab,Aggregated/fibrillar Aβ,Conformational epitope on aggregated fibrils and plaques,Completed,Completed,Required,Cochrane CD016297 refs 96/110 and study description
+CLARITY AD 2023,Lecanemab,Soluble aggregate-preferring,High affinity for soluble protofibrils; also engages fibrils,Completed,Completed,Required,Cochrane CD016297 ref 106
+EXPEDITION - EXPEDITION 2 2016,Solanezumab,Soluble monomer Aβ,Mid-domain epitope; predominantly soluble monomer,Completed,Completed,Not required,Cochrane CD016297 ref 104
+EXPEDITION 3 2018,Solanezumab,Soluble monomer Aβ,Mid-domain epitope; predominantly soluble monomer,Completed,Completed,Required,Cochrane CD016297 ref 98

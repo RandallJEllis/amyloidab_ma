@@ -1,0 +1,8 @@
+{
+  "version": "0.2.0",
+  "date": "2026-09-11",
+  "searchThrough": "2025-08-07",
+  "baselineCommit": "b95530a",
+  "status": "Exploratory reanalysis; PET mappings retain explicitly documented uncertainties",
+  "responseLabel": "Biomarker-confirmed, approved agents, ≥10 CL reduction"
+}
