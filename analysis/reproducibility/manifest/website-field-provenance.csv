@@ -1,0 +1,14 @@
+website_collection,source_file,source_object,description
+outcomeSensitivities,results/primary/tables/analysis_results.json,outcome_sensitivities,All outcomes under the five primary evidence-set definitions
+rawMeanDifferences,results/primary/tables/analysis_results.json,raw_mean_differences,Unstandardized same-scale mean differences
+metaRegressions,results/primary/tables/analysis_results.json,meta_regressions,Continuous Centiloid moderator models
+amyloidMapping,results/primary/tables/analysis_results.json,amyloid_mapping,Trial-level Centiloid values and source notes
+agentResults,results/extended/tables/extended_results.json,agent_results,Antibody-specific estimates
+rawAgentResults,results/extended/tables/extended_results.json,raw_agent_results,Antibody-specific raw mean differences
+agentInteractions,results/extended/tables/extended_results.json,agent_interactions,Omnibus between-antibody tests
+terminationSensitivities,results/extended/tables/extended_results.json,termination_sensitivities,Early-termination exclusion analyses
+targetClassResults,results/extended/tables/extended_results.json,target_class_results,Predominant target-class estimates
+absoluteSafety,results/extended/tables/extended_results.json,absolute_safety,Absolute risks and numbers needed to harm or benefit
+midCompatibility,results/extended/tables/extended_results.json,mid_compatibility,Compatibility with thresholds cited by Cochrane
+trialAnnotations,results/extended/tables/extended_results.json,trial_annotations,Agent target biomarker and termination annotations
+conditionRegistry,results/primary/tables/cleaned_analysis_rows.csv,derived by 03_build_evidence_registry.mjs,Outcome-specific trial membership and inclusion flags used by the interactive condition matrix
