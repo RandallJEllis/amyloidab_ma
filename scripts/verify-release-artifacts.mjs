@@ -28,7 +28,7 @@ for (const line of checksumLines) {
   const match = line.match(/^([0-9a-f]{64})  (.+)$/);
   if (!match) throw new Error(`Malformed checksum line: ${line}`);
   const [, expected, relative] = match;
-  if (relative === "manifest/SHA256SUMS.txt") continue;
+  if (["manifest/SHA256SUMS.txt", "manifest/integrity-audit.csv"].includes(relative)) continue;
   const bytes = await readFile(resolve(packageRoot, relative));
   const actual = createHash("sha256").update(bytes).digest("hex");
   if (actual !== expected) throw new Error(`Checksum mismatch: ${relative}`);

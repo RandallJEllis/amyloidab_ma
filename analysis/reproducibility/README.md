@@ -153,7 +153,7 @@ generated/                        Created only when the pipeline is run
 - Study data: study characteristics, study arms, study results, risk-of-bias assessments, included references, ongoing studies, awaiting-classification studies, and excluded studies.
 - Other references and the Cochrane data-package provenance page.
 
-The primary analysis reads only `CD016297-data-rows.csv` and `CD016297-overall-estimates-and-settings.csv`; the remaining raw files are included so the source package is complete. No raw values are overwritten. Checksums allow a user to confirm that their copy has not changed. `manifest/file-provenance.csv` inventories every distributed file. `manifest/SHA256SUMS.txt` covers every file except itself and `file-provenance.csv`; those two are excluded because regenerating either manifest would recursively change its own digest.
+The primary analysis reads only `CD016297-data-rows.csv` and `CD016297-overall-estimates-and-settings.csv`; the remaining raw files are included so the source package is complete. No raw values are overwritten. Checksums allow a user to confirm that their copy has not changed. `manifest/file-provenance.csv` inventories every distributed file. `manifest/SHA256SUMS.txt` covers every file except itself, `file-provenance.csv`, and the regenerated `integrity-audit.csv`; the first two are excluded because regenerating either manifest would recursively change its own digest, and the audit CSV is excluded because supported R/readr platforms can serialize its numeric summary fields differently while preserving the same pass/fail checks.
 
 ## Primary generated files
 
