@@ -29,6 +29,7 @@ For a pinned environment, run `Rscript environment/restore.R`, then `sh run_all.
 Additional pipeline outputs:
 
 - `results/audit/tables/pet_clinical_pairings.csv`: pairing status and source locator for every retained clinical row.
+- `results/primary/tables/amyloid_clearance_mapping.csv`: the numeric active-minus-placebo Centiloid change, source, and qualification note for every trial with a recorded mapping; the same table is downloadable from the website as `amyloid-clearance-mapping.csv`.
 - `calculation_inputs.csv`: arm inputs, raw effect reconstruction, variances and denominator fields.
 - `independent_filter_sensitivities.csv`: all outcomes crossed with enrollment, approval, PET thresholds and approximate time-screen options, including empty sets.
 - `clearance_influence.csv`: leave-one-study-out ecological regression sensitivity.

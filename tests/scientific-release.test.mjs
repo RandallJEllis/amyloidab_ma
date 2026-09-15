@@ -40,3 +40,9 @@ test('clearance threshold ladder is explicit',()=>{
  for(const threshold of thresholds) assert.equal(row[`clearance_ge_${threshold}cl`],true);
  for(const threshold of thresholds) assert.ok(data.outcomeSensitivities.some(r=>r.scenario===`Demonstrated clearance: >=${threshold} CL`));
 });
+test('all recorded Centiloid mappings are retained as numeric trial inputs',()=>{
+ const mapped=data.amyloidMapping.filter(r=>typeof r.amyloid_change_cl==='number');
+ assert.equal(mapped.length,11);
+ assert.ok(mapped.some(r=>r.Study==='EMERGE 2022'&&r.amyloid_change_cl===-48.74));
+ assert.ok(mapped.some(r=>r.Study==='3000 Non Carriers 2016'&&r.amyloid_change_cl===6.52));
+});

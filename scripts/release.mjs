@@ -47,6 +47,7 @@ for(const [src,dst] of [
  ['generated/extended/absolute_safety.csv','absolute-safety.csv'],
  ['generated/audit/calculation_inputs.csv','calculation-inputs.csv'],
  ['generated/audit/pet_clinical_pairings.csv','pet-clinical-pairings.csv'],
+ ['generated/primary/amyloid_clearance_mapping.csv','amyloid-clearance-mapping.csv'],
  ['generated/audit/independent_filter_sensitivities.csv','independent-filter-sensitivities.csv'],
  ['manifest/release-differences.csv','release-differences.csv'],
  ['generated/manuscript/methods-results.md','methods-results.md']

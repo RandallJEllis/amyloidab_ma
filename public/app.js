@@ -216,6 +216,13 @@ function renderFixedSections() {
   document.querySelector("#safety-grid").innerHTML=safety.map((row,index)=>`<article class="safety-card"><div class="safety-rank">0${index+1}</div><p class="eyebrow">${esc(row.agent)} · ARIA-E</p><div class="risk-number">+${Math.round(row.rd_per_1000)}</div><p class="risk-unit">additional events per 1,000 treated</p><div class="risk-bar"><span style="width:${Math.min(100,row.rd_per_1000/3.6)}%"></span></div><div class="risk-meta"><span>95% CI +${Math.round(row.rd_ci_low_per_1000)} to +${Math.round(row.rd_ci_high_per_1000)}</span><strong>NNH ${row.number_needed?.toFixed(1)||"—"}</strong></div></article>`).join("");
   const trialRows=evidence.trialAnnotations.map(trial=>({...trial,clearance:evidence.amyloidMapping.find(item=>item.Study===trial.Study)?.amyloid_change_cl??null}));
   document.querySelector("#trial-table").innerHTML=trialRows.map(trial=>`<tr><td><strong>${esc(trial.Study)}</strong></td><td>${esc(trial.agent)}</td><td>${esc(trial.target_class)}</td><td><span class="tag ${trial.biomarker_status==="Required"?"tag-teal":""}">${esc(trial.biomarker_status)}</span></td><td><span class="tag ${trial.termination_status==="Completed"?"tag-clear":"tag-warn"}">${esc(trial.termination_reason)}</span></td><td>${trial.clearance==null?'<span class="muted">Not matched</span>':`<strong>${fmt(trial.clearance,1)} CL</strong>`}</td></tr>`).join("");
+  const clearanceRows=trialRows.filter(trial=>Number.isFinite(trial.clearance)).sort((a,b)=>a.clearance-b.clearance);
+  const clearanceThresholds=[2,4,6,8,10,12];
+  document.querySelector("#clearance-table").innerHTML=clearanceRows.map(trial=>{
+    const met=clearanceThresholds.filter(threshold=>trial.clearance<=-threshold).map(threshold=>`≥${threshold} CL`).join(", ");
+    const change=trial.clearance<0?`${fmt(trial.clearance,2)} CL reduction`:`${fmt(trial.clearance,2)} CL (no reduction)`;
+    return `<tr><td><strong>${esc(trial.Study)}</strong></td><td>${esc(trial.agent)}</td><td><strong>${esc(change)}</strong></td><td>${met?esc(met):'<span class="muted">None</span>'}</td><td>${esc(evidence.amyloidMapping.find(item=>item.Study===trial.Study)?.amyloid_source||"Not available")}</td><td>${esc(evidence.amyloidMapping.find(item=>item.Study===trial.Study)?.mapping_note||"")}</td></tr>`;
+  }).join("");
 }
 
 function conditionEstimate(outcome, scenario, measure) {
