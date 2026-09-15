@@ -94,7 +94,13 @@ dat <- rows %>%
       Study %in% c("EMERGE 2022", "ENGAGE 2022", "ENVISION", "TRAILBLAZER-ALZ 2 2023", "CLARITY AD 2023"),
     active_2026 = Subgroup %in% c("Donanemab", "Lecanemab") |
       Study %in% c("TRAILBLAZER-ALZ 2 2023", "CLARITY AD 2023"),
-    demonstrated_clearance = !is.na(amyloid_change_cl) & amyloid_change_cl <= -10,
+    clearance_ge_2cl = !is.na(amyloid_change_cl) & amyloid_change_cl <= -2,
+    clearance_ge_4cl = !is.na(amyloid_change_cl) & amyloid_change_cl <= -4,
+    clearance_ge_6cl = !is.na(amyloid_change_cl) & amyloid_change_cl <= -6,
+    clearance_ge_8cl = !is.na(amyloid_change_cl) & amyloid_change_cl <= -8,
+    clearance_ge_10cl = !is.na(amyloid_change_cl) & amyloid_change_cl <= -10,
+    clearance_ge_12cl = !is.na(amyloid_change_cl) & amyloid_change_cl <= -12,
+    demonstrated_clearance = clearance_ge_10cl,
     response_primary = biomarker_confirmed & approved_generation & demonstrated_clearance
   ) %>%
   mutate(
@@ -145,8 +151,13 @@ fit_meta <- function(d, ci_method = NULL, p_method = c("current", "cochrane")) {
 scenarios <- list(
   "Cochrane class pool" = function(x) rep(TRUE, nrow(x)),
   "Biomarker-confirmed" = function(x) x$biomarker_confirmed,
+  "Demonstrated clearance: >=2 CL" = function(x) x$clearance_ge_2cl,
+  "Demonstrated clearance: >=4 CL" = function(x) x$clearance_ge_4cl,
+  "Demonstrated clearance: >=6 CL" = function(x) x$clearance_ge_6cl,
+  "Demonstrated clearance: >=8 CL" = function(x) x$clearance_ge_8cl,
+  "Demonstrated clearance: >=10 CL" = function(x) x$clearance_ge_10cl,
+  "Demonstrated clearance: >=12 CL" = function(x) x$clearance_ge_12cl,
   "Response primary: clearing approved-generation trials" = function(x) x$response_primary,
-  "Demonstrated clearance: >=10 CL" = function(x) x$demonstrated_clearance,
   "Currently active agents: lecanemab + donanemab" = function(x) x$active_2026
 )
 
@@ -320,7 +331,8 @@ priority <- summary_tbl %>%
          scenario %in% c("Cochrane class pool", "Response primary: clearing approved-generation trials",
                          "Demonstrated clearance: >=10 CL", "Currently active agents: lecanemab + donanemab")) %>%
   mutate(outcome_label = paste0(analysis_id, " ", outcome),
-         scenario = factor(scenario, levels = names(scenarios)))
+         scenario = factor(scenario, levels = c("Cochrane class pool", "Response primary: clearing approved-generation trials",
+                                               "Demonstrated clearance: >=10 CL", "Currently active agents: lecanemab + donanemab")))
 
 p <- ggplot(priority, aes(x = estimate, y = scenario, xmin = ci_low, xmax = ci_high, color = scenario)) +
   geom_vline(data = priority %>% distinct(outcome_label, measure),
@@ -340,7 +352,8 @@ raw_priority <- raw_summary_tbl %>%
          scenario %in% c("Cochrane class pool", "Response primary: clearing approved-generation trials",
                          "Demonstrated clearance: >=10 CL", "Currently active agents: lecanemab + donanemab")) %>%
   mutate(outcome_label = paste0(analysis_id, " ", outcome),
-         scenario = factor(scenario, levels = names(scenarios)))
+         scenario = factor(scenario, levels = c("Cochrane class pool", "Response primary: clearing approved-generation trials",
+                                               "Demonstrated clearance: >=10 CL", "Currently active agents: lecanemab + donanemab")))
 p2 <- ggplot(raw_priority, aes(x = estimate, y = scenario, xmin = ci_low, xmax = ci_high, color = scenario)) +
   geom_vline(xintercept = 0, color = "grey70", linewidth = 0.35) +
   geom_errorbarh(height = 0.18, linewidth = 0.45) + geom_point(size = 1.8) +

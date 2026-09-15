@@ -34,3 +34,9 @@ test('empty conditions and source dates are explicit',()=>{
  assert.equal(data.searchThrough,'2025-08-07');assert.notEqual(data.generated,data.searchThrough);
  assert.equal(data.calculationInputs.length,data.conditionRegistry.length);
 });
+test('clearance threshold ladder is explicit',()=>{
+ const thresholds=[2,4,6,8,10,12];
+ const row=data.conditionRegistry.find(r=>r.study==='EMERGE 2022'); assert.ok(row);
+ for(const threshold of thresholds) assert.equal(row[`clearance_ge_${threshold}cl`],true);
+ for(const threshold of thresholds) assert.ok(data.outcomeSensitivities.some(r=>r.scenario===`Demonstrated clearance: >=${threshold} CL`));
+});

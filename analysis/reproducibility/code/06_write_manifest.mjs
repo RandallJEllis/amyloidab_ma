@@ -38,11 +38,18 @@ const provenancePath = "manifest/file-provenance.csv";
 const files = (await walk(root)).map(path => ({ absolute: path, path: relative(root, path) }))
   .filter(file => file.path !== checksumPath && file.path !== provenancePath)
   .sort((a, b) => a.path.localeCompare(b.path));
+// The R integrity audit is intentionally regenerated during reproduction;
+// its CSV formatting can vary across supported R/readr platforms. Keep it in
+// the package and provenance inventory, but do not make the checksum ledger
+// depend on platform-specific serialization.
+const checksummedFiles = files.filter(file => file.path !== "manifest/integrity-audit.csv");
 const checksums = [];
 const rows = ["path,category,generated_by,description"];
-for (const file of files) {
+for (const file of checksummedFiles) {
   const bytes = await readFile(file.absolute);
   checksums.push(`${createHash("sha256").update(bytes).digest("hex")}  ${file.path}`);
+}
+for (const file of files) {
   rows.push([file.path, ...describe(file.path)].map(csv).join(","));
 }
 await writeFile(resolve(root, checksumPath), `${checksums.join("\n")}\n`);

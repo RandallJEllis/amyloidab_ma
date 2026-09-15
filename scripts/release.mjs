@@ -10,13 +10,19 @@ const release=JSON.parse(await readFile(resolve(p,'config/release.json'),'utf8')
 const current=JSON.parse(await readFile(resolve(p,'generated/site/evidence.json'),'utf8'));
 const prior=JSON.parse(execFileSync('git',['show',`${release.baselineCommit}:public/evidence.json`],{cwd:root,encoding:'utf8'}));
 const quote=v=>`"${String(v??'').replaceAll('"','""')}"`;
+const changeReason = scenario => {
+ const threshold = String(scenario || '').match(/^Demonstrated clearance: >=(\d+) CL$/);
+ if (threshold && Number(threshold[1]) !== 10) return 'Added investigator-defined Centiloid threshold sensitivity';
+ if (scenario === 'Demonstrated clearance: >=10 CL' || scenario === 'Response primary: clearing approved-generation trials') return 'Marguerite RoAD incompatible PET mapping quarantined; existing ≥10-CL condition retained';
+ return release.changeNote || 'Release snapshot update';
+};
 const changes=['dataset,outcome,scenario,old_k,new_k,old_estimate,new_estimate,reason'];
 for(const key of ['outcomeSensitivities','rawMeanDifferences','metaRegressions']) {
  const id=r=>[r.outcome,r.scenario,r.measure].join('|');
  const old=new Map(prior[key].map(r=>[id(r),r])); const fresh=new Map(current[key].map(r=>[id(r),r]));
  for(const k of new Set([...old.keys(),...fresh.keys()])) {
   const a=old.get(k),b=fresh.get(k); if(JSON.stringify(a)===JSON.stringify(b))continue;
-  changes.push([key,(b||a).outcome,(b||a).scenario||'',a?.k,b?.k,a?.estimate??a?.slope_per_10cl,b?.estimate??b?.slope_per_10cl,'Marguerite RoAD incompatible PET mapping quarantined'].map(quote).join(','));
+  changes.push([key,(b||a).outcome,(b||a).scenario||'',a?.k,b?.k,a?.estimate??a?.slope_per_10cl,b?.estimate??b?.slope_per_10cl,changeReason((b||a).scenario)].map(quote).join(','));
  }
 }
 await writeFile(resolve(p,'manifest/release-differences.csv'),changes.join('\n')+'\n');

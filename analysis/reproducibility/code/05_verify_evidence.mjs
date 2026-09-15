@@ -47,6 +47,7 @@ if (comparison !== true) {
 }
 if (actual.conditionRegistry.length !== 149) throw new Error("Unexpected condition registry size");
 if (actual.trialAnnotations.length !== 17) throw new Error("Unexpected trial annotation count");
-if (actual.outcomeSensitivities.length !== 140) throw new Error("Unexpected sensitivity estimate count");
+const requiredScenarios = ["Cochrane class pool", "Biomarker-confirmed", "Demonstrated clearance: >=2 CL", "Demonstrated clearance: >=4 CL", "Demonstrated clearance: >=6 CL", "Demonstrated clearance: >=8 CL", "Demonstrated clearance: >=10 CL", "Demonstrated clearance: >=12 CL", "Response primary: clearing approved-generation trials", "Currently active agents: lecanemab + donanemab"];
+for (const scenario of requiredScenarios) if (!actual.outcomeSensitivities.some(row => row.scenario === scenario)) throw new Error(`Missing sensitivity scenario: ${scenario}`);
 
 console.log("PASS generated/site/evidence.json");
