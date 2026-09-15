@@ -1,8 +1,10 @@
 {
-  "version": "0.2.0",
-  "date": "2026-09-11",
+  "version": "0.3.0",
+  "date": "2026-09-15",
   "searchThrough": "2025-08-07",
   "baselineCommit": "b95530a",
   "status": "Exploratory reanalysis; PET mappings retain explicitly documented uncertainties",
-  "responseLabel": "Biomarker-confirmed, approved agents, ≥10 CL reduction"
+  "responseLabel": "Biomarker-confirmed, approved agents, ≥10 CL reduction",
+  "clearanceThresholds": [2, 4, 6, 8, 10, 12],
+  "changeNote": "Added investigator-defined ≥2, ≥4, ≥6, ≥8, and ≥12 CL sensitivity conditions; the existing ≥10 CL response condition is unchanged."
 }

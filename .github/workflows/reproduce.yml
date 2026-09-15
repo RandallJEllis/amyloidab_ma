@@ -19,4 +19,4 @@ jobs:
         working-directory: analysis/reproducibility
         run: sh run_all.sh
       - name: Validate public release and regression tests
-        run: node scripts/verify.mjs && node --test tests/*.test.mjs
+        run: node scripts/verify.mjs && node scripts/verify-release-artifacts.mjs && node --test tests/*.test.mjs

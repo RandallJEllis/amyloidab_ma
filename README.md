@@ -45,7 +45,7 @@ Complete Cochrane CD016297 data package
         │
         ▼
 01_primary_reanalysis.R
-  cleaning → Centiloid mapping → five evidence-set conditions
+  cleaning → Centiloid mapping → class, biomarker, active-agent, response, and clearance-threshold conditions
   → scenario meta-analyses → raw mean differences
   → continuous-clearance meta-regression → reproduction checks
         │
@@ -101,9 +101,9 @@ server.
 
 ## Scientific status
 
-Evidence release: **0.2.0**
+Evidence release: **0.3.0**
 
-Release date: **2026-09-11**
+Release date: **2026-09-15**
 Literature search through: **2025-08-07**
 
 This is a research-synthesis resource, not individualized medical advice.

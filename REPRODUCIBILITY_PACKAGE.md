@@ -1,10 +1,28 @@
 # Living Amyloid Evidence: unified reproducibility package
 
-## Release 0.2.0 audit changes
+## Release 0.3.0 threshold-sensitivity changes
 
 Read [AUDIT.md](AUDIT.md) before interpreting this release. The ≥10-CL rule is investigator-defined; Snyder et al. did not specify a numerical clearance threshold. Marguerite RoAD's prior high-dose extension PET mapping is quarantined. Independent-filter sensitivities and a pairing ledger show the consequences and unresolved uncertainties. The exact ADAS-Cog version and clinical estimand review is still pending, so raw MD companions remain provisional.
 
+This release adds an explicit investigator-defined Centiloid sensitivity ladder at **≥2, ≥4, ≥6, ≥8, ≥10, and ≥12 CL**. The existing ≥10-CL response condition is unchanged; the additional thresholds show how estimates vary when the plaque-reduction rule is changed. Snyder et al. did not specify a numerical clearance threshold, so none of these thresholds should be interpreted as a response-defined or validated clinical cutoff.
+
 The literature search is current through **7 August 2025**. The analysis release date is separate. Historical v0.1.1 PDF reports/workbooks are archived presentation artifacts and may contain superseded results. Use `manuscript/methods-results.md`, the current CSV snapshots, and `site/evidence.json` for this release.
+
+### Marguerite RoAD PET clarification
+
+Marguerite RoAD remains part of the clinical evidence base; the correction concerns only its trial-level amyloid PET classification. The randomized study evaluated low-dose gantenerumab (105/225 mg every 4 weeks) versus placebo. After the randomized phase was stopped for futility, participants could enter an open-label extension with substantially higher doses, up to 1,200 mg every 4 weeks. The previously used **−59.65 Centiloid** value came from that later high-dose extension (reported at approximately 208 weeks), not from a compatible placebo-adjusted PET contrast during the randomized clinical phase. See Neve et al., [*Long-Term Safety of Gantenerumab in Participants with Alzheimer’s Disease*](https://doi.org/10.3233/JAD-240221).
+
+Because the extension measurement combines a different dose, treatment phase, time point, and comparison context, it cannot be used to classify the randomized Marguerite RoAD clinical outcome as having achieved the investigator-defined **≥10-CL reduction** threshold. The value is therefore **quarantined as unknown**, rather than replaced with an inferred estimate or interpreted as evidence that the treatment failed to remove amyloid. The pairing ledger records the reason in `results/audit/tables/pet_clinical_pairings.csv`, and the mapping is visible in `results/primary/tables/amyloid_clearance_mapping.csv`.
+
+This means Marguerite RoAD:
+
+- remains eligible for **All antibodies**;
+- remains eligible for **Biomarker-confirmed**, because amyloid pathology was required at enrollment;
+- remains available for randomized clinical and safety outcomes in conditions that do not require a PET value;
+- is not counted as a demonstrated-clearance trial, and therefore is not eligible for the **Clears ≥10 CL** or the biomarker-confirmed/approved/≥10-CL intersection; and
+- is not assigned a value in continuous-clearance analyses.
+
+The clinical rows are not deleted or re-estimated. Endpoint-specific analyzed sample sizes remain those supplied by Cochrane; for example, the 24-month ADAS-Cog row has 16 analyzed participants in the gantenerumab arm and 30 in placebo, whereas the study-level randomized population was 387. Removing the incompatible PET mapping affects only clearance-dependent results: seven 24-month clearance-selected specifications become empty and other 24-month estimates change from two contributing studies to one. The 18-month headline estimates are unchanged. The complete numerical ledger is `manifest/release-differences.csv`.
 
 For a pinned environment, run `Rscript environment/restore.R`, then `sh run_all.sh`. The `renv.lock` includes R 4.4.2 and transitive package versions. `environment/install_dependencies.R` is a convenience fallback, not a pinned restoration. A fresh computer needs network access and, where binary packages are unavailable, R build tools.
 
@@ -19,9 +37,9 @@ Additional pipeline outputs:
 
 `code/08_traceability.R` runs before registry assembly; audit snapshots are verified alongside primary and extended snapshots. The integrity audit reads the newly generated files. The repository's `scripts/release.mjs` assembles the website and single ZIP from this source tree; `--accept-snapshots` is reserved for intentional reviewed release updates. Source history at baseline commit b95530a preserves the previous release.
 
-Evidence version: **0.2.0**
+Evidence version: **0.3.0**
 
-Evidence date: **11 September 2026**
+Evidence date: **15 September 2026**
 
 This single archive reproduces the statistical results displayed by Living Amyloid Evidence from the complete Cochrane CD016297 data package. It contains the raw Cochrane input, both analysis stages, published result snapshots, the exact website evidence registry, documentation, checksums, and automated verification.
 
@@ -59,7 +77,7 @@ PASS: primary tables, extended tables, and website evidence registry match the p
 
 The extended results cannot be generated until the primary stage succeeds. That dependency is explicit in `run_all.sh`.
 
-## The five primary evidence-set conditions
+## Primary evidence-set conditions and the clearance ladder
 
 The number of contributing studies is outcome-specific: a trial belongs to a condition globally but contributes only when it reports the selected endpoint and time point.
 
@@ -67,7 +85,12 @@ The number of contributing studies is outcome-specific: a trial belongs to a con
 |---|---|---|
 | All antibodies / Cochrane class pool | Every eligible trial in the corresponding Cochrane analysis | All 17 trials listed below |
 | Biomarker-confirmed | Amyloid pathology required at enrollment in the Cochrane study-characteristics source | CLARITY AD; CREAD; CREAD 2; EMERGE; ENGAGE; ENVISION; EXPEDITION 3; GRADUATE I; GRADUATE II; Marguerite RoAD; SCarlet RoAD; TRAILBLAZER-ALZ 2 |
+| Clears >=2 CL | Matched placebo-adjusted amyloid PET change <= -2 Centiloids; missing values are excluded, not imputed | EMERGE; ENGAGE; 3001 Carriers; CREAD 2; TRAILBLAZER-ALZ 2; SCarlet RoAD; CLARITY AD; GRADUATE I; GRADUATE II |
+| Clears >=4 CL | Matched placebo-adjusted amyloid PET change <= -4 Centiloids; missing values are excluded, not imputed | EMERGE; ENGAGE; 3001 Carriers; TRAILBLAZER-ALZ 2; SCarlet RoAD; CLARITY AD; GRADUATE I; GRADUATE II |
+| Clears >=6 CL | Matched placebo-adjusted amyloid PET change <= -6 Centiloids; missing values are excluded, not imputed | EMERGE; ENGAGE; 3001 Carriers; TRAILBLAZER-ALZ 2; SCarlet RoAD; CLARITY AD; GRADUATE I; GRADUATE II |
+| Clears >=8 CL | Matched placebo-adjusted amyloid PET change <= -8 Centiloids; missing values are excluded, not imputed | EMERGE; ENGAGE; 3001 Carriers; TRAILBLAZER-ALZ 2; SCarlet RoAD; CLARITY AD; GRADUATE I; GRADUATE II |
 | Clears >=10 CL | Matched placebo-adjusted amyloid PET change <= -10 Centiloids; missing values are excluded, not imputed | EMERGE; ENGAGE; TRAILBLAZER-ALZ 2; SCarlet RoAD; CLARITY AD; GRADUATE I; GRADUATE II |
+| Clears >=12 CL | Matched placebo-adjusted amyloid PET change <= -12 Centiloids; missing values are excluded, not imputed | EMERGE; ENGAGE; TRAILBLAZER-ALZ 2; SCarlet RoAD; CLARITY AD; GRADUATE I; GRADUATE II |
 | Biomarker-confirmed, approved agents, ≥10 CL reduction | Biomarker-confirmed **and** approved-generation **and** clears >=10 CL | EMERGE; ENGAGE; CLARITY AD; TRAILBLAZER-ALZ 2 |
 | Lecanemab + donanemab | Currently active-agent sensitivity at the evidence date | CLARITY AD; TRAILBLAZER-ALZ 2 |
 
@@ -138,7 +161,7 @@ All primary tabular snapshots are under `results/primary/` and are generated by 
 
 | File | Meaning |
 |---|---|
-| `tables/cleaned_analysis_rows.csv` | Master trial-outcome rows after group filtering, effect transformations, Centiloid join, and five condition flags |
+| `tables/cleaned_analysis_rows.csv` | Master trial-outcome rows after group filtering, effect transformations, Centiloid join, and class, biomarker, approval, active-agent, response, and clearance-threshold flags |
 | `tables/amyloid_clearance_mapping.csv` | Trial-level Centiloid estimate, source, dose/time qualification, and missingness note |
 | `tables/all_outcome_sensitivity_results.csv` | Every available outcome under every estimable evidence-set condition |
 | `tables/raw_mean_difference_results.csv` | Same-scale unstandardized mean differences when arm means, SDs, and N are complete |

@@ -1,3 +1,9 @@
+# Corrections in evidence release 0.3.0
+
+Release date: 15 September 2026
+
+This release adds investigator-defined Centiloid clearance sensitivities at ≥2, ≥4, ≥6, ≥8, and ≥12 CL alongside the existing ≥10-CL condition. These thresholds are not supplied by Snyder et al.; they are a ladder for showing how trial inclusion and pooled estimates change as the operational plaque-reduction rule varies. The ≥10-CL response condition and the Marguerite RoAD quarantine are unchanged.
+
 # Corrections in evidence release 0.2.0
 
 Release date: 11 September 2026

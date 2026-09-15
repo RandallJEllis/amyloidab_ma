@@ -48,7 +48,7 @@ fit <- function(x) {
  tibble(k=nrow(x),estimate=as.numeric(m$b),ci_low=m$ci.lb,ci_high=m$ci.ub,p_value=m$pval,tau2=m$tau2)
 }
 out <- list(); index <- 1L
-for(id in unique(d$analysis_id)) for(biomarker in c(FALSE,TRUE)) for(approved in c(FALSE,TRUE)) for(cutoff in c(NA,5,10,20,30)) for(time_match in c(FALSE,TRUE)) {
+for(id in unique(d$analysis_id)) for(biomarker in c(FALSE,TRUE)) for(approved in c(FALSE,TRUE)) for(cutoff in c(NA,2,4,5,6,8,10,12,20,30)) for(time_match in c(FALSE,TRUE)) {
  x <- d %>% filter(analysis_id==id)
  if(biomarker) x <- x %>% filter(biomarker_confirmed)
  if(approved) x <- x %>% filter(approved_generation)

@@ -6,11 +6,8 @@ renderExplorer = function () {
 };
 
 function selectedMembership(row) {
-  return selectedScenario === 'Cochrane class pool' ||
-    (selectedScenario === 'Biomarker-confirmed' && row.biomarker_confirmed) ||
-    (selectedScenario === 'Demonstrated clearance: >=10 CL' && row.demonstrated_clearance) ||
-    (selectedScenario.includes('Response primary') && row.response_primary) ||
-    (selectedScenario.includes('Currently active') && row.active_2026);
+  const flag = scenarioFlag[selectedScenario];
+  return flag ? Boolean(row[flag]) : selectedScenario === 'Cochrane class pool';
 }
 
 function renderTraceability() {
@@ -35,7 +32,8 @@ function renderTraceability() {
       if (selectedMembership(r) && !hasInputs(r)) reasons.push('Raw MD inputs unavailable');
       if ((selectedScenario.includes('Response primary') || selectedScenario==='Biomarker-confirmed') && !r.biomarker_confirmed) reasons.push('Biomarker confirmation not required');
       if (selectedScenario.includes('Response primary') && !r.approved_generation) reasons.push('Outside approved-agent set');
-      if ((selectedScenario.includes('Response primary') || selectedScenario.includes('>=10 CL')) && !r.demonstrated_clearance) reasons.push(r.amyloid_change_cl == null ? 'PET unknown / quarantined' : 'Reduction below 10 CL');
+      const clearanceMatch = selectedScenario.match(/>=([0-9]+) CL/);
+      if (clearanceMatch && !r[`clearance_ge_${clearanceMatch[1]}cl`]) reasons.push(r.amyloid_change_cl == null ? 'PET unknown / quarantined' : `Reduction below ${clearanceMatch[1]} CL`);
       if(selectedScenario.includes('Currently active')) reasons.push('Outside lecanemab/donanemab set');
     }
     const weight = included ? (100/(variance(r)+(selected?.tau2||0))/weightSum).toFixed(1)+'%' : '—';
@@ -70,12 +68,12 @@ if (typeof evidence !== 'undefined' && evidence?.filterSensitivities) {
   if(scenarioOrder.includes(params.get('scenario'))) selectedScenario=params.get('scenario');
   document.querySelector('#outcome-select').value=selectedOutcome;
   const host=document.createElement('section');host.id='independent-filters';host.className='threshold-note';
-  host.innerHTML=`<h2>Independent inclusion sensitivities</h2><p>These investigator-defined exploratory specifications separate enrollment, approval and plaque reduction. Snyder et al. supplied no numerical clearance definition. The time screen is approximate and does not certify matching dose or population. PET unknowns are excluded only when PET is required.</p><label>Outcome <select name="outcome">${[...new Set(evidence.filterSensitivities.map(r=>r.outcome))].map(o=>`<option>${esc(o)}</option>`).join('')}</select></label> <label><input type="checkbox" name="biomarker"> Require biomarker confirmation</label> <label><input type="checkbox" name="approved"> Restrict to approved-generation agents</label> <label>Minimum reduction <select name="cutoff"><option value="none">No PET restriction</option>${[5,10,20,30].map(n=>`<option value="${n}">${n} CL</option>`).join('')}</select></label> <label><input type="checkbox" name="time"> Approximate PET time match</label><p role="status" aria-live="polite"></p><p><a href="downloads/independent-filter-sensitivities.csv">Download all specifications, including empty sets</a></p>`;
+  host.innerHTML=`<h2>Independent inclusion sensitivities</h2><p>These investigator-defined exploratory specifications separate enrollment, approval and plaque reduction. Snyder et al. supplied no numerical clearance definition. The time screen is approximate and does not certify matching dose or population. PET unknowns are excluded only when PET is required.</p><label>Outcome <select name="outcome">${[...new Set(evidence.filterSensitivities.map(r=>r.outcome))].map(o=>`<option>${esc(o)}</option>`).join('')}</select></label> <label><input type="checkbox" name="biomarker"> Require biomarker confirmation</label> <label><input type="checkbox" name="approved"> Restrict to approved-generation agents</label> <label>Minimum reduction <select name="cutoff"><option value="none">No PET restriction</option>${[2,4,5,6,8,10,12,20,30].map(n=>`<option value="${n}">${n} CL</option>`).join('')}</select></label> <label><input type="checkbox" name="time"> Approximate PET time match</label><p role="status" aria-live="polite"></p><p><a href="downloads/independent-filter-sensitivities.csv">Download all specifications, including empty sets</a></p>`;
   document.querySelector('#conditions').append(host);
   const filterOutcome = params.get('filterOutcome');
   if (evidence.filterSensitivities.some(r=>r.outcome===filterOutcome)) host.querySelector('[name=outcome]').value=filterOutcome;
   for (const [name,key] of [['biomarker','biomarker'],['approved','approved'],['time','petTime']]) host.querySelector(`[name=${name}]`).checked=params.get(key)==='true';
-  if (['none','5','10','20','30'].includes(params.get('cutoff'))) host.querySelector('[name=cutoff]').value=params.get('cutoff');
+  if (['none','2','4','5','6','8','10','12','20','30'].includes(params.get('cutoff'))) host.querySelector('[name=cutoff]').value=params.get('cutoff');
   host.addEventListener('change',renderIndependentFilters);
   renderIndependentFilters(); renderExplorer();
 }

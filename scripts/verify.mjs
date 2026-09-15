@@ -47,7 +47,8 @@ if (!app.includes("no SMD back-conversion or cross-scale standardization is used
 if (!app.includes('class="threshold-tooltip"') || !app.includes('tabindex="0"')) throw new Error("Accessible threshold tooltips are missing");
 const release = JSON.parse(await readFile(resolve(root, '../analysis/reproducibility/config/release.json'), 'utf8'));
 if (data.evidenceVersion !== release.version) throw new Error("Unexpected evidence version");
-if (data.outcomeSensitivities.length !== 140) throw new Error("Outcome registry has an unexpected row count");
+const requiredScenarios = ["Cochrane class pool", "Biomarker-confirmed", "Demonstrated clearance: >=2 CL", "Demonstrated clearance: >=4 CL", "Demonstrated clearance: >=6 CL", "Demonstrated clearance: >=8 CL", "Demonstrated clearance: >=10 CL", "Demonstrated clearance: >=12 CL", "Response primary: clearing approved-generation trials", "Currently active agents: lecanemab + donanemab"];
+for (const scenario of requiredScenarios) if (!data.outcomeSensitivities.some(row => row.scenario === scenario)) throw new Error(`Missing scenario: ${scenario}`);
 if (data.trialAnnotations.length < 17) throw new Error("Trial ledger is unexpectedly small");
 
 async function walk(directory) {
