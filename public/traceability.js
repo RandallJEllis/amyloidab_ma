@@ -33,7 +33,8 @@ function renderTraceability() {
       if ((selectedScenario.includes('Response primary') || selectedScenario==='Biomarker-confirmed') && !r.biomarker_confirmed) reasons.push('Biomarker confirmation not required');
       if (selectedScenario.includes('Response primary') && !r.approved_generation) reasons.push('Outside approved-agent set');
       const clearanceMatch = selectedScenario.match(/>=([0-9]+) CL/);
-      if (clearanceMatch && !r[`clearance_ge_${clearanceMatch[1]}cl`]) reasons.push(r.amyloid_change_cl == null ? 'PET unknown / quarantined' : `Reduction below ${clearanceMatch[1]} CL`);
+      const requiredClearance = clearanceMatch ? Number(clearanceMatch[1]) : selectedScenario.includes('Response primary') ? 10 : null;
+      if (requiredClearance != null && !r[`clearance_ge_${requiredClearance}cl`]) reasons.push(r.amyloid_change_cl == null ? 'PET unknown / quarantined' : `Reduction below ${requiredClearance} CL`);
       if(selectedScenario.includes('Currently active')) reasons.push('Outside lecanemab/donanemab set');
     }
     const weight = included ? (100/(variance(r)+(selected?.tau2||0))/weightSum).toFixed(1)+'%' : '—';

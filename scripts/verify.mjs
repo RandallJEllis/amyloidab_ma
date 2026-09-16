@@ -11,6 +11,7 @@ const required = [
   "traceability.js",
   "downloads/calculation-inputs.csv",
   "downloads/pet-clinical-pairings.csv",
+  "downloads/amyloid-clearance-mapping.csv",
   "downloads/independent-filter-sensitivities.csv",
   "downloads/release-differences.csv",
   "downloads/methods-results.md",
@@ -36,6 +37,7 @@ if (!html.includes("not individualized medical advice")) throw new Error("Medica
 if (!html.includes("downloads/reproducibility-package.zip")) throw new Error("Unified reproducibility-package link is missing");
 if (!app.includes("renderExplorer")) throw new Error("Interactive explorer code is missing");
 if (!app.includes("conditionTrialsAcrossAllEndpoints")) throw new Error("Condition-wide trial reference registry is missing");
+if (!html.includes("Recorded placebo-adjusted PET changes") || !app.includes("clearanceThresholds")) throw new Error("Quantitative Centiloid mapping table is missing");
 if (!app.includes("Key references for all trials included in this condition, across all endpoints")) throw new Error("Condition-wide reference scope is not explained");
 if (!app.includes("clinicalThresholds")) throw new Error("Clinical-threshold registry is missing");
 if (!app.includes('value: -4, label: "4pt"')) throw new Error("ADAS-Cog dementia threshold is missing");
@@ -47,8 +49,15 @@ if (!app.includes("no SMD back-conversion or cross-scale standardization is used
 if (!app.includes('class="threshold-tooltip"') || !app.includes('tabindex="0"')) throw new Error("Accessible threshold tooltips are missing");
 const release = JSON.parse(await readFile(resolve(root, '../analysis/reproducibility/config/release.json'), 'utf8'));
 if (data.evidenceVersion !== release.version) throw new Error("Unexpected evidence version");
-const requiredScenarios = ["Cochrane class pool", "Biomarker-confirmed", "Demonstrated clearance: >=2 CL", "Demonstrated clearance: >=4 CL", "Demonstrated clearance: >=6 CL", "Demonstrated clearance: >=8 CL", "Demonstrated clearance: >=10 CL", "Demonstrated clearance: >=12 CL", "Response primary: clearing approved-generation trials", "Currently active agents: lecanemab + donanemab"];
+const requiredScenarios = [
+  "Cochrane class pool",
+  "Biomarker-confirmed",
+  ...(release.clearanceThresholds || []).map(threshold => `Demonstrated clearance: >=${threshold} CL`),
+  "Response primary: clearing approved-generation trials",
+  "Currently active agents: lecanemab + donanemab",
+];
 for (const scenario of requiredScenarios) if (!data.outcomeSensitivities.some(row => row.scenario === scenario)) throw new Error(`Missing scenario: ${scenario}`);
+if (data.outcomeSensitivities.length !== 291) throw new Error(`Unexpected outcome sensitivity count: ${data.outcomeSensitivities.length}`);
 if (data.trialAnnotations.length < 17) throw new Error("Trial ledger is unexpectedly small");
 
 async function walk(directory) {

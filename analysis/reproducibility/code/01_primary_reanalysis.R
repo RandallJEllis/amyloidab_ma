@@ -8,6 +8,11 @@ suppressPackageStartupMessages({
 })
 
 root <- normalizePath(".")
+release_config <- jsonlite::fromJSON(file.path(root, "config/release.json"))
+clearance_thresholds <- sort(unique(as.integer(release_config$clearanceThresholds)))
+if (!length(clearance_thresholds) || anyNA(clearance_thresholds) || any(clearance_thresholds <= 0) || !10L %in% clearance_thresholds) {
+  stop("release.json must define positive Centiloid thresholds including 10 CL")
+}
 data_path <- file.path(root, "data/raw/cochrane/CD016297-analysis-data/CD016297-data-rows.csv")
 overall_path <- file.path(root, "data/raw/cochrane/CD016297-analysis-data/CD016297-overall-estimates-and-settings.csv")
 study_info_path <- file.path(root, "data/raw/cochrane/CD016297-study-data/CD016297-study-information.csv")
@@ -93,15 +98,7 @@ dat <- rows %>%
     approved_generation = Subgroup %in% c("Aducanumab", "Donanemab", "Lecanemab") |
       Study %in% c("EMERGE 2022", "ENGAGE 2022", "ENVISION", "TRAILBLAZER-ALZ 2 2023", "CLARITY AD 2023"),
     active_2026 = Subgroup %in% c("Donanemab", "Lecanemab") |
-      Study %in% c("TRAILBLAZER-ALZ 2 2023", "CLARITY AD 2023"),
-    clearance_ge_2cl = !is.na(amyloid_change_cl) & amyloid_change_cl <= -2,
-    clearance_ge_4cl = !is.na(amyloid_change_cl) & amyloid_change_cl <= -4,
-    clearance_ge_6cl = !is.na(amyloid_change_cl) & amyloid_change_cl <= -6,
-    clearance_ge_8cl = !is.na(amyloid_change_cl) & amyloid_change_cl <= -8,
-    clearance_ge_10cl = !is.na(amyloid_change_cl) & amyloid_change_cl <= -10,
-    clearance_ge_12cl = !is.na(amyloid_change_cl) & amyloid_change_cl <= -12,
-    demonstrated_clearance = clearance_ge_10cl,
-    response_primary = biomarker_confirmed & approved_generation & demonstrated_clearance
+      Study %in% c("TRAILBLAZER-ALZ 2 2023", "CLARITY AD 2023")
   ) %>%
   mutate(
     yi = replace(yi, is_rr, log(Mean[is_rr])),
@@ -109,6 +106,12 @@ dat <- rows %>%
                   (log(CI.end[is_rr]) - log(CI.start[is_rr])) / (2 * qnorm(0.975))),
     vi = sei^2
   )
+for (threshold in clearance_thresholds) {
+  flag <- paste0("clearance_ge_", threshold, "cl")
+  dat[[flag]] <- !is.na(dat$amyloid_change_cl) & dat$amyloid_change_cl <= -threshold
+}
+dat$demonstrated_clearance <- dat[["clearance_ge_10cl"]]
+dat$response_primary <- dat$biomarker_confirmed & dat$approved_generation & dat$demonstrated_clearance
 excluded_rows <- dat %>% filter(!is.finite(yi) | !is.finite(vi) | vi <= 0) %>%
   mutate(exclusion_reason = "Nonfinite effect or nonpositive/nonfinite sampling variance")
 write_csv(excluded_rows, file.path(out_dir, "excluded_analysis_rows.csv"))
@@ -148,18 +151,17 @@ fit_meta <- function(d, ci_method = NULL, p_method = c("current", "cochrane")) {
          ci_high = fit$ci.ub, p_value = p_value, tau2 = fit$tau2, i2 = fit$I2)
 }
 
-scenarios <- list(
+clearance_scenarios <- setNames(lapply(clearance_thresholds, function(threshold) {
+  flag <- paste0("clearance_ge_", threshold, "cl")
+  local({ selected_flag <- flag; function(x) x[[selected_flag]] })
+}), paste0("Demonstrated clearance: >=", clearance_thresholds, " CL"))
+scenarios <- c(list(
   "Cochrane class pool" = function(x) rep(TRUE, nrow(x)),
-  "Biomarker-confirmed" = function(x) x$biomarker_confirmed,
-  "Demonstrated clearance: >=2 CL" = function(x) x$clearance_ge_2cl,
-  "Demonstrated clearance: >=4 CL" = function(x) x$clearance_ge_4cl,
-  "Demonstrated clearance: >=6 CL" = function(x) x$clearance_ge_6cl,
-  "Demonstrated clearance: >=8 CL" = function(x) x$clearance_ge_8cl,
-  "Demonstrated clearance: >=10 CL" = function(x) x$clearance_ge_10cl,
-  "Demonstrated clearance: >=12 CL" = function(x) x$clearance_ge_12cl,
+  "Biomarker-confirmed" = function(x) x$biomarker_confirmed
+), clearance_scenarios, list(
   "Response primary: clearing approved-generation trials" = function(x) x$response_primary,
   "Currently active agents: lecanemab + donanemab" = function(x) x$active_2026
-)
+))
 
 analysis_keys <- dat %>%
   distinct(analysis_id, Analysis.name, is_rr, is_md) %>%

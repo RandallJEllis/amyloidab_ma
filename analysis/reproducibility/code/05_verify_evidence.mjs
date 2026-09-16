@@ -4,6 +4,7 @@ import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
 const root = resolve(import.meta.dirname, "..");
+const release = JSON.parse(await readFile(resolve(root, "config/release.json"), "utf8"));
 const expected = JSON.parse(await readFile(resolve(root, "site/evidence.json"), "utf8"));
 const actual = JSON.parse(await readFile(resolve(root, "generated/site/evidence.json"), "utf8"));
 
@@ -47,7 +48,14 @@ if (comparison !== true) {
 }
 if (actual.conditionRegistry.length !== 149) throw new Error("Unexpected condition registry size");
 if (actual.trialAnnotations.length !== 17) throw new Error("Unexpected trial annotation count");
-const requiredScenarios = ["Cochrane class pool", "Biomarker-confirmed", "Demonstrated clearance: >=2 CL", "Demonstrated clearance: >=4 CL", "Demonstrated clearance: >=6 CL", "Demonstrated clearance: >=8 CL", "Demonstrated clearance: >=10 CL", "Demonstrated clearance: >=12 CL", "Response primary: clearing approved-generation trials", "Currently active agents: lecanemab + donanemab"];
+const requiredScenarios = [
+  "Cochrane class pool",
+  "Biomarker-confirmed",
+  ...(release.clearanceThresholds || []).map(threshold => `Demonstrated clearance: >=${threshold} CL`),
+  "Response primary: clearing approved-generation trials",
+  "Currently active agents: lecanemab + donanemab",
+];
 for (const scenario of requiredScenarios) if (!actual.outcomeSensitivities.some(row => row.scenario === scenario)) throw new Error(`Missing sensitivity scenario: ${scenario}`);
+if (actual.outcomeSensitivities.length !== 291) throw new Error(`Unexpected outcome sensitivity count: ${actual.outcomeSensitivities.length}`);
 
 console.log("PASS generated/site/evidence.json");
