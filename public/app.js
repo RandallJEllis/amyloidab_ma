@@ -1,5 +1,6 @@
-const scenarioOrder = ["Cochrane class pool", "Biomarker-confirmed", "Demonstrated clearance: >=2 CL", "Demonstrated clearance: >=4 CL", "Demonstrated clearance: >=6 CL", "Demonstrated clearance: >=8 CL", "Demonstrated clearance: >=10 CL", "Demonstrated clearance: >=12 CL", "Response primary: clearing approved-generation trials", "Currently active agents: lecanemab + donanemab"];
-const scenarioShort = {"Cochrane class pool":"All antibodies","Biomarker-confirmed":"Biomarker confirmed","Demonstrated clearance: >=2 CL":"Clears ≥2 CL","Demonstrated clearance: >=4 CL":"Clears ≥4 CL","Demonstrated clearance: >=6 CL":"Clears ≥6 CL","Demonstrated clearance: >=8 CL":"Clears ≥8 CL","Demonstrated clearance: >=10 CL":"Clears ≥10 CL","Demonstrated clearance: >=12 CL":"Clears ≥12 CL","Response primary: clearing approved-generation trials":"Biomarker-confirmed, approved agents, ≥10 CL reduction","Currently active agents: lecanemab + donanemab":"Lecanemab + donanemab"};
+let scenarioOrder = [];
+let clearanceThresholds = [];
+const scenarioShort = {"Cochrane class pool":"All antibodies","Biomarker-confirmed":"Biomarker confirmed","Response primary: clearing approved-generation trials":"Biomarker-confirmed, approved agents, ≥10 CL reduction","Currently active agents: lecanemab + donanemab":"Lecanemab + donanemab"};
 const outcomeShort = {"ADAS-Cog scale at 18 months":"ADAS-Cog · 18 months","CDR-SB scale at 18 months":"CDR-SB · 18 months","MMSE scale at 18 months":"MMSE · 18 months","ADCS-ADL score at 18 months":"ADCS-ADL · 18 months","ADCS-ADL-MCI score at 18 months":"ADCS-ADL-MCI · 18 months","ADCS-iADL score at 18 months":"ADCS-iADL · 18 months","DAD total score at 18 months":"DAD · 18 months"};
 const clinicalThresholds = {
   "ADAS-Cog scale at 18 months": {
@@ -102,15 +103,35 @@ const position = (value, range) => ((value + range)/(range*2))*100;
 const scenarioFlag = {
   "Cochrane class pool": null,
   "Biomarker-confirmed": "biomarker_confirmed",
-  "Demonstrated clearance: >=2 CL": "clearance_ge_2cl",
-  "Demonstrated clearance: >=4 CL": "clearance_ge_4cl",
-  "Demonstrated clearance: >=6 CL": "clearance_ge_6cl",
-  "Demonstrated clearance: >=8 CL": "clearance_ge_8cl",
-  "Demonstrated clearance: >=10 CL": "clearance_ge_10cl",
-  "Demonstrated clearance: >=12 CL": "clearance_ge_12cl",
   "Response primary: clearing approved-generation trials": "response_primary",
   "Currently active agents: lecanemab + donanemab": "active_2026",
 };
+function configureScenarios(thresholds) {
+  const normalized = [...new Set((thresholds || []).map(Number))]
+    .filter(value => Number.isInteger(value) && value > 0)
+    .sort((a, b) => a - b);
+  if (!normalized.length || !normalized.includes(10)) {
+    throw new Error("Release evidence is missing the required 10 CL threshold ladder");
+  }
+  clearanceThresholds = normalized;
+  const thresholdScenarios = normalized.map(threshold => `Demonstrated clearance: >=${threshold} CL`);
+  scenarioOrder = [
+    "Cochrane class pool",
+    "Biomarker-confirmed",
+    ...thresholdScenarios,
+    "Response primary: clearing approved-generation trials",
+    "Currently active agents: lecanemab + donanemab",
+  ];
+  for (const threshold of normalized) {
+    const scenario = `Demonstrated clearance: >=${threshold} CL`;
+    scenarioShort[scenario] = `Clears ≥${threshold} CL`;
+    scenarioFlag[scenario] = `clearance_ge_${threshold}cl`;
+    conditionProfiles[scenario] = {
+      description: `Investigator-defined clearance sensitivity requiring a matched, placebo-adjusted amyloid-PET reduction of at least ${threshold} Centiloids (CL). Unknown or quarantined PET values are excluded; they do not establish absent target engagement. The threshold is a sensitivity value, not a cutoff specified by Snyder et al.`,
+      papers: ["aducanumab", "gantenerumab", "donanemab", "lecanemab", "solanezumab"],
+    };
+  }
+}
 const trialPaperForStudy = study => {
   if (/EMERGE|ENGAGE/.test(study)) return conditionPapers.aducanumab;
   if (/ENVISION/.test(study)) return conditionPapers.envision;
@@ -217,7 +238,6 @@ function renderFixedSections() {
   const trialRows=evidence.trialAnnotations.map(trial=>({...trial,clearance:evidence.amyloidMapping.find(item=>item.Study===trial.Study)?.amyloid_change_cl??null}));
   document.querySelector("#trial-table").innerHTML=trialRows.map(trial=>`<tr><td><strong>${esc(trial.Study)}</strong></td><td>${esc(trial.agent)}</td><td>${esc(trial.target_class)}</td><td><span class="tag ${trial.biomarker_status==="Required"?"tag-teal":""}">${esc(trial.biomarker_status)}</span></td><td><span class="tag ${trial.termination_status==="Completed"?"tag-clear":"tag-warn"}">${esc(trial.termination_reason)}</span></td><td>${trial.clearance==null?'<span class="muted">Not matched</span>':`<strong>${fmt(trial.clearance,1)} CL</strong>`}</td></tr>`).join("");
   const clearanceRows=trialRows.filter(trial=>Number.isFinite(trial.clearance)).sort((a,b)=>a.clearance-b.clearance);
-  const clearanceThresholds=[2,4,6,8,10,12];
   document.querySelector("#clearance-table").innerHTML=clearanceRows.map(trial=>{
     const met=clearanceThresholds.filter(threshold=>trial.clearance<=-threshold).map(threshold=>`≥${threshold} CL`).join(", ");
     const change=trial.clearance<0?`${fmt(trial.clearance,2)} CL reduction`:`${fmt(trial.clearance,2)} CL (no reduction)`;
@@ -368,6 +388,7 @@ function renderAnalysisConditions() {
 
 function initialize(data) {
   evidence=data;
+  configureScenarios(evidence.release?.clearanceThresholds);
   const version = document.querySelector(".version-pill");
   if (version) version.textContent = `Evidence v${evidence.evidenceVersion}`;
   const releaseMeta = document.querySelector("#release-meta");

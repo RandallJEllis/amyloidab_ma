@@ -1,6 +1,6 @@
-# Scientific audit and interpretation, 11 September 2026
+# Scientific audit and interpretation, 15 September 2026
 
-This is a single-reviewer audit, not independent duplicate extraction. Release 0.2.0 retains the original Cochrane evidence set and makes uncertainty in investigator-defined restrictions explicit. The literature search remains current through 7 August 2025; this release does not claim a new systematic search.
+This is a single-reviewer audit, not independent duplicate extraction. Release 0.3.0 retains the original Cochrane evidence set and makes uncertainty in investigator-defined restrictions explicit. The literature search remains current through 7 August 2025; this release does not claim a new systematic search. The release-wide clearance sensitivity ladder is ≥2, ≥4, ≥6, ≥8, ≥10, and ≥12 Centiloids (CL); the ≥10 CL member remains the response-conforming condition.
 
 ## Confirmed implementation defects corrected
 
@@ -9,6 +9,7 @@ This is a single-reviewer audit, not independent duplicate extraction. Release 0
 - “Response criteria” is replaced in the interface by the explicit investigator-defined inclusion rule. The historical machine key is retained so earlier results remain comparable. Snyder et al. did not specify 10 CL, a time tolerance, or this conjunction of criteria.
 - The manuscript is generated from the release registry. Prior manuscript counts and descriptions of prospective specification are superseded.
 - The evidence search date is separate from the analysis release date.
+- The Centiloid threshold ladder is read from `config/release.json` and used to generate the primary R scenarios, website controls, manuscript wording, and verification expectations. No ladder value is presented as a Snyder et al. cutoff.
 
 ## PET mapping correction
 

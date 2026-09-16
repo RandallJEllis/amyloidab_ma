@@ -1,5 +1,5 @@
 website_collection,source_file,source_object,description
-outcomeSensitivities,results/primary/tables/analysis_results.json,outcome_sensitivities,All outcomes under the five primary evidence-set definitions
+outcomeSensitivities,results/primary/tables/analysis_results.json,outcome_sensitivities,"All outcomes under the ten current primary scenarios: class pool, biomarker confirmation, six Centiloid thresholds, response-conforming restriction, and active-agent view"
 rawMeanDifferences,results/primary/tables/analysis_results.json,raw_mean_differences,Unstandardized same-scale mean differences
 metaRegressions,results/primary/tables/analysis_results.json,meta_regressions,Continuous Centiloid moderator models
 amyloidMapping,results/primary/tables/analysis_results.json,amyloid_mapping,Trial-level Centiloid values and source notes
