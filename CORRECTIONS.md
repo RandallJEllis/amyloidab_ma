@@ -1,3 +1,9 @@
+# Corrections in evidence release 0.4.0
+
+Release date: 23 September 2026
+
+Added “Biomarker-confirmed, ≥10 CL reduction” without an approval restriction alongside the retained approval-restricted sensitivity condition. Approval selection was introduced by this reanalysis, not requested by Snyder et al. The numerical 10 CL cutoff is also investigator-defined. There are now 11 conditions and 320 primary condition–outcome estimates. Existing estimates remain unchanged.
+
 # Corrections in evidence release 0.3.0
 
 Release date: 15 September 2026

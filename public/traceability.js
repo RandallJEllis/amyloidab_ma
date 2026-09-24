@@ -30,7 +30,7 @@ function renderTraceability() {
     const reasons = [];
     if (!included) {
       if (selectedMembership(r) && !hasInputs(r)) reasons.push('Raw MD inputs unavailable');
-      if ((selectedScenario.includes('Response primary') || selectedScenario==='Biomarker-confirmed') && !r.biomarker_confirmed) reasons.push('Biomarker confirmation not required');
+      if ((selectedScenario.includes('Response primary') || selectedScenario==='Biomarker-confirmed' || selectedScenario==='Biomarker-confirmed, >=10 CL reduction') && !r.biomarker_confirmed) reasons.push('Biomarker confirmation not required');
       if (selectedScenario.includes('Response primary') && !r.approved_generation) reasons.push('Outside approved-agent set');
       const clearanceMatch = selectedScenario.match(/>=([0-9]+) CL/);
       const requiredClearance = clearanceMatch ? Number(clearanceMatch[1]) : selectedScenario.includes('Response primary') ? 10 : null;

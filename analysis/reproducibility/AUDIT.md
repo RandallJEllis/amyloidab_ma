@@ -1,4 +1,6 @@
-# Scientific audit and interpretation, 15 September 2026
+# Scientific audit and interpretation, 23 September 2026
+
+Release 0.4.0 adds biomarker-confirmed ≥10 CL reduction without approval selection. Approval selection in the retained comparator was an investigator choice, not a Snyder et al. criterion. The new condition includes gantenerumab when the endpoint is available; all ≥10 CL trials in the present dataset also required biomarkers, so its results match the clearance-only condition. There are 11 primary conditions.
 
 This is a single-reviewer audit, not independent duplicate extraction. Release 0.3.0 retains the original Cochrane evidence set and makes uncertainty in investigator-defined restrictions explicit. The literature search remains current through 7 August 2025; this release does not claim a new systematic search. The release-wide clearance sensitivity ladder is ≥2, ≥4, ≥6, ≥8, ≥10, and ≥12 Centiloids (CL); the ≥10 CL member remains the response-conforming condition.
 

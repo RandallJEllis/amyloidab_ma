@@ -9,6 +9,7 @@ const clearanceLadder = evidence.release.clearanceThresholds.map(threshold => `�
 const cutoffValues = [...new Set([...evidence.release.clearanceThresholds, 5, 20, 30])].sort((a, b) => a - b);
 const cutoffList = ["none", ...cutoffValues].join(", ");
 const synchronizedMethods = methods
+  .replace("Approval status reflects the historical evidence definition.", "We additionally analyzed biomarker-confirmed trials with ≥10 CL reduction regardless of approval. The approval restriction in the earlier intersection is an investigator-defined sensitivity choice, not a criterion specified by Snyder et al.")
   .replace("The 10-Centiloid reduction threshold was not specified by Snyder et al.", `The 10-Centiloid reduction threshold was not specified by Snyder et al.; the release also reports investigator-defined clearance sensitivities at ${clearanceLadder}.`)
   .replace("an operational ≥10-CL reduction condition", "operational ≥10-CL and threshold-ladder reduction conditions")
   .replace("PET reduction cutoffs (none, __CLEARANCE_CUTOFFS__ CL)", `PET reduction cutoffs (${cutoffList} CL)`);
