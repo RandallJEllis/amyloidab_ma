@@ -2,6 +2,24 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 const data=JSON.parse(readFileSync(new URL('../public/evidence.json',import.meta.url)));
+test('biomarker clearance includes gantenerumab without approval selection',()=>{
+ const scenario='Biomarker-confirmed, >=10 CL reduction';
+ const rows=data.conditionRegistry;
+ for(const r of rows) assert.equal(r.biomarker_clearance,r.biomarker_confirmed && r.clearance_ge_10cl);
+ for(const study of ['SCarlet RoAD 2017','GRADUATE I 2023','GRADUATE II 2023']) {
+  assert.ok(rows.some(r=>r.study===study&&r.biomarker_clearance&&!r.response_primary));
+ }
+ const estimates=data.outcomeSensitivities.filter(r=>r.scenario===scenario);
+ assert.equal(estimates.length,29);
+ for(const r of estimates) {
+  const x=data.filterSensitivities.find(x=>x.analysis_id===r.analysis_id&&x.biomarker==='TRUE'&&x.approved==='FALSE'&&x.cutoff_cl===10&&x.time_match==='FALSE');
+  assert.equal(r.k,x.k);
+  // The audit stage uses 1.96 for single-unit intervals; primary uses qnorm(.975).
+  for(const key of (r.k>1 ? ['estimate','ci_low','ci_high'] : ['estimate'])) assert.ok(Math.abs(r[key]-x[key])<1e-8);
+  const clearance=data.outcomeSensitivities.find(x=>x.analysis_id===r.analysis_id&&x.scenario==='Demonstrated clearance: >=10 CL');
+  for(const key of ['k','estimate','ci_low','ci_high']) assert.equal(r[key],clearance[key]);
+ }
+});
 test('CREAD and CREAD 2 require biomarker confirmation',()=>{
  for(const study of ['CREAD 2022','CREAD 2 2022']) {
   const rows=data.conditionRegistry.filter(r=>r.study===study); assert.ok(rows.length);

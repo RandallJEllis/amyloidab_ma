@@ -51,11 +51,12 @@ if (actual.trialAnnotations.length !== 17) throw new Error("Unexpected trial ann
 const requiredScenarios = [
   "Cochrane class pool",
   "Biomarker-confirmed",
+  "Biomarker-confirmed, >=10 CL reduction",
   ...(release.clearanceThresholds || []).map(threshold => `Demonstrated clearance: >=${threshold} CL`),
   "Response primary: clearing approved-generation trials",
   "Currently active agents: lecanemab + donanemab",
 ];
 for (const scenario of requiredScenarios) if (!actual.outcomeSensitivities.some(row => row.scenario === scenario)) throw new Error(`Missing sensitivity scenario: ${scenario}`);
-if (actual.outcomeSensitivities.length !== 291) throw new Error(`Unexpected outcome sensitivity count: ${actual.outcomeSensitivities.length}`);
+if (actual.outcomeSensitivities.length !== 320) throw new Error(`Unexpected outcome sensitivity count: ${actual.outcomeSensitivities.length}`);
 
 console.log("PASS generated/site/evidence.json");

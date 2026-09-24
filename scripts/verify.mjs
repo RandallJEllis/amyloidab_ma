@@ -52,12 +52,13 @@ if (data.evidenceVersion !== release.version) throw new Error("Unexpected eviden
 const requiredScenarios = [
   "Cochrane class pool",
   "Biomarker-confirmed",
+  "Biomarker-confirmed, >=10 CL reduction",
   ...(release.clearanceThresholds || []).map(threshold => `Demonstrated clearance: >=${threshold} CL`),
   "Response primary: clearing approved-generation trials",
   "Currently active agents: lecanemab + donanemab",
 ];
 for (const scenario of requiredScenarios) if (!data.outcomeSensitivities.some(row => row.scenario === scenario)) throw new Error(`Missing scenario: ${scenario}`);
-if (data.outcomeSensitivities.length !== 291) throw new Error(`Unexpected outcome sensitivity count: ${data.outcomeSensitivities.length}`);
+if (data.outcomeSensitivities.length !== 320) throw new Error(`Unexpected outcome sensitivity count: ${data.outcomeSensitivities.length}`);
 if (data.trialAnnotations.length < 17) throw new Error("Trial ledger is unexpectedly small");
 
 async function walk(directory) {

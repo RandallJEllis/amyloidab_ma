@@ -1,5 +1,11 @@
 # Living Amyloid Evidence: unified reproducibility package
 
+## Release 0.4.0: biomarker-confirmed clearance without approval selection
+
+The new **Biomarker-confirmed, ≥10 CL reduction** condition requires both biomarker confirmation at enrollment and a recorded placebo-adjusted reduction of at least 10 CL. It places no restriction on antibody approval. The prior approval-restricted condition remains available for comparison. The approval restriction and the numerical 10 CL cutoff are investigator choices, not criteria specified by Snyder et al.
+
+Across all endpoints, this condition includes EMERGE, ENGAGE, CLARITY AD, TRAILBLAZER-ALZ 2, SCarlet RoAD, GRADUATE I, and GRADUATE II. The latter three are gantenerumab trials excluded by the approval restriction. Only trials reporting the selected endpoint contribute to its estimate. In this dataset all ≥10 CL trials also required biomarker confirmation, so this condition currently reproduces the unrestricted ≥10 CL results.
+
 ## Release 0.3.0 threshold-sensitivity changes
 
 Read [AUDIT.md](AUDIT.md) before interpreting this release. The ≥10-CL rule is investigator-defined; Snyder et al. did not specify a numerical clearance threshold. Marguerite RoAD's prior high-dose extension PET mapping is quarantined. Independent-filter sensitivities and a pairing ledger show the consequences and unresolved uncertainties. The exact ADAS-Cog version and clinical estimand review is still pending, so raw MD companions remain provisional.
@@ -38,7 +44,7 @@ Additional pipeline outputs:
 
 `code/08_traceability.R` runs before registry assembly; audit snapshots are verified alongside primary and extended snapshots. The integrity audit reads the newly generated files. The repository's `scripts/release.mjs` assembles the website and single ZIP from this source tree; `--accept-snapshots` is reserved for intentional reviewed release updates. Source history at baseline commit b95530a preserves the previous release.
 
-Evidence version: **0.3.0**
+Evidence version: **0.4.0**
 
 Evidence date: **15 September 2026**
 

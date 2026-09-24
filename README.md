@@ -101,7 +101,9 @@ server.
 
 ## Scientific status
 
-Evidence release: **0.3.0**
+Evidence release: **0.4.0**
+
+The biomarker-confirmed ≥10 CL condition includes antibodies regardless of approval. Approval selection in the separate comparison condition is an investigator choice, not a Snyder et al. criterion.
 
 Release date: **2026-09-15**
 Literature search through: **2025-08-07**

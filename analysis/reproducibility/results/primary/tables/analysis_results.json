@@ -121,6 +121,19 @@
       "analysis_id": "1.1",
       "outcome": "ADAS-Cog scale at 18 months",
       "measure": "SMD",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 5,
+      "estimate": -0.1481648583427061,
+      "ci_low": -0.2234364649134941,
+      "ci_high": -0.07289325177191809,
+      "p_value": 0.005451637565942363,
+      "tau2": 4.534095218706472e-06,
+      "i2": 0.09486878799774635
+    },
+    {
+      "analysis_id": "1.1",
+      "outcome": "ADAS-Cog scale at 18 months",
+      "measure": "SMD",
       "scenario": "Cochrane class pool",
       "k": 13,
       "estimate": -0.1106444847509942,
@@ -277,6 +290,19 @@
       "analysis_id": "1.3",
       "outcome": "ADAS-Cog scale above 24 months",
       "measure": "SMD",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 2,
+      "estimate": -0.1176549874200436,
+      "ci_low": -0.2063118610737351,
+      "ci_high": -0.02899811376635203,
+      "p_value": 0.009294325651543764,
+      "tau2": 0,
+      "i2": 0
+    },
+    {
+      "analysis_id": "1.3",
+      "outcome": "ADAS-Cog scale above 24 months",
+      "measure": "SMD",
       "scenario": "Cochrane class pool",
       "k": 2,
       "estimate": -0.1176549874200436,
@@ -376,6 +402,19 @@
       "p_value": 0.02974714085040944,
       "tau2": 3.620021494365027e-06,
       "i2": 0.05388317723724705
+    },
+    {
+      "analysis_id": "1.4",
+      "outcome": "MMSE scale at 18 months",
+      "measure": "SMD",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 4,
+      "estimate": 0.09558999252506314,
+      "ci_low": -0.05239698184162078,
+      "ci_high": 0.2435769668917471,
+      "p_value": 0.132045274196092,
+      "tau2": 0.002954786261643479,
+      "i2": 32.432990524740227
     },
     {
       "analysis_id": "1.4",
@@ -563,6 +602,19 @@
       "analysis_id": "2.1",
       "outcome": "CDR-SB scale at 18 months",
       "measure": "SMD",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 5,
+      "estimate": -0.1408487094294537,
+      "ci_low": -0.322576224049347,
+      "ci_high": 0.04087880519043971,
+      "p_value": 0.0977734175044781,
+      "tau2": 0.01505180879040255,
+      "i2": 75.845108666141513
+    },
+    {
+      "analysis_id": "2.1",
+      "outcome": "CDR-SB scale at 18 months",
+      "measure": "SMD",
       "scenario": "Cochrane class pool",
       "k": 9,
       "estimate": -0.1236070445068449,
@@ -707,6 +759,19 @@
       "outcome": "CDR-SB scale above 24 months",
       "measure": "SMD",
       "scenario": "Biomarker-confirmed",
+      "k": 2,
+      "estimate": -0.07010296517035747,
+      "ci_low": -0.1587119765097488,
+      "ci_high": 0.01850604616903387,
+      "p_value": 0.1209917431904372,
+      "tau2": 0,
+      "i2": 0
+    },
+    {
+      "analysis_id": "2.3",
+      "outcome": "CDR-SB scale above 24 months",
+      "measure": "SMD",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
       "k": 2,
       "estimate": -0.07010296517035747,
       "ci_low": -0.1587119765097488,
@@ -979,6 +1044,19 @@
       "analysis_id": "3.4",
       "outcome": "ADCS-ADL score above 24 months",
       "measure": "SMD",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 2,
+      "estimate": 0.06945122787161243,
+      "ci_low": -0.01885827939760293,
+      "ci_high": 0.1577607351408278,
+      "p_value": 0.1232149723966561,
+      "tau2": 0,
+      "i2": 0
+    },
+    {
+      "analysis_id": "3.4",
+      "outcome": "ADCS-ADL score above 24 months",
+      "measure": "SMD",
       "scenario": "Cochrane class pool",
       "k": 2,
       "estimate": 0.06945122787161243,
@@ -1078,6 +1156,19 @@
       "p_value": 0.007261190132686397,
       "tau2": 0,
       "i2": 0
+    },
+    {
+      "analysis_id": "3.5",
+      "outcome": "ADCS-ADL-MCI score at 18 months",
+      "measure": "SMD",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 3,
+      "estimate": 0.2243525052917481,
+      "ci_low": 0.05231967903803061,
+      "ci_high": 0.3963853315454655,
+      "p_value": 0.03032334779759622,
+      "tau2": 2.346847165024738e-06,
+      "i2": 0.04763907167056925
     },
     {
       "analysis_id": "3.5",
@@ -1201,6 +1292,19 @@
       "outcome": "ADCS-iADL score at 18 months",
       "measure": "SMD",
       "scenario": "Biomarker-confirmed",
+      "k": 1,
+      "estimate": 0.2086615152924401,
+      "ci_low": 0.09740270301361312,
+      "ci_high": 0.3199203275712671,
+      "p_value": 0.0002370725624849406,
+      "tau2": 0,
+      "i2": null
+    },
+    {
+      "analysis_id": "3.6",
+      "outcome": "ADCS-iADL score at 18 months",
+      "measure": "SMD",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
       "k": 1,
       "estimate": 0.2086615152924401,
       "ci_low": 0.09740270301361312,
@@ -1362,6 +1466,19 @@
       "ci_low": 1.401633901320093,
       "ci_high": 2.390149303576488,
       "p_value": 0.001183624489583718,
+      "tau2": 0,
+      "i2": 0
+    },
+    {
+      "analysis_id": "3.8",
+      "outcome": "ADCS-ADL-MCI 18 months mean difference",
+      "measure": "MD",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 3,
+      "estimate": 1.878575390824981,
+      "ci_low": 1.390837406015276,
+      "ci_high": 2.366313375634687,
+      "p_value": 0.003621422276681959,
       "tau2": 0,
       "i2": 0
     },
@@ -1499,6 +1616,19 @@
       "analysis_id": "4.1",
       "outcome": "Any ARIA at 18 months",
       "measure": "RR",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 2,
+      "estimate": 2.396697026053299,
+      "ci_low": 2.074870925771339,
+      "ci_high": 2.768440466993059,
+      "p_value": 1.481404164582036e-32,
+      "tau2": 0,
+      "i2": 0
+    },
+    {
+      "analysis_id": "4.1",
+      "outcome": "Any ARIA at 18 months",
+      "measure": "RR",
       "scenario": "Cochrane class pool",
       "k": 2,
       "estimate": 2.396697026053299,
@@ -1617,6 +1747,19 @@
       "outcome": "Symptomatic ARIA H at 18 months",
       "measure": "RR",
       "scenario": "Biomarker-confirmed",
+      "k": 1,
+      "estimate": 2.996659242761693,
+      "ci_low": 0.6064524420319729,
+      "ci_high": 14.807371518104377,
+      "p_value": 0.1781711995829671,
+      "tau2": 0,
+      "i2": null
+    },
+    {
+      "analysis_id": "4.10",
+      "outcome": "Symptomatic ARIA H at 18 months",
+      "measure": "RR",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
       "k": 1,
       "estimate": 2.996659242761693,
       "ci_low": 0.6064524420319729,
@@ -1759,6 +1902,19 @@
       "analysis_id": "4.2",
       "outcome": "Any ARIA E at 18 months",
       "measure": "RR",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 4,
+      "estimate": 11.126627376704237,
+      "ci_low": 7.300100747407355,
+      "ci_high": 16.95892167296358,
+      "p_value": 0.0003622734079252079,
+      "tau2": 5.486735187794456e-06,
+      "i2": 0.008088407276469487
+    },
+    {
+      "analysis_id": "4.2",
+      "outcome": "Any ARIA E at 18 months",
+      "measure": "RR",
       "scenario": "Cochrane class pool",
       "k": 11,
       "estimate": 10.021567099643446,
@@ -1889,6 +2045,19 @@
       "analysis_id": "4.3",
       "outcome": "Any ARIA E at 24 months",
       "measure": "RR",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 1,
+      "estimate": 17.903846153846153,
+      "ci_low": 4.350772528839473,
+      "ci_high": 73.676043731501338,
+      "p_value": 6.41269377620072e-05,
+      "tau2": 0,
+      "i2": null
+    },
+    {
+      "analysis_id": "4.3",
+      "outcome": "Any ARIA E at 24 months",
+      "measure": "RR",
       "scenario": "Cochrane class pool",
       "k": 4,
       "estimate": 7.494102135327068,
@@ -1993,6 +2162,19 @@
       "analysis_id": "4.4",
       "outcome": "Any ARIA E above 24 months",
       "measure": "RR",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 2,
+      "estimate": 9.349943398952874,
+      "ci_low": 4.51505569501341,
+      "ci_high": 19.362206685550703,
+      "p_value": 1.75948832335529e-09,
+      "tau2": 0.1860143735694401,
+      "i2": 66.369295499845407
+    },
+    {
+      "analysis_id": "4.4",
+      "outcome": "Any ARIA E above 24 months",
+      "measure": "RR",
       "scenario": "Cochrane class pool",
       "k": 2,
       "estimate": 9.349943398952874,
@@ -2085,6 +2267,19 @@
       "outcome": "Symptomatic ARIA E at 18 months",
       "measure": "RR",
       "scenario": "Biomarker-confirmed",
+      "k": 2,
+      "estimate": 52.490352770967299,
+      "ci_low": 10.44821029093028,
+      "ci_high": 263.70421893329592,
+      "p_value": 1.516827684669414e-06,
+      "tau2": 0,
+      "i2": 0
+    },
+    {
+      "analysis_id": "4.5",
+      "outcome": "Symptomatic ARIA E at 18 months",
+      "measure": "RR",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
       "k": 2,
       "estimate": 52.490352770967299,
       "ci_low": 10.44821029093028,
@@ -2227,6 +2422,19 @@
       "analysis_id": "4.6",
       "outcome": "Symptomatic ARIA E above 24 months",
       "measure": "RR",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 2,
+      "estimate": 15.546661816944196,
+      "ci_low": 4.331361582881384,
+      "ci_high": 55.802012606309233,
+      "p_value": 2.574921926643576e-05,
+      "tau2": 0,
+      "i2": 0
+    },
+    {
+      "analysis_id": "4.6",
+      "outcome": "Symptomatic ARIA E above 24 months",
+      "measure": "RR",
       "scenario": "Cochrane class pool",
       "k": 2,
       "estimate": 15.546661816944196,
@@ -2326,6 +2534,19 @@
       "p_value": 0.2278005662462623,
       "tau2": 0.1956923723665924,
       "i2": 90.002318975349738
+    },
+    {
+      "analysis_id": "4.7",
+      "outcome": "Any ARIA H at 18 months",
+      "measure": "RR",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 2,
+      "estimate": 2.138161182743667,
+      "ci_low": 1.783838716365453,
+      "ci_high": 2.562862438991481,
+      "p_value": 2.018307569553946e-16,
+      "tau2": 0.004539150272811225,
+      "i2": 25.597636053393874
     },
     {
       "analysis_id": "4.7",
@@ -2456,6 +2677,19 @@
       "p_value": 0.01962356765593944,
       "tau2": 0,
       "i2": 0
+    },
+    {
+      "analysis_id": "4.8",
+      "outcome": "Any ARIA H at 24 months",
+      "measure": "RR",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 1,
+      "estimate": 1.227692307692308,
+      "ci_low": 0.8109117597692889,
+      "ci_high": 1.858683616569678,
+      "p_value": 0.3323238026305924,
+      "tau2": 0,
+      "i2": null
     },
     {
       "analysis_id": "4.8",
@@ -2553,6 +2787,19 @@
       "outcome": "Any ARIA H above 24 months",
       "measure": "RR",
       "scenario": "Biomarker-confirmed",
+      "k": 2,
+      "estimate": 1.86453837103413,
+      "ci_low": 1.518623298927227,
+      "ci_high": 2.289246674612755,
+      "p_value": 2.674353802685868e-09,
+      "tau2": 0,
+      "i2": 0
+    },
+    {
+      "analysis_id": "4.9",
+      "outcome": "Any ARIA H above 24 months",
+      "measure": "RR",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
       "k": 2,
       "estimate": 1.86453837103413,
       "ci_low": 1.518623298927227,
@@ -2664,6 +2911,19 @@
       "p_value": 0.9491176378529872,
       "tau2": 0.009258353416222937,
       "i2": 35.171136327283058
+    },
+    {
+      "analysis_id": "5.1",
+      "outcome": "SAE at 18 months",
+      "measure": "RR",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 4,
+      "estimate": 1.081077600545671,
+      "ci_low": 0.8826545261065875,
+      "ci_high": 1.324106707475776,
+      "p_value": 0.3084795546311091,
+      "tau2": 0,
+      "i2": 0
     },
     {
       "analysis_id": "5.1",
@@ -2799,6 +3059,19 @@
       "analysis_id": "5.2",
       "outcome": "SAE at 24 months",
       "measure": "RR",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 1,
+      "estimate": 0.8556643356643356,
+      "ci_low": 0.6015715997700242,
+      "ci_high": 1.217081151450281,
+      "p_value": 0.3858780116248257,
+      "tau2": 0,
+      "i2": null
+    },
+    {
+      "analysis_id": "5.2",
+      "outcome": "SAE at 24 months",
+      "measure": "RR",
       "scenario": "Cochrane class pool",
       "k": 4,
       "estimate": 1.03100110180081,
@@ -2891,6 +3164,19 @@
       "outcome": "SAE above 24 months",
       "measure": "RR",
       "scenario": "Biomarker-confirmed",
+      "k": 2,
+      "estimate": 0.8237606397871372,
+      "ci_low": 0.6672245404164604,
+      "ci_high": 1.017021333236581,
+      "p_value": 0.07138804072868461,
+      "tau2": 0,
+      "i2": 0
+    },
+    {
+      "analysis_id": "5.3",
+      "outcome": "SAE above 24 months",
+      "measure": "RR",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
       "k": 2,
       "estimate": 0.8237606397871372,
       "ci_low": 0.6672245404164604,
@@ -3002,6 +3288,19 @@
       "p_value": 0.6253789367213871,
       "tau2": 0.2603136330532979,
       "i2": 47.815282697116444
+    },
+    {
+      "analysis_id": "6.1",
+      "outcome": "Mortality at 18 months",
+      "measure": "RR",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 2,
+      "estimate": 1.312245888036337,
+      "ci_low": 0.6947137725702309,
+      "ci_high": 2.4787032280898,
+      "p_value": 0.402351685815781,
+      "tau2": 0,
+      "i2": 0
     },
     {
       "analysis_id": "6.1",
@@ -3137,6 +3436,19 @@
       "analysis_id": "6.2",
       "outcome": "Mortality at 24 months",
       "measure": "RR",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 1,
+      "estimate": 0.341025641025641,
+      "ci_low": 0.06946398082624776,
+      "ci_high": 1.674227224723128,
+      "p_value": 0.1851186829886378,
+      "tau2": 0,
+      "i2": null
+    },
+    {
+      "analysis_id": "6.2",
+      "outcome": "Mortality at 24 months",
+      "measure": "RR",
       "scenario": "Cochrane class pool",
       "k": 4,
       "estimate": 1.054613984226482,
@@ -3229,6 +3541,19 @@
       "outcome": "Mortality above 24 months",
       "measure": "RR",
       "scenario": "Biomarker-confirmed",
+      "k": 2,
+      "estimate": 0.6972000337432346,
+      "ci_low": 0.1251357066798499,
+      "ci_high": 3.884485890947067,
+      "p_value": 0.6806620419187537,
+      "tau2": 1.12734264450507,
+      "i2": 73.377912036212194
+    },
+    {
+      "analysis_id": "6.3",
+      "outcome": "Mortality above 24 months",
+      "measure": "RR",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
       "k": 2,
       "estimate": 0.6972000337432346,
       "ci_low": 0.1251357066798499,
@@ -3405,6 +3730,19 @@
       "p_value": 0.2990275366168896,
       "tau2": 2.363272780349808,
       "i2": 97.19728094012109
+    },
+    {
+      "analysis_id": "8.1",
+      "outcome": "Infusion reaction at 18 months",
+      "measure": "RR",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 2,
+      "estimate": 7.662918735750604,
+      "ci_low": 1.508711673369352,
+      "ci_high": 38.920838611647795,
+      "p_value": 0.0140512231959229,
+      "tau2": 1.246610367970227,
+      "i2": 89.957298385697825
     },
     {
       "analysis_id": "8.1",
@@ -3566,6 +3904,19 @@
       "analysis_id": "9.1",
       "outcome": "Study discontinuation at 18 months",
       "measure": "RR",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 4,
+      "estimate": 1.283807373552714,
+      "ci_low": 1.147356704309586,
+      "ci_high": 1.436485590050296,
+      "p_value": 0.005805190402274013,
+      "tau2": 0,
+      "i2": 0
+    },
+    {
+      "analysis_id": "9.1",
+      "outcome": "Study discontinuation at 18 months",
+      "measure": "RR",
       "scenario": "Cochrane class pool",
       "k": 11,
       "estimate": 1.12069436507818,
@@ -3696,6 +4047,19 @@
       "analysis_id": "9.2",
       "outcome": "Study discontinuation at 24 months",
       "measure": "RR",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 1,
+      "estimate": 1.05361653272101,
+      "ci_low": 0.7888018745680653,
+      "ci_high": 1.407334127636195,
+      "p_value": 0.7236128240599273,
+      "tau2": 0,
+      "i2": null
+    },
+    {
+      "analysis_id": "9.2",
+      "outcome": "Study discontinuation at 24 months",
+      "measure": "RR",
       "scenario": "Cochrane class pool",
       "k": 2,
       "estimate": 1.008741777821183,
@@ -3788,6 +4152,19 @@
       "outcome": "Study discontinuation above 24 months",
       "measure": "RR",
       "scenario": "Biomarker-confirmed",
+      "k": 2,
+      "estimate": 1.355002688994968,
+      "ci_low": 1.109422105329669,
+      "ci_high": 1.654944748588734,
+      "p_value": 0.002903706094042277,
+      "tau2": 0.005604882658618307,
+      "i2": 26.853249664784641
+    },
+    {
+      "analysis_id": "9.3",
+      "outcome": "Study discontinuation above 24 months",
+      "measure": "RR",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
       "k": 2,
       "estimate": 1.355002688994968,
       "ci_low": 1.109422105329669,
@@ -3899,6 +4276,19 @@
       "ci_low": -1.605157660030873,
       "ci_high": -0.9155638173852025,
       "p_value": 5.543708634446001e-05,
+      "tau2": 0,
+      "i2": 0
+    },
+    {
+      "analysis_id": "1.1",
+      "outcome": "ADAS-Cog scale at 18 months",
+      "measure": "MD",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 5,
+      "estimate": -1.248203399096627,
+      "ci_low": -1.737495602327178,
+      "ci_high": -0.7589111958660765,
+      "p_value": 0.002097534488849682,
       "tau2": 0,
       "i2": 0
     },
@@ -4036,6 +4426,19 @@
       "analysis_id": "1.3",
       "outcome": "ADAS-Cog scale above 24 months",
       "measure": "MD",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 2,
+      "estimate": -1.267015483438359,
+      "ci_low": -2.219629855240101,
+      "ci_high": -0.3144011116366178,
+      "p_value": 0.009138444036168814,
+      "tau2": 0,
+      "i2": 0
+    },
+    {
+      "analysis_id": "1.3",
+      "outcome": "ADAS-Cog scale above 24 months",
+      "measure": "MD",
       "scenario": "Cochrane class pool",
       "k": 2,
       "estimate": -1.267015483438359,
@@ -4135,6 +4538,19 @@
       "p_value": 0.1844609969623976,
       "tau2": 1.708676470674428,
       "i2": 94.078068665310212
+    },
+    {
+      "analysis_id": "1.4",
+      "outcome": "MMSE scale at 18 months",
+      "measure": "MD",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 4,
+      "estimate": 0.3571813275838583,
+      "ci_low": -0.1883187214340558,
+      "ci_high": 0.9026813766017723,
+      "p_value": 0.1285357896952432,
+      "tau2": 0.04576409731591151,
+      "i2": 35.165897891412641
     },
     {
       "analysis_id": "1.4",
@@ -4270,6 +4686,19 @@
       "analysis_id": "2.1",
       "outcome": "CDR-SB scale at 18 months",
       "measure": "MD",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 5,
+      "estimate": -0.3138970943515159,
+      "ci_low": -0.7290074017606135,
+      "ci_high": 0.1012132130575818,
+      "p_value": 0.103713512748568,
+      "tau2": 0.08022751588226375,
+      "i2": 77.846822893803065
+    },
+    {
+      "analysis_id": "2.1",
+      "outcome": "CDR-SB scale at 18 months",
+      "measure": "MD",
       "scenario": "Cochrane class pool",
       "k": 9,
       "estimate": -0.2916091699352105,
@@ -4388,6 +4817,19 @@
       "outcome": "CDR-SB scale above 24 months",
       "measure": "MD",
       "scenario": "Biomarker-confirmed",
+      "k": 2,
+      "estimate": -0.227514320809825,
+      "ci_low": -0.5168827865852184,
+      "ci_high": 0.06185414496556835,
+      "p_value": 0.1233142047594829,
+      "tau2": 0,
+      "i2": 0
+    },
+    {
+      "analysis_id": "2.3",
+      "outcome": "CDR-SB scale above 24 months",
+      "measure": "MD",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
       "k": 2,
       "estimate": -0.227514320809825,
       "ci_low": -0.5168827865852184,
@@ -4608,6 +5050,19 @@
       "analysis_id": "3.4",
       "outcome": "ADCS-ADL score above 24 months",
       "measure": "MD",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
+      "k": 2,
+      "estimate": 0.9542616730399138,
+      "ci_low": -0.2651608954893963,
+      "ci_high": 2.173684241569224,
+      "p_value": 0.1250852855890333,
+      "tau2": 0,
+      "i2": 0
+    },
+    {
+      "analysis_id": "3.4",
+      "outcome": "ADCS-ADL score above 24 months",
+      "measure": "MD",
       "scenario": "Cochrane class pool",
       "k": 2,
       "estimate": 0.9542616730399138,
@@ -4700,6 +5155,19 @@
       "outcome": "ADCS-iADL score at 18 months",
       "measure": "MD",
       "scenario": "Biomarker-confirmed",
+      "k": 1,
+      "estimate": 1.75,
+      "ci_low": 0.8213410087695308,
+      "ci_high": 2.678658991230469,
+      "p_value": 0.0002212494383262123,
+      "tau2": 0,
+      "i2": null
+    },
+    {
+      "analysis_id": "3.6",
+      "outcome": "ADCS-iADL score at 18 months",
+      "measure": "MD",
+      "scenario": "Biomarker-confirmed, >=10 CL reduction",
       "k": 1,
       "estimate": 1.75,
       "ci_low": 0.8213410087695308,
@@ -7325,6 +7793,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -7384,6 +7853,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -7443,6 +7913,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -7502,6 +7973,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -7561,6 +8033,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -7620,6 +8093,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -7679,6 +8153,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -7738,6 +8213,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -7797,6 +8273,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -7856,6 +8333,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -7915,6 +8393,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -7974,6 +8453,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -8033,6 +8513,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -8092,6 +8573,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -8151,6 +8633,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -8210,6 +8693,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -8269,6 +8753,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -8328,6 +8813,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -8387,6 +8873,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -8446,6 +8933,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -8505,6 +8993,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -8564,6 +9053,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -8623,6 +9113,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -8682,6 +9173,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -8741,6 +9233,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -8800,6 +9293,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -8859,6 +9353,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -8918,6 +9413,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -8977,6 +9473,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -9036,6 +9533,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -9095,6 +9593,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -9154,6 +9653,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -9213,6 +9713,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -9272,6 +9773,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -9331,6 +9833,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -9390,6 +9893,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -9449,6 +9953,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -9508,6 +10013,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -9567,6 +10073,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -9626,6 +10133,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -9685,6 +10193,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -9744,6 +10253,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -9803,6 +10313,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -9862,6 +10373,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -9921,6 +10433,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -9980,6 +10493,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -10039,6 +10553,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -10098,6 +10613,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -10157,6 +10673,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -10216,6 +10733,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -10275,6 +10793,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -10334,6 +10853,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -10393,6 +10913,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -10452,6 +10973,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -10511,6 +11033,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -10570,6 +11093,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -10629,6 +11153,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -10688,6 +11213,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -10747,6 +11273,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -10806,6 +11333,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -10865,6 +11393,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -10924,6 +11453,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -10983,6 +11513,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -11042,6 +11573,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -11101,6 +11633,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -11160,6 +11693,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -11219,6 +11753,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -11278,6 +11813,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -11337,6 +11873,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -11396,6 +11933,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -11455,6 +11993,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -11514,6 +12053,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -11573,6 +12113,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -11632,6 +12173,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -11691,6 +12233,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -11750,6 +12293,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -11809,6 +12353,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -11868,6 +12413,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -11927,6 +12473,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -11986,6 +12533,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -12045,6 +12593,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -12104,6 +12653,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -12163,6 +12713,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -12222,6 +12773,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -12281,6 +12833,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -12340,6 +12893,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -12399,6 +12953,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -12458,6 +13013,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -12517,6 +13073,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -12576,6 +13133,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -12635,6 +13193,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -12694,6 +13253,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -12753,6 +13313,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -12812,6 +13373,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -12871,6 +13433,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -12930,6 +13493,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -12989,6 +13553,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -13048,6 +13613,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -13107,6 +13673,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -13166,6 +13733,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -13225,6 +13793,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -13284,6 +13853,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -13343,6 +13913,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -13402,6 +13973,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -13461,6 +14033,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -13520,6 +14093,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -13579,6 +14153,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -13638,6 +14213,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -13697,6 +14273,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -13756,6 +14333,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -13815,6 +14393,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -13874,6 +14453,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -13933,6 +14513,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -13992,6 +14573,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -14051,6 +14633,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -14110,6 +14693,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -14169,6 +14753,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -14228,6 +14813,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -14287,6 +14873,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -14346,6 +14933,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -14405,6 +14993,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -14464,6 +15053,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -14523,6 +15113,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -14582,6 +15173,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -14641,6 +15233,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -14700,6 +15293,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -14759,6 +15353,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -14818,6 +15413,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -14877,6 +15473,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -14936,6 +15533,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -14995,6 +15593,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -15054,6 +15653,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -15113,6 +15713,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -15172,6 +15773,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -15231,6 +15833,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -15290,6 +15893,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -15349,6 +15953,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -15408,6 +16013,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -15467,6 +16073,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -15526,6 +16133,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -15585,6 +16193,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -15644,6 +16253,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -15703,6 +16313,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": true
     },
     {
@@ -15762,6 +16373,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -15821,6 +16433,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -15880,6 +16493,7 @@
       "clearance_ge_10cl": false,
       "clearance_ge_12cl": false,
       "demonstrated_clearance": false,
+      "biomarker_clearance": false,
       "response_primary": false
     },
     {
@@ -15939,6 +16553,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -15998,6 +16613,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     },
     {
@@ -16057,6 +16673,7 @@
       "clearance_ge_10cl": true,
       "clearance_ge_12cl": true,
       "demonstrated_clearance": true,
+      "biomarker_clearance": true,
       "response_primary": false
     }
   ]

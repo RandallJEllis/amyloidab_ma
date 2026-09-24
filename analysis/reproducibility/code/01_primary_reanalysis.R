@@ -111,6 +111,7 @@ for (threshold in clearance_thresholds) {
   dat[[flag]] <- !is.na(dat$amyloid_change_cl) & dat$amyloid_change_cl <= -threshold
 }
 dat$demonstrated_clearance <- dat[["clearance_ge_10cl"]]
+dat$biomarker_clearance <- dat$biomarker_confirmed & dat$demonstrated_clearance
 dat$response_primary <- dat$biomarker_confirmed & dat$approved_generation & dat$demonstrated_clearance
 excluded_rows <- dat %>% filter(!is.finite(yi) | !is.finite(vi) | vi <= 0) %>%
   mutate(exclusion_reason = "Nonfinite effect or nonpositive/nonfinite sampling variance")
@@ -159,6 +160,7 @@ scenarios <- c(list(
   "Cochrane class pool" = function(x) rep(TRUE, nrow(x)),
   "Biomarker-confirmed" = function(x) x$biomarker_confirmed
 ), clearance_scenarios, list(
+  "Biomarker-confirmed, >=10 CL reduction" = function(x) x$biomarker_clearance,
   "Response primary: clearing approved-generation trials" = function(x) x$response_primary,
   "Currently active agents: lecanemab + donanemab" = function(x) x$active_2026
 ))

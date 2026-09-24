@@ -63,6 +63,7 @@ const conditionRegistry = cleanedRows.map(row => ({
   clearance_ge_12cl: bool(row.clearance_ge_12cl),
   demonstrated_clearance: bool(row.demonstrated_clearance),
   response_primary: bool(row.response_primary),
+  biomarker_clearance: bool(row.biomarker_clearance),
   amyloid_change_cl: numberOrNull(row.amyloid_change_cl),
   amyloid_source: row.amyloid_source || null,
   mapping_note: row.mapping_note || null,

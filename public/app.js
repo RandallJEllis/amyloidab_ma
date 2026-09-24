@@ -36,6 +36,10 @@ const clinicalThresholds = {
   },
 };
 const conditionProfiles = {
+  "Biomarker-confirmed, >=10 CL reduction": {
+    description: "Requires amyloid biomarker confirmation at enrollment and a matched placebo-adjusted amyloid reduction of at least 10 Centiloids, regardless of antibody approval. The numerical cutoff is investigator-defined; Snyder et al. did not specify a cutoff or require approval. Unknown or quarantined PET estimates are excluded.",
+    papers: ["aducanumab", "gantenerumab", "donanemab", "lecanemab"],
+  },
   "Cochrane class pool": {
     description: "The Cochrane review’s prespecified class-wide comparison. It retains every eligible antibody trial for a given endpoint, regardless of amyloid biomarker entry, demonstrated plaque removal, regulatory generation, or current availability.",
     papers: ["aducanumab","bapineuzumab","crenezumab","gantenerumab","donanemab","lecanemab","solanezumab"],
@@ -69,7 +73,7 @@ const conditionProfiles = {
     papers: ["aducanumab","gantenerumab","donanemab","lecanemab","solanezumab"]
   },
   "Response primary: clearing approved-generation trials": {
-    description: "The investigator-defined sensitivity analysis: biomarker-confirmed trials of approved-generation antibodies with at least 10 CL placebo-adjusted amyloid reduction. The 10 CL cutoff was introduced by this reanalysis and was not specified by Snyder et al. ENVISION is not included because no matched trial-level CL estimate was available.",
+    description: "The investigator-defined sensitivity analysis: biomarker-confirmed trials of approved-generation antibodies with at least 10 CL placebo-adjusted amyloid reduction. Both the approval restriction and the 10 CL cutoff were introduced by this reanalysis, not specified by Snyder et al. ENVISION is not included because no matched trial-level CL estimate was available.",
     papers: ["aducanumab","donanemab","lecanemab"],
   },
   "Currently active agents: lecanemab + donanemab": {
@@ -101,6 +105,7 @@ const esc = value => String(value ?? "").replace(/[&<>"']/g, char => ({"&":"&amp
 const thresholdFor = outcome => clinicalThresholds[outcome] || null;
 const position = (value, range) => ((value + range)/(range*2))*100;
 const scenarioFlag = {
+  "Biomarker-confirmed, >=10 CL reduction": "biomarker_clearance",
   "Cochrane class pool": null,
   "Biomarker-confirmed": "biomarker_confirmed",
   "Response primary: clearing approved-generation trials": "response_primary",
@@ -114,11 +119,13 @@ function configureScenarios(thresholds) {
     throw new Error("Release evidence is missing the required 10 CL threshold ladder");
   }
   clearanceThresholds = normalized;
+  scenarioShort["Biomarker-confirmed, >=10 CL reduction"] = "Biomarker-confirmed, ≥10 CL reduction";
   const thresholdScenarios = normalized.map(threshold => `Demonstrated clearance: >=${threshold} CL`);
   scenarioOrder = [
     "Cochrane class pool",
     "Biomarker-confirmed",
     ...thresholdScenarios,
+    "Biomarker-confirmed, >=10 CL reduction",
     "Response primary: clearing approved-generation trials",
     "Currently active agents: lecanemab + donanemab",
   ];
@@ -281,7 +288,7 @@ function exclusionReason(row, scenario) {
   if (scenario === "Currently active agents: lecanemab + donanemab") return `Excluded: ${row.agent} is outside the lecanemab-plus-donanemab sensitivity set.`;
   const failures = [];
   if (!row.biomarker_confirmed) failures.push("biomarker confirmation was not required");
-  if (!row.approved_generation) failures.push("the antibody was outside the approved-generation set");
+  if (scenario.includes("Response primary") && !row.approved_generation) failures.push("the antibody was outside the approved-generation set");
   if (!row.demonstrated_clearance) failures.push(row.amyloid_change_cl == null ? "no matched Centiloid estimate was available" : "plaque reduction did not reach 10 CL");
   return `Excluded: ${failures.join("; ")}.`;
 }
