@@ -52,7 +52,13 @@
         <label><span>Clinical endpoint</span><select id="outcome-select"></select></label>
         <fieldset><legend>Drug inclusion / target engagement</legend><div id="scenario-controls"></div></fieldset>
       </aside>
-      <div class="result-panel" id="selected-result" aria-live="polite"></div>
+      <div class="result-panel">
+        <div id="selected-result" aria-live="polite"></div>
+        <details class="explorer-studies" id="explorer-studies">
+          <summary id="explorer-studies-summary">Included studies &amp; references</summary>
+          <div id="explorer-studies-content"></div>
+        </details>
+      </div>
     </div>
     <div class="all-specifications">
       <div class="subhead"><div><p class="eyebrow">Specification view</p><h3>All eligible choices, side by side</h3></div><p>Confidence intervals are shown against both the null and any published clinically meaningful-difference thresholds available for the selected scale.</p></div>

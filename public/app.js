@@ -217,12 +217,25 @@ function renderExplorer() {
   const range = plotRange(rows, selectedOutcome);
   const delta = classRow ? (selected.estimate-classRow.estimate)*favorableDirection(selectedOutcome) : 0;
   document.querySelector("#scenario-controls").innerHTML = rows.map(row => `<label class="radio-card ${row.scenario===selected.scenario?"radio-selected":""}"><input type="radio" name="scenario" value="${esc(row.scenario)}" ${row.scenario===selected.scenario?"checked":""}><span><strong>${esc(scenarioShort[row.scenario]||row.scenario)}</strong><small>${row.k} ${row.k===1?"trial":"trials"}</small></span></label>`).join("");
-  document.querySelectorAll('input[name="scenario"]').forEach(input => input.addEventListener("change", event => { selectedScenario=event.target.value; renderExplorer(); }));
+  document.querySelectorAll('input[name="scenario"]').forEach(input => input.addEventListener("change", event => { selectedScenario=event.target.value; renderExplorer(); document.querySelector('input[name="scenario"]:checked').focus(); }));
   const measure = thresholdFor(selectedOutcome) ? "MD · points" : "SMD";
   const secondary = thresholdFor(selectedOutcome) && standardized ? `<p class="raw-note">Standardized estimate: <strong>${fmt(standardized.estimate)} SMD</strong> (95% CI ${fmt(standardized.ci_low)} to ${fmt(standardized.ci_high)}).</p>` : "";
   document.querySelector("#selected-result").innerHTML = `<div class="result-topline"><div><p class="eyebrow">Selected specification</p><h3>${esc(scenarioShort[selected.scenario]||selected.scenario)}</h3></div><span class="analysis-id">Analysis ${esc(selected.analysis_id)}</span></div><div class="big-estimate"><span>${fmt(selected.estimate)}</span><div><strong>${measure}</strong><small>95% CI ${fmt(selected.ci_low)} to ${fmt(selected.ci_high)}</small></div></div><div class="estimate-ruler">${thresholdLines(selectedOutcome,range,"meaningful-line ruler-meaningful")}<span class="ruler-null"></span><span class="ruler-ci" style="left:${position(selected.ci_low,range)}%;width:${position(selected.ci_high,range)-position(selected.ci_low,range)}%"></span><span class="ruler-point" style="left:${position(selected.estimate,range)}%"></span></div><div class="metric-grid"><div><span>Trials</span><strong>${selected.k}</strong></div><div><span>Heterogeneity</span><strong>I² ${selected.i2==null?"—":Math.round(selected.i2)+"%"}</strong></div><div><span>P value</span><strong>${fmtP(selected.p_value)}</strong></div><div><span>Versus class pool</span><strong>${delta>.005?Math.round(delta/Math.abs(classRow.estimate)*100)+"% larger":delta<-.005?"smaller":"similar"}</strong></div></div><div class="interpretation"><strong>What changed?</strong><p>${selected.scenario==="Cochrane class pool"?"This is the locked class-wide reference and includes antibodies regardless of plaque clearance.":`${esc(scenarioShort[selected.scenario])} changes the evidence from ${classRow?.k||"the"} to ${selected.k} trials. ${delta>0?"The estimated benefit becomes larger.":"The estimated benefit does not become larger."}`}</p><p><strong>Clinical context:</strong> ${esc(thresholdAssessment(selected))}</p>${secondary}</div>`;
   document.querySelector("#specification-forest").innerHTML = `${forestAxis(selectedOutcome,range)}${rows.map(row=>forestRow(row,range)).join("")}${thresholdNote(selectedOutcome)}`;
+  renderExplorerStudies();
   renderAgents();
+}
+
+function renderExplorerStudies() {
+  const studies = registryRows(selectedOutcome).filter(row => includedIn(row, selectedScenario));
+  document.querySelector("#explorer-studies-summary").textContent = `Included studies & references (${studies.length} ${studies.length === 1 ? "trial" : "trials"})`;
+  document.querySelector("#explorer-studies-content").innerHTML = `
+    <p class="explorer-studies-scope">${esc(outcomeShort[selectedOutcome] || selectedOutcome)} · ${esc(scenarioShort[selectedScenario] || selectedScenario)}</p>
+    <p>Only trials contributing to this outcome and condition are listed. Some trials share a publication. Links open in a new tab.</p>
+    ${studies.length ? `<ul>${studies.map(row => {
+      const paper = trialPaperForStudy(row.study);
+      return `<li><strong>${esc(row.study)}</strong><span>${esc(row.agent)}</span><a href="${esc(paper.url)}" target="_blank" rel="noopener">${esc(paper.label)} <span aria-hidden="true">↗</span></a></li>`;
+    }).join("")}</ul>` : `<p>No contributing trials are recorded for this selection.</p>`}`;
 }
 
 function renderAgents() {
@@ -403,7 +416,7 @@ function initialize(data) {
   const select=document.querySelector("#outcome-select");
   select.innerHTML=Object.keys(outcomeShort).filter(outcome=>evidence.outcomeSensitivities.some(row=>row.outcome===outcome&&row.measure==="SMD")).map(outcome=>`<option value="${esc(outcome)}">${esc(outcomeShort[outcome])}</option>`).join("");
   select.value=selectedOutcome;
-  select.addEventListener("change",event=>{selectedOutcome=event.target.value;selectedScenario="Response primary: clearing approved-generation trials";renderExplorer();});
+  select.addEventListener("change",event=>{selectedOutcome=event.target.value;renderExplorer();});
   const conditionSelect=document.querySelector("#condition-outcome-select");
   const conditionOutcomes=[...new Set(evidence.outcomeSensitivities.map(row=>row.outcome))].filter(outcome=>evidence.conditionRegistry.some(row=>row.outcome===outcome));
   conditionSelect.innerHTML=conditionOutcomes.map(outcome=>`<option value="${esc(outcome)}">${esc(outcomeShort[outcome]||outcome)}</option>`).join("");
