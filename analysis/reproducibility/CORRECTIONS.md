@@ -1,3 +1,7 @@
+# Additions in evidence release 0.5.0
+
+Added the continuous-clearance explorer, precomputed confidence bands, an approximate timing-screen sensitivity and complete trial/drug omission results. The three existing all-PET SMD models are reproduced numerically. Source PET values and clinical estimates are unchanged. Missing PET remains excluded rather than imputed as zero. Insufficient-data models are explicitly shown as not estimable. The matching uncertainties documented below remain unresolved; this update does not claim primary-source adjudication.
+
 # Corrections in evidence release 0.4.0
 
 Release date: 23 September 2026

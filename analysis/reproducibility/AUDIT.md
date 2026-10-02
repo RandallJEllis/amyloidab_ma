@@ -1,3 +1,7 @@
+# Continuous-clearance addition, 2 October 2026
+
+The release 0.5.0 continuous explorer exposes all recorded PET–clinical pairs and their existing verification status. An optional 78 ± 13 week timing screen is an exploratory restriction only. The new R stage exports fitted curves and pointwise confidence bands, trial weights, all membership decisions, and leave-one-trial/drug-out slopes. Existing all-PET slopes are checked against the primary analysis. Models with fewer than four trials are not estimated. None of these changes resolves the primary-source, dose or population uncertainties described below, and PET measurement error remains unmodelled. Treat every continuous model as exploratory; there are only 5–8 trials in the unrestricted endpoint-specific sets.
+
 # Scientific audit and interpretation, 23 September 2026
 
 Release 0.4.0 adds biomarker-confirmed ≥10 CL reduction without approval selection. Approval selection in the retained comparator was an investigator choice, not a Snyder et al. criterion. The new condition includes gantenerumab when the endpoint is available; all ≥10 CL trials in the present dataset also required biomarkers, so its results match the clearance-only condition. There are 11 primary conditions.

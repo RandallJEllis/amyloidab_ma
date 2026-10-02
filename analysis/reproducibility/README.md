@@ -1,5 +1,15 @@
 # Living Amyloid Evidence: unified reproducibility package
 
+## Release 0.5.0: continuous-clearance explorer
+
+Release date: 2 October 2026. The literature search cutoff remains 7 August 2025.
+
+The website now exposes the existing ADAS-Cog, CDR-SB and MMSE 18-month SMD meta-regressions with linked trial inputs, weights, and pointwise 95% confidence bands. `code/11_continuous_clearance.R` reproduces the existing all-PET slopes and adds an approximate timing-screen sensitivity and leave-one-trial/drug-out models. It runs after the pairing audit and before the registry builder in `run_all.sh`.
+
+The all-PET model includes every numeric mapping available for the selected clinical endpoint, including increases and small reductions; unknown or quarantined PET is excluded and never imputed as zero. The timing screen retains PET at 78 ± 13 weeks, without certifying dose or population compatibility. Models use REML and Hartung–Knapp inference (k − 2 degrees of freedom), an estimated intercept and a continuous predictor in 10-CL units. Confidence bands describe the mean association only and stop at the observed predictor range. Bubble areas use inverse (clinical variance + residual heterogeneity) weights. Models with fewer than four trials or fewer than two distinct predictor values are not estimated; this computational minimum does not establish statistical reliability. The timing-screen MMSE set has only three trials.
+
+The new `results/audit/tables/continuous_clearance_explorer.json` contains models, curves, full membership and every omission sensitivity. Companion `continuous_clearance_models.csv`, `continuous_clearance_inputs.csv` and `continuous_clearance_sensitivity.csv` provide tabular downloads. Existing clinical estimates and PET mappings are unchanged. No new primary-source verification is claimed, PET predictor uncertainty is not modelled, and trial-level associations cannot establish mediation or clinical meaningfulness. All added sensitivities are exploratory and unadjusted for multiplicity.
+
 ## Release 0.4.0: biomarker-confirmed clearance without approval selection
 
 The new **Biomarker-confirmed, ≥10 CL reduction** condition requires both biomarker confirmation at enrollment and a recorded placebo-adjusted reduction of at least 10 CL. It places no restriction on antibody approval. The prior approval-restricted condition remains available for comparison. The approval restriction and the numerical 10 CL cutoff are investigator choices, not criteria specified by Snyder et al.
@@ -44,9 +54,9 @@ Additional pipeline outputs:
 
 `code/08_traceability.R` runs before registry assembly; audit snapshots are verified alongside primary and extended snapshots. The integrity audit reads the newly generated files. The repository's `scripts/release.mjs` assembles the website and single ZIP from this source tree; `--accept-snapshots` is reserved for intentional reviewed release updates. Source history at baseline commit b95530a preserves the previous release.
 
-Evidence version: **0.4.0**
+Evidence version: **0.5.0**
 
-Evidence date: **15 September 2026**
+Evidence date: **2 October 2026**
 
 This single archive reproduces the statistical results displayed by Living Amyloid Evidence from the complete Cochrane CD016297 data package. It contains the raw Cochrane input, both analysis stages, published result snapshots, the exact website evidence registry, documentation, checksums, and automated verification.
 

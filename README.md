@@ -1,6 +1,6 @@
 # Living Amyloid Evidence
 
-## September scientific audit release
+## October continuous-clearance release
 
 The authoritative analysis source now lives in `analysis/reproducibility/`.
 Read its [scientific audit](analysis/reproducibility/AUDIT.md) for corrections,
@@ -101,11 +101,11 @@ server.
 
 ## Scientific status
 
-Evidence release: **0.4.0**
+Evidence release: **0.5.0**
 
 The biomarker-confirmed ≥10 CL condition includes antibodies regardless of approval. Approval selection in the separate comparison condition is an investigator choice, not a Snyder et al. criterion.
 
-Release date: **2026-09-15**
+Release date: **2026-10-02**
 Literature search through: **2025-08-07**
 
 This is a research-synthesis resource, not individualized medical advice.

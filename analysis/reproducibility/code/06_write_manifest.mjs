@@ -18,6 +18,7 @@ async function walk(directory) {
 }
 
 const describe = path => {
+  if (path.startsWith("results/audit/tables/continuous_clearance_")) return ["published continuous-clearance result", "code/11_continuous_clearance.R", "Precomputed regressions, confidence bands, trial inputs and omission sensitivities"];
   if (path.startsWith("results/audit/")) return ["published audit result", "code/08_traceability.R", "PET pairings, calculation inputs and exploratory sensitivities"];
   if (path.startsWith("manuscript/")) return ["generated manuscript", "code/09_manuscript.mjs", "Methods, Results and numerical supplement generated from release outputs"];
   if (path === "renv.lock") return ["environment lock", "renv snapshot", "Pinned R and dependency versions"];

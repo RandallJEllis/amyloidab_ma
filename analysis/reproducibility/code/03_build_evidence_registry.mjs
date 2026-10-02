@@ -85,6 +85,7 @@ const evidence = {
   outcomeSensitivities: analysis.outcome_sensitivities,
   rawMeanDifferences: analysis.raw_mean_differences,
   metaRegressions: analysis.meta_regressions,
+  continuousClearance: JSON.parse(await readFile(resolve(projectRoot, "generated/audit/continuous_clearance_explorer.json"), "utf8")),
   amyloidMapping: analysis.amyloid_mapping,
   agentResults: extended.agent_results,
   rawAgentResults: extended.raw_agent_results,

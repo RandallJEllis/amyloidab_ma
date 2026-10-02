@@ -14,14 +14,15 @@
   <meta name="twitter:image" content="/og.png">
   <title>Living Amyloid Evidence</title>
   <link rel="icon" href="favicon.png">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=0.5.0">
+  <link rel="stylesheet" href="clearance.css?v=0.5.0">
 </head>
 <body>
 <main>
   <header class="site-header">
     <a class="brand" href="#top"><span class="brand-mark">Aβ</span><span>Living Amyloid Evidence</span></a>
-    <nav aria-label="Primary navigation"><a href="#explorer">Explorer</a><a href="#conditions">Conditions</a><a href="#biology">Biology</a><a href="#safety">Safety</a><a href="#trials">Trials</a><a href="#methods">Methods</a></nav>
-    <span class="version-pill">Evidence v0.4.0</span>
+    <nav aria-label="Primary navigation"><a href="#explorer">Explorer</a><a href="#conditions">Conditions</a><a href="#biology">Amyloid removal</a><a href="#safety">Safety</a><a href="#trials">Trials</a><a href="#methods">Methods</a></nav>
+    <span class="version-pill">Evidence v0.5.0</span>
   </header>
 
   <section class="hero" id="top">
@@ -30,7 +31,7 @@
       <h1>One evidence base.<br><em>Every defensible view.</em></h1>
       <p class="hero-lede">See how endpoint definitions, plaque clearance, drug inclusion, and trial status change estimated benefits and harms in Alzheimer’s disease.</p>
       <div class="hero-actions"><a class="button button-primary" href="#explorer">Explore the estimates</a><a class="button button-secondary" href="downloads/reproducibility-package.zip">Download the evidence package</a></div>
-      <div class="status-line"><span class="status-dot"></span>Literature search through 7 August 2025 · Analysis release 15 September 2026</div>
+      <div class="status-line"><span class="status-dot"></span>Literature search through 7 August 2025 · Analysis release 2 October 2026</div>
     </div>
     <div class="hero-figure">
       <div class="figure-head"><div><p class="eyebrow">Headline sensitivity</p><h2>ADAS-Cog at 18 months</h2></div><span>Mean difference · points</span></div>
@@ -60,6 +61,7 @@
         </details>
       </div>
     </div>
+    <p class="clearance-route">Compare the amount of amyloid removed with clinical benefit in the <a href="#biology">continuous-clearance analysis →</a>.</p>
     <div class="all-specifications">
       <div class="subhead"><div><p class="eyebrow">Specification view</p><h3>All eligible choices, side by side</h3></div><p>Confidence intervals are shown against both the null and any published clinically meaningful-difference thresholds available for the selected scale.</p></div>
       <div class="forest-card" id="specification-forest"></div>
@@ -86,8 +88,29 @@
   </section>
 
   <section class="section biology-section" id="biology">
-    <div class="section-heading light-heading"><div><p class="kicker">Mechanism and effect modification</p><h2>Does clearing more amyloid<br>produce more benefit?</h2></div><p>Trial-level Centiloid meta-regression points in the expected direction, but aggregate evidence cannot establish individual-level mediation.</p></div>
-    <div class="biology-grid" id="biology-grid"></div>
+    <div class="section-heading light-heading"><div><p class="kicker">Continuous amyloid-clearance analysis</p><h2>More amyloid removed.<br>Greater clinical benefit?</h2></div><p>Explore the association across trials, using the amount of amyloid removed as a continuous predictor. These exploratory analyses cannot establish that amyloid removal causes patient benefit.</p></div>
+    <div class="clearance-shell">
+      <div class="clearance-toolbar">
+        <label for="clearance-outcome">Clinical outcome<select id="clearance-outcome"></select></label>
+        <label for="clearance-scope">PET measurements<select id="clearance-scope"><option value="all_pet">All recorded PET values</option><option value="time_screen">Approximate timing screen</option></select></label>
+      </div>
+      <p class="clearance-scope-note" id="clearance-scope-note"></p>
+      <div id="clearance-status" role="status" aria-live="polite"></div>
+      <div class="clearance-layout">
+        <div>
+          <div id="clearance-plot"></div>
+          <p class="clearance-chart-note" id="clearance-chart-note"></p>
+        </div>
+        <aside class="clearance-trial-panel" aria-label="Inspect a contributing trial">
+          <label for="clearance-trial">Inspect a trial<select id="clearance-trial"></select></label>
+          <div id="clearance-trial-detail" aria-live="polite"></div>
+        </aside>
+      </div>
+      <div class="clearance-limits"><strong>What this can tell us</strong><p>A slope describes an association between trials. Drug, dose, disease stage and follow-up may explain part of it. These models have fewer than ten trials per outcome, do not model PET measurement error, and cannot establish mediation or clinically meaningful benefit. A confidence interval spanning zero leaves uncertainty about the association.</p><p>The timing screen checks only whether PET was measured within 13 weeks of the nominal 78-week clinical endpoint. Dose, population and source values still require verification. SMDs are standardized units, not points on the clinical scale.</p><p><a href="https://doi.org/10.1002/alz.71696" target="_blank" rel="noopener">Snyder et al.: mechanistic inference ↗</a> · <a href="https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-10#section-10-11-4" target="_blank" rel="noopener">Cochrane guidance on meta-regression ↗</a></p></div>
+      <details class="clearance-disclosure"><summary id="clearance-membership-summary">Included and excluded trials</summary><div id="clearance-membership"></div></details>
+      <details class="clearance-disclosure"><summary>How sensitive is the slope to individual trials or drugs?</summary><div id="clearance-sensitivity"></div></details>
+      <details class="clearance-disclosure"><summary>Model and reproducibility</summary><p>Separate random-effects meta-regressions for each outcome use REML heterogeneity estimation and Hartung–Knapp inference with k − 2 degrees of freedom. The predictor is placebo-adjusted plaque reduction divided by 10. Positive x values mean greater removal; negative x values mean more amyloid than placebo. The intercept is estimated freely. No minimum clearance, biomarker-entry or approval restriction is imposed.</p><p>Trial bubble area reflects 1 / (clinical sampling variance + residual heterogeneity). The shaded band is a pointwise 95% confidence interval for the mean fitted association, not a prediction interval for a new trial or patient. Models with fewer than four trials or fewer than two distinct PET values are shown as not estimable. Four trials is a computational reporting minimum, not evidence of reliable inference. All sensitivity results are exploratory, without multiplicity adjustment.</p><p>The source review's combined EXPEDITION / EXPEDITION 2 label is retained as one analysis unit. Missing or quarantined PET measurements are excluded from these models and are never assigned zero. Existing source mappings remain provisional; this release does not claim a new primary-source audit.</p><div class="clearance-downloads"><a href="downloads/continuous-clearance-models.csv">Model estimates CSV ↓</a><a href="downloads/continuous-clearance-inputs.csv">Trial inputs &amp; decisions CSV ↓</a><a href="downloads/continuous-clearance-sensitivity.csv">Omission sensitivities CSV ↓</a><a href="downloads/reproducibility-package.zip">Reproducibility package ZIP ↓</a></div></details>
+    </div>
   </section>
 
   <section class="section" id="agents">
@@ -122,10 +145,11 @@
     <div class="downloads"><div><p class="eyebrow">Open evidence package</p><h3>Inspect, reproduce, or extend the work.</h3><p>The unified archive contains the raw Cochrane package, separate primary and extended results, numbered source scripts, file-level provenance, checksums, and one-command verification.</p></div><div class="download-links"><a href="downloads/methods-results.md">Current Methods and Results <span>Markdown ↓</span></a><a href="downloads/release-differences.csv">Changes from v0.1.1 <span>CSV ↓</span></a><a href="downloads/primary-reanalysis-report.pdf">Historical v0.1.1 primary report <span>PDF ↗</span></a><a href="downloads/extended-reanalysis-report.pdf">Historical v0.1.1 extended report <span>PDF ↗</span></a><a href="downloads/outcome-sensitivities.csv">Outcome sensitivities <span>CSV ↓</span></a><a href="downloads/reproducibility-package.zip">Unified reproducibility package <span>ZIP ↓</span></a></div></div>
   </section>
 
-  <footer><div class="brand"><span class="brand-mark">Aβ</span><span>Living Amyloid Evidence</span></div><p>Research synthesis for transparent exploration—not individualized medical advice.</p><p id="release-meta">Evidence version 0.4.0 · 2026-09-23</p></footer>
+  <footer><div class="brand"><span class="brand-mark">Aβ</span><span>Living Amyloid Evidence</span></div><p>Research synthesis for transparent exploration—not individualized medical advice.</p><p id="release-meta">Evidence version 0.5.0 · 2026-10-02</p></footer>
 </main>
-<script src="evidence-inline.js"></script>
-<script src="app.js" defer></script>
-<script src="traceability.js" defer></script>
+<script src="evidence-inline.js?v=0.5.0"></script>
+<script src="app.js?v=0.5.0" defer></script>
+<script src="traceability.js?v=0.5.0" defer></script>
+<script src="clearance.js?v=0.5.0" defer></script>
 </body>
 </html>

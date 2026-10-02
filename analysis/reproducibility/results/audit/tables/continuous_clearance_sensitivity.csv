@@ -1,0 +1,54 @@
+analysis_id,outcome,scope,unit,omitted,status,k,agents,reason,intercept,slope_per_10cl,ci_low,ci_high,p_value,tau2,df
+1.1,ADAS-Cog scale at 18 months,all_pet,trial,EMERGE 2022,estimated,7,6,,-0.0074340194047452955,-0.02110098698373772,-0.04231190067998358,1.0992671250814601e-4,0.05081552930831152,0,5
+1.1,ADAS-Cog scale at 18 months,all_pet,trial,ENGAGE 2022,estimated,7,6,,-0.030798076767166734,-0.01992665113406745,-0.04390126325934701,0.004047960991212109,0.0856900545333385,0,5
+1.1,ADAS-Cog scale at 18 months,all_pet,trial,3000 Non Carriers 2016,estimated,7,6,,0.012479615442972063,-0.02577872812479715,-0.05398031620430615,0.0024228599547118507,0.06558152843961403,0,5
+1.1,ADAS-Cog scale at 18 months,all_pet,trial,3001 Carriers 2016,estimated,7,6,,-0.06653878066507994,-0.014127478053394545,-0.03321737171878952,0.004962415612000438,0.11551304783464333,0,5
+1.1,ADAS-Cog scale at 18 months,all_pet,trial,CREAD 2 2022,estimated,7,5,,-0.013985995935496433,-0.02166070623292568,-0.04490482311109055,0.0015834106452391854,0.061966821797882814,0,5
+1.1,ADAS-Cog scale at 18 months,all_pet,trial,TRAILBLAZER-ALZ 2 2023,estimated,7,5,,-7.18070233175599e-5,-0.02768096745770595,-0.060738166453715846,0.005376231538303945,0.0839773488609484,0,5
+1.1,ADAS-Cog scale at 18 months,all_pet,trial,SCarlet RoAD 2017,estimated,7,5,,-0.02692672376118313,-0.01980055275670375,-0.046346719504445966,0.0067456139910384676,0.11330950510832828,0,5
+1.1,ADAS-Cog scale at 18 months,all_pet,trial,CLARITY AD 2023,estimated,7,5,,-0.01537071604891662,-0.019684465996356905,-0.04417238380106479,0.004803451808350984,0.09367382255106199,0,5
+1.1,ADAS-Cog scale at 18 months,all_pet,drug,Aducanumab,estimated,6,5,,-0.016008035656923207,-0.020493487725266046,-0.045495976180604726,0.004509000730072633,0.08518648791919424,0,4
+1.1,ADAS-Cog scale at 18 months,all_pet,drug,Bapineuzumab,estimated,6,5,,-0.05639635696969416,-0.01566551286512439,-0.045693443110011105,0.014362417379762328,0.22106343571152348,0,4
+1.1,ADAS-Cog scale at 18 months,all_pet,drug,Crenezumab,estimated,7,5,,-0.013985995935496433,-0.02166070623292568,-0.04490482311109055,0.0015834106452391854,0.061966821797882814,0,5
+1.1,ADAS-Cog scale at 18 months,all_pet,drug,Donanemab,estimated,7,5,,-7.18070233175599e-5,-0.02768096745770595,-0.060738166453715846,0.005376231538303945,0.0839773488609484,0,5
+1.1,ADAS-Cog scale at 18 months,all_pet,drug,Gantenerumab,estimated,7,5,,-0.02692672376118313,-0.01980055275670375,-0.046346719504445966,0.0067456139910384676,0.11330950510832828,0,5
+1.1,ADAS-Cog scale at 18 months,all_pet,drug,Lecanemab,estimated,7,5,,-0.01537071604891662,-0.019684465996356905,-0.04417238380106479,0.004803451808350984,0.09367382255106199,0,5
+1.1,ADAS-Cog scale at 18 months,time_screen,trial,EMERGE 2022,not_estimable,3,3,At least four trials and two distinct PET values are required; this minimum does not establish reliable inference.,NA,NA,NA,NA,NA,NA,NA
+1.1,ADAS-Cog scale at 18 months,time_screen,trial,ENGAGE 2022,not_estimable,3,3,At least four trials and two distinct PET values are required; this minimum does not establish reliable inference.,NA,NA,NA,NA,NA,NA,NA
+1.1,ADAS-Cog scale at 18 months,time_screen,trial,TRAILBLAZER-ALZ 2 2023,not_estimable,3,2,At least four trials and two distinct PET values are required; this minimum does not establish reliable inference.,NA,NA,NA,NA,NA,NA,NA
+1.1,ADAS-Cog scale at 18 months,time_screen,trial,CLARITY AD 2023,not_estimable,3,2,At least four trials and two distinct PET values are required; this minimum does not establish reliable inference.,NA,NA,NA,NA,NA,NA,NA
+1.1,ADAS-Cog scale at 18 months,time_screen,drug,Aducanumab,not_estimable,2,2,At least four trials and two distinct PET values are required; this minimum does not establish reliable inference.,NA,NA,NA,NA,NA,NA,NA
+1.1,ADAS-Cog scale at 18 months,time_screen,drug,Donanemab,not_estimable,3,2,At least four trials and two distinct PET values are required; this minimum does not establish reliable inference.,NA,NA,NA,NA,NA,NA,NA
+1.1,ADAS-Cog scale at 18 months,time_screen,drug,Lecanemab,not_estimable,3,2,At least four trials and two distinct PET values are required; this minimum does not establish reliable inference.,NA,NA,NA,NA,NA,NA,NA
+2.1,CDR-SB scale at 18 months,all_pet,trial,EMERGE 2022,estimated,5,5,,0.10499855103750129,-0.04599052061248979,-0.11552204300442373,0.023541001779444154,0.12596702139643293,3.4603240927033654e-6,3
+2.1,CDR-SB scale at 18 months,all_pet,trial,ENGAGE 2022,estimated,5,5,,0.005889439040382545,-0.034839137339386886,-0.09574400512150223,0.02606573044272846,0.16624749376686584,3.7584239854141394e-6,3
+2.1,CDR-SB scale at 18 months,all_pet,trial,CREAD 2 2022,estimated,5,4,,0.11823403863874093,-0.04937023800210896,-0.09606205555508232,-0.0026784204491356114,0.04357158540928075,9.987214647278383e-7,3
+2.1,CDR-SB scale at 18 months,all_pet,trial,TRAILBLAZER-ALZ 2 2023,estimated,5,4,,0.03408876850271871,-0.03434027511914205,-0.1807311714648811,0.11205062122659702,0.5095229466899515,0.00597832972696544,3
+2.1,CDR-SB scale at 18 months,all_pet,trial,CLARITY AD 2023,estimated,5,4,,0.05009467706487506,-0.03781045255544159,-0.1318180865910033,0.05619718148012012,0.2905502858277408,0.006689199893244536,3
+2.1,CDR-SB scale at 18 months,all_pet,trial,SCarlet RoAD 2017,estimated,5,4,,-0.0017827742506116757,-0.031081148272600497,-0.1485899094639249,0.0864276129187239,0.46172947390564717,0.004525726177238082,3
+2.1,CDR-SB scale at 18 months,all_pet,drug,Aducanumab,estimated,4,4,,0.0298047817722591,-0.03732322377559232,-0.137499410972701,0.06285296342151636,0.25010298050143,1.8453589172907674e-6,2
+2.1,CDR-SB scale at 18 months,all_pet,drug,Crenezumab,estimated,5,4,,0.11823403863874093,-0.04937023800210896,-0.09606205555508232,-0.0026784204491356114,0.04357158540928075,9.987214647278383e-7,3
+2.1,CDR-SB scale at 18 months,all_pet,drug,Donanemab,estimated,5,4,,0.03408876850271871,-0.03434027511914205,-0.1807311714648811,0.11205062122659702,0.5095229466899515,0.00597832972696544,3
+2.1,CDR-SB scale at 18 months,all_pet,drug,Lecanemab,estimated,5,4,,0.05009467706487506,-0.03781045255544159,-0.1318180865910033,0.05619718148012012,0.2905502858277408,0.006689199893244536,3
+2.1,CDR-SB scale at 18 months,all_pet,drug,Gantenerumab,estimated,5,4,,-0.0017827742506116757,-0.031081148272600497,-0.1485899094639249,0.0864276129187239,0.46172947390564717,0.004525726177238082,3
+2.1,CDR-SB scale at 18 months,time_screen,trial,EMERGE 2022,not_estimable,3,3,At least four trials and two distinct PET values are required; this minimum does not establish reliable inference.,NA,NA,NA,NA,NA,NA,NA
+2.1,CDR-SB scale at 18 months,time_screen,trial,ENGAGE 2022,not_estimable,3,3,At least four trials and two distinct PET values are required; this minimum does not establish reliable inference.,NA,NA,NA,NA,NA,NA,NA
+2.1,CDR-SB scale at 18 months,time_screen,trial,TRAILBLAZER-ALZ 2 2023,not_estimable,3,2,At least four trials and two distinct PET values are required; this minimum does not establish reliable inference.,NA,NA,NA,NA,NA,NA,NA
+2.1,CDR-SB scale at 18 months,time_screen,trial,CLARITY AD 2023,not_estimable,3,2,At least four trials and two distinct PET values are required; this minimum does not establish reliable inference.,NA,NA,NA,NA,NA,NA,NA
+2.1,CDR-SB scale at 18 months,time_screen,drug,Aducanumab,not_estimable,2,2,At least four trials and two distinct PET values are required; this minimum does not establish reliable inference.,NA,NA,NA,NA,NA,NA,NA
+2.1,CDR-SB scale at 18 months,time_screen,drug,Donanemab,not_estimable,3,2,At least four trials and two distinct PET values are required; this minimum does not establish reliable inference.,NA,NA,NA,NA,NA,NA,NA
+2.1,CDR-SB scale at 18 months,time_screen,drug,Lecanemab,not_estimable,3,2,At least four trials and two distinct PET values are required; this minimum does not establish reliable inference.,NA,NA,NA,NA,NA,NA,NA
+1.4,MMSE scale at 18 months,all_pet,trial,EMERGE 2022,estimated,4,4,,-0.03166974355187796,0.018453371490069252,-0.03660739945649486,0.07351414243663337,0.2860443690523846,0.0013161888761164069,2
+1.4,MMSE scale at 18 months,all_pet,trial,ENGAGE 2022,estimated,4,4,,0.08813867446701766,0.007926986401220092,-0.029064000209287958,0.044917973011728146,0.4538468760524569,0,2
+1.4,MMSE scale at 18 months,all_pet,trial,CREAD 2 2022,estimated,4,3,,0.0027422974285293386,0.016734991869472155,-0.06156599465061162,0.09503597838955592,0.45486501905947874,0.0033475457129238514,2
+1.4,MMSE scale at 18 months,all_pet,trial,TRAILBLAZER-ALZ 2 2023,estimated,4,3,,0.031079231749874314,0.01095337903540639,-0.15490913518221766,0.17681589325303043,0.8030175305103695,0.009676553270361347,2
+1.4,MMSE scale at 18 months,all_pet,trial,SCarlet RoAD 2017,estimated,4,3,,0.005876829945776664,0.01623859187298493,-0.09279692794011636,0.1252741116860862,0.5872825204416954,0.008119315294223658,2
+1.4,MMSE scale at 18 months,all_pet,drug,Aducanumab,not_estimable,3,3,At least four trials and two distinct PET values are required; this minimum does not establish reliable inference.,NA,NA,NA,NA,NA,NA,NA
+1.4,MMSE scale at 18 months,all_pet,drug,Crenezumab,estimated,4,3,,0.0027422974285293386,0.016734991869472155,-0.06156599465061162,0.09503597838955592,0.45486501905947874,0.0033475457129238514,2
+1.4,MMSE scale at 18 months,all_pet,drug,Donanemab,estimated,4,3,,0.031079231749874314,0.01095337903540639,-0.15490913518221766,0.17681589325303043,0.8030175305103695,0.009676553270361347,2
+1.4,MMSE scale at 18 months,all_pet,drug,Gantenerumab,estimated,4,3,,0.005876829945776664,0.01623859187298493,-0.09279692794011636,0.1252741116860862,0.5872825204416954,0.008119315294223658,2
+1.4,MMSE scale at 18 months,time_screen,trial,EMERGE 2022,not_estimable,2,2,At least four trials and two distinct PET values are required; this minimum does not establish reliable inference.,NA,NA,NA,NA,NA,NA,NA
+1.4,MMSE scale at 18 months,time_screen,trial,ENGAGE 2022,not_estimable,2,2,At least four trials and two distinct PET values are required; this minimum does not establish reliable inference.,NA,NA,NA,NA,NA,NA,NA
+1.4,MMSE scale at 18 months,time_screen,trial,TRAILBLAZER-ALZ 2 2023,not_estimable,2,1,At least four trials and two distinct PET values are required; this minimum does not establish reliable inference.,NA,NA,NA,NA,NA,NA,NA
+1.4,MMSE scale at 18 months,time_screen,drug,Aducanumab,not_estimable,1,1,At least four trials and two distinct PET values are required; this minimum does not establish reliable inference.,NA,NA,NA,NA,NA,NA,NA
+1.4,MMSE scale at 18 months,time_screen,drug,Donanemab,not_estimable,2,1,At least four trials and two distinct PET values are required; this minimum does not establish reliable inference.,NA,NA,NA,NA,NA,NA,NA

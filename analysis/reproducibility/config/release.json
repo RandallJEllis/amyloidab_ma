@@ -1,10 +1,10 @@
 {
-  "version": "0.4.0",
-  "date": "2026-09-23",
+  "version": "0.5.0",
+  "date": "2026-10-02",
   "searchThrough": "2025-08-07",
   "baselineCommit": "b95530a",
   "status": "Exploratory reanalysis; PET mappings retain explicitly documented uncertainties",
   "responseLabel": "Biomarker-confirmed, approved agents, ≥10 CL reduction",
   "clearanceThresholds": [2, 4, 6, 8, 10, 12],
-  "changeNote": "Added biomarker-confirmed ≥10 CL reduction without an approval restriction. The approval restriction and numerical cutoff are investigator choices, not Snyder criteria."
+  "changeNote": "Added an interactive continuous-clearance analysis with precomputed confidence bands, approximate PET timing sensitivity, and leave-one-trial/drug-out models. Existing all-PET slopes and source measurements are unchanged; PET matching uncertainties remain unresolved."
 }

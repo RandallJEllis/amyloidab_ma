@@ -1,6 +1,6 @@
 # Extended numerical results
 
-Evidence 0.4.0, 2026-09-23. Generated without manual numerical transcription. These exploratory analyses are subject to the limitations in methods-results.md and AUDIT.md. NA denotes unavailable or not estimable.
+Evidence 0.5.0, 2026-10-02. Generated without manual numerical transcription. These exploratory analyses are subject to the limitations in methods-results.md and AUDIT.md. NA denotes unavailable or not estimable.
 
 ## agent_results
 

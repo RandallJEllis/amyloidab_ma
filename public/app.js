@@ -251,8 +251,6 @@ function renderFixedSections() {
   const hero = displayRows(heroSmd, evidence.rawMeanDifferences, "ADAS-Cog scale at 18 months", "scenario");
   const heroRange = plotRange(hero, "ADAS-Cog scale at 18 months");
   document.querySelector("#hero-forest").innerHTML=`${forestAxis("ADAS-Cog scale at 18 months",heroRange)}${hero.map(row=>forestRow(row,heroRange)).join("")}${thresholdNote("ADAS-Cog scale at 18 months")}`;
-  const regression=evidence.metaRegressions.filter(row=>row.measure==="SMD" && /ADAS|CDR/.test(row.outcome));
-  document.querySelector("#biology-grid").innerHTML=regression.map(row=>`<article class="slope-card"><p class="eyebrow">${esc(outcomeShort[row.outcome]||row.outcome)}</p><div class="slope-number">${fmt(row.slope_per_10cl,3)}</div><p>SMD per additional 10-Centiloid reduction</p><div class="slope-meta"><span>95% CI ${fmt(row.slope_ci_low,3)} to ${fmt(row.slope_ci_high,3)}</span><strong>P ${fmtP(row.slope_p)}</strong></div></article>`).join("")+`<article class="biology-note"><p class="eyebrow">Reading the result</p><h3>Suggestive, not definitive.</h3><p>Both slopes favor greater slowing with greater plaque removal. Their confidence intervals include no association under precision-weighted random-effects inference.</p></article>`;
   const safety=evidence.absoluteSafety.filter(row=>row.outcome==="Any ARIA E at 18 months" && ["Aducanumab","Donanemab","Lecanemab"].includes(row.agent)).sort((a,b)=>b.rd_per_1000-a.rd_per_1000);
   document.querySelector("#safety-grid").innerHTML=safety.map((row,index)=>`<article class="safety-card"><div class="safety-rank">0${index+1}</div><p class="eyebrow">${esc(row.agent)} · ARIA-E</p><div class="risk-number">+${Math.round(row.rd_per_1000)}</div><p class="risk-unit">additional events per 1,000 treated</p><div class="risk-bar"><span style="width:${Math.min(100,row.rd_per_1000/3.6)}%"></span></div><div class="risk-meta"><span>95% CI +${Math.round(row.rd_ci_low_per_1000)} to +${Math.round(row.rd_ci_high_per_1000)}</span><strong>NNH ${row.number_needed?.toFixed(1)||"—"}</strong></div></article>`).join("");
   const trialRows=evidence.trialAnnotations.map(trial=>({...trial,clearance:evidence.amyloidMapping.find(item=>item.Study===trial.Study)?.amyloid_change_cl??null}));
@@ -425,6 +423,7 @@ function initialize(data) {
   document.querySelector("#download-condition-csv").addEventListener("click",downloadConditionCsv);
   document.querySelector("#copy-condition-citation").addEventListener("click",copyConditionCitation);
   renderFixedSections(); renderAnalysisConditions(); renderExplorer();
+  document.dispatchEvent(new CustomEvent("evidence-ready", {detail: data}));
 }
 
 if (window.__EVIDENCE__) {

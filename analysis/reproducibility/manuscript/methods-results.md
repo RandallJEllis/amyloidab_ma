@@ -1,6 +1,6 @@
 # Methods and Results: exploratory reanalysis
 
-Release 0.4.0; generated 2026-09-23. Source literature search through 2025-08-07. This document is a submission draft; independent extraction verification remains pending.
+Release 0.5.0; generated 2026-10-02. Source literature search through 2025-08-07. This document is a submission draft; independent extraction verification remains pending.
 
 ## Methods
 
@@ -491,6 +491,21 @@ These are direct reconstructions from exported arm summaries, subject to the mea
 | NPI-Q score at 12 months | Demonstrated clearance: >=2 CL | MD | 1 | 0.760 | -1.600 to 3.120 | 0.528 |
 | NPI-Q score at 18 months | Biomarker-confirmed | MD | 2 | 0.568 | -0.967 to 2.102 | 0.468 |
 | NPI-Q score at 18 months | Cochrane class pool | MD | 2 | 0.568 | -0.967 to 2.102 | 0.468 |
+
+### Continuous-clearance models
+
+The continuous explorer uses SMD outcomes at 18 months. Its all-PET specification includes every recorded numeric mapping for that endpoint, with no minimum-clearance or approval restriction. The approximate timing sensitivity requires PET at 78 ± 13 weeks; it does not verify dose, population or source values. Models use REML, an estimated intercept and Hartung–Knapp inference with k − 2 degrees of freedom. Pointwise 95% confidence bands describe the fitted mean association within the observed PET range, not predictions for new trials or patients. Bubble areas reflect inverse (clinical sampling variance + residual heterogeneity) weights. Fewer than four trials or fewer than two distinct PET values are reported as not estimable; this computational minimum does not establish reliable inference. PET predictor uncertainty remains unmodelled. No primary-source adjudications were made in this addition.
+
+| Outcome | PET scope | k | SMD slope per 10 CL | 95% CI | P | Status |
+|---|---|---:|---:|---|---:|---|
+| ADAS-Cog scale at 18 months | all_pet | 8 | -0.021 | -0.042 to 0.001 | 0.057 | estimated |
+| ADAS-Cog scale at 18 months | time_screen | 4 | -0.011 | -0.084 to 0.061 | 0.565 | estimated |
+| CDR-SB scale at 18 months | all_pet | 6 | -0.043 | -0.098 to 0.012 | 0.095 | estimated |
+| CDR-SB scale at 18 months | time_screen | 4 | -0.051 | -0.157 to 0.055 | 0.174 | estimated |
+| MMSE scale at 18 months | all_pet | 5 | 0.015 | -0.032 to 0.063 | 0.386 | estimated |
+| MMSE scale at 18 months | time_screen | 3 | NA | NA to NA | NA | not_estimable |
+
+Every trial and drug omission, including insufficient-data fits, is reported in results/audit/tables/continuous_clearance_sensitivity.csv. These exploratory analyses have no multiplicity adjustment and cannot establish individual-level mediation or clinical meaningfulness. Full inputs, decisions and curves are preserved in the companion CSV and JSON files.
 
 ### Extended results
 

@@ -18,6 +18,7 @@ Rscript code/02_extended_reanalysis.R
 
 printf '%s\n' 'Auditing source pairings and computing exploratory filter sensitivities...'
 Rscript code/08_traceability.R
+Rscript code/11_continuous_clearance.R
 
 printf '%s\n' '3/5 Building the exact evidence registry consumed by the website...'
 node code/03_build_evidence_registry.mjs
